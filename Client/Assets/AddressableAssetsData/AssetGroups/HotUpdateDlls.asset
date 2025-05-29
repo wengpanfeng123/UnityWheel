@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: HotUpdateDlls
+  m_EditorClassIdentifier: 
+  m_GroupName: HotUpdateDlls
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9cb6b85a5d7da8749960dda52450905d
+  m_SerializeEntries:
+  - m_GUID: d045c5ed218be77458013eeb9667bb6e
+    m_Address: Assets/AssetsPackage/HotUpdateDlls/HotUpdateDll
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c5abf16de2297f4998d4aca95b24fbb
+    m_Address: Assets/AssetsPackage/HotUpdateDlls/MetaDataDll
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9b93bd6efa8259746a34f150134e51fe, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8bb81e51b46c05f4ebf0b2c0e53a7d03, type: 2}
+    - {fileID: 11400000, guid: 905284dd181855c4ab08d4e0bcd5dd0c, type: 2}
