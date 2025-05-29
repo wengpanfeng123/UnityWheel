@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1001,
+    "name": "Background",
+    "downMutex": true,
+    "ignoreMutex": false,
+    "exclusiveLayers": [
+      1,
+      100
+    ],
+    "depthRange": [
+      1,
+      100
+    ],
+    "desc": "背景层"
+  },
+  {
+    "id": 1002,
+    "name": "MainHUD",
+    "downMutex": false,
+    "ignoreMutex": true,
+    "exclusiveLayers": [
+      1,
+      101
+    ],
+    "depthRange": [
+      101,
+      200
+    ],
+    "desc": "主界面层（血条/小地图）"
+  },
+  {
+    "id": 1003,
+    "name": "Function",
+    "downMutex": true,
+    "ignoreMutex": false,
+    "exclusiveLayers": [
+      1,
+      102
+    ],
+    "depthRange": [
+      201,
+      800
+    ],
+    "desc": "功能层（商城/背包/子系统）"
+  },
+  {
+    "id": 1004,
+    "name": "Popup",
+    "downMutex": true,
+    "ignoreMutex": false,
+    "exclusiveLayers": [
+      1,
+      103
+    ],
+    "depthRange": [
+      801,
+      1000
+    ],
+    "desc": "弹窗层（设置/确认框）)"
+  },
+  {
+    "id": 1005,
+    "name": "Toast",
+    "downMutex": false,
+    "ignoreMutex": true,
+    "exclusiveLayers": [
+      1,
+      104
+    ],
+    "depthRange": [
+      1001,
+      1200
+    ],
+    "desc": "通知层（Toast/系统提示）"
+  },
+  {
+    "id": 1006,
+    "name": "Animation",
+    "downMutex": false,
+    "ignoreMutex": false,
+    "exclusiveLayers": [
+      1,
+      105
+    ],
+    "depthRange": [
+      1201,
+      1400
+    ],
+    "desc": "动效层（全屏转场特效）"
+  },
+  {
+    "id": 1007,
+    "name": "SystemTop",
+    "downMutex": false,
+    "ignoreMutex": true,
+    "exclusiveLayers": [
+      1,
+      106
+    ],
+    "depthRange": [
+      2001,
+      2010
+    ],
+    "desc": "系统顶层（Loading/紧急维护/网络弹框等)"
+  },
+  {
+    "id": 1008,
+    "name": "GM层",
+    "downMutex": false,
+    "ignoreMutex": false,
+    "exclusiveLayers": [
+      1,
+      107
+    ],
+    "depthRange": [
+      2010,
+      2020
+    ],
+    "desc": ""
+  }
+]

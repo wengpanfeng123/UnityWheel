@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1001,
+    "layer": 1003,
+    "mutexRule": 0,
+    "ignoreMutex": false,
+    "name": "登录界面",
+    "desc": "登录界面",
+    "isFull": true,
+    "path": "Assets/AssetsPackage/ui/panels/login/LoginUI.prefab",
+    "isMultiInstance": false,
+    "isResident": false
+  },
+  {
+    "id": 1002,
+    "layer": 1003,
+    "mutexRule": 0,
+    "ignoreMutex": false,
+    "name": "选角界面",
+    "desc": "选角界面",
+    "isFull": true,
+    "path": "Assets/AssetsPackage/ui/panels/login/SelectroleUI.prefab",
+    "isMultiInstance": false,
+    "isResident": false
+  },
+  {
+    "id": 1003,
+    "layer": 1002,
+    "mutexRule": 0,
+    "ignoreMutex": false,
+    "name": "主界面",
+    "desc": "主界面",
+    "isFull": true,
+    "path": "Assets/AssetsPackage/ui/panels/main/MainUI.prefab",
+    "isMultiInstance": false,
+    "isResident": true
+  },
+  {
+    "id": 1004,
+    "layer": 1003,
+    "mutexRule": 1,
+    "ignoreMutex": false,
+    "name": "设置页面",
+    "desc": "设置页面",
+    "isFull": true,
+    "path": "Assets/AssetsPackage/ui/panels/setting/SettingUI.prefab",
+    "isMultiInstance": false,
+    "isResident": false
+  },
+  {
+    "id": 1005,
+    "layer": 1003,
+    "mutexRule": 0,
+    "ignoreMutex": false,
+    "name": "卡牌界面",
+    "desc": "卡牌界面",
+    "isFull": true,
+    "path": "Assets/AssetsPackage/ui/panels/card/CardUI.prefab",
+    "isMultiInstance": false,
+    "isResident": false
+  },
+  {
+    "id": 1006,
+    "layer": 1003,
+    "mutexRule": 1,
+    "ignoreMutex": false,
+    "name": "胜利界面",
+    "desc": "胜利界面",
+    "isFull": false,
+    "path": "Assets/AssetsPackage/ui/panels/victory/VictoryUI.prefab",
+    "isMultiInstance": false,
+    "isResident": false
+  }
+]
