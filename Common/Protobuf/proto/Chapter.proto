@@ -1,0 +1,53 @@
+syntax = "proto3";
+package protocol;
+
+//章节话数据
+message ChapterSubData
+{
+	int32		ChapterSubTid	= 1;		//关卡Id（ChapterSub.txt）
+	int32		Star			= 2;		//星级
+	int32		PassTimes		= 3;		//通关次数
+}
+
+//章节通关数据
+message ChapterData
+{
+	int32					ChapterTid	= 1;		//章节ID（Chapter.txt）
+	repeated ChapterSubData 	FightDatas	= 2;	//战斗通关数据
+	int32					TotalStar	= 3;		//总星级
+	repeated	int32		RewardList	= 4;		//已领取奖励列表
+}
+
+//章节信息
+message C2SChapterInfo
+{
+	int32	ChapterTid	= 1;	//章节ID（Chapter.txt）	
+}
+
+//章节领奖
+message C2SChapterDrawReward
+{
+	int32	ChapterTid		= 1;		//章节ID
+	int32	RewardTid		= 2;		//奖励ID
+}
+
+//章节信息
+message S2CChapterInfo
+{
+	repeated  	ChapterData ChapterDatas	= 1;	//关卡数据
+}
+
+//关卡更新
+message S2CChapterUpdate
+{
+	int32			ChapterTid				= 1;	//章节表表ID
+	int32			TotalStar				= 2;	//本章总星级
+	ChapterSubData	PassData				= 3;	//通关数据
+}
+
+//章节领奖
+message S2CChapterDrawReward
+{
+	int32	ChapterTid		= 1;		//章节ID
+	int32	RewardTid		= 2;		//奖励ID
+}

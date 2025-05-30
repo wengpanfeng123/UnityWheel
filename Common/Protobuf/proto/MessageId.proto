@@ -1,0 +1,307 @@
+syntax = "proto3";
+package protocol;
+option optimize_for = LITE_RUNTIME;
+
+//协议号
+enum MessageId
+{
+	MSG_BEGIN 					= 0;		
+	//----------------------------------------------------------------------------------------
+	// C2S消息 1000-1999
+	//----------------------------------------------------------------------------------------	
+	//玩家相关协议 1000
+	MSGID_C2S_EnterGame 			= 1000;		//进入游戏
+	MSGID_C2S_CreatePlayer 			= 1001;		//创建角色
+	MSGID_C2S_Match 				= 1002;		//游戏匹配
+	MSGID_C2S_ChangeFashion 		= 1003;		//换装
+	MSGID_C2S_CancelMatch			= 1004;		//取消匹配
+	
+	MSGID_C2S_ReadMail				= 1005;		//读取邮件
+	MSGID_C2S_ReceiveMail			= 1006;		//领取邮件
+	MSGID_C2S_DelMail				= 1007;		//删除邮件
+
+	MSGID_C2S_CheckRoleName			= 1008;		//检查名字合法
+	MSGID_C2S_ContinueGame			= 1009;		//继续上局游戏
+	MSGID_C2S_Pay			        = 1010;		//支付
+	MSGID_C2S_Reconnection			= 1011;		//继续游戏
+	MSGID_C2S_InviteFrient			= 1012; 	//邀请好友
+
+	MSGID_C2S_ReqShopTime			= 1013;		//请求刷新时间
+	MSGID_C2S_ReqShopBuy			= 1014;		//请求购买商品
+	MSGID_C2S_PayOrder				= 1015; 	//支付订单
+	MSGID_C2S_PayFinished			= 1016; 	//支付完成
+	
+	MSGID_C2S_ChangeName 			= 1017;		//改名
+	MSGID_C2S_ChangeTitle 			= 1018;		//改称号
+	MSGID_C2S_ChangeSignature 		= 1019;		//改签名
+
+	MSGID_C2S_QueryOrder 			= 1020;		//订单查询
+
+	MSGID_C2S_CreateTeam			= 1030;	//创建队伍
+	MSGID_C2S_EnterTeam				= 1031; //进入队伍
+	MSGID_C2S_ExitTeam				= 1032;	//退出队伍
+
+	MSGID_C2S_BuyTagCard			= 1040; //购买身份卡
+	MSGID_C2S_SetTagCardState		= 1041; //设置使用状态
+	MSGID_C2S_RequestLottery		= 1042; //请求抽奖
+	MSGID_C2S_BuyLotteryCoin		= 1043; //购买抽奖币
+
+	MSGID_C2S_NggBuyVerify			= 1044;	//ngg购买验证
+	
+	MSGID_C2S_ResetConnect			= 1998;		//断线重连
+	MSGID_C2S_HeartBeat				= 1999;		//心跳包
+	//----------------------------------------------------------------------------------------
+	// S2C消息 2000-2999
+	//----------------------------------------------------------------------------------------
+	MSGID_S2C_PlayerInfo 			= 2000;	//同步玩家信息
+	MSGID_S2C_CreatePlayer			= 2001;	//创建角色
+	MSGID_S2C_MatchResult 			= 2002;	//匹配信息
+	MSGID_S2C_TargetInfo 			= 2003;	//同步其他玩家信息
+	MSGID_S2C_ChangeFashion 		= 2004;	//换装
+	MSGID_S2C_PartsInfo 			= 2005;	//同步部件信息
+
+	MSGID_S2C_LoadMailInfo			= 2006; // 同步邮件列表
+	MSGID_S2C_ReadMail				= 2007; // 读取邮件结果
+	MSGID_S2C_Receive				= 2008; // 领取邮件道具结果
+	MSGID_S2C_DelMail				= 2009;	// 删除邮件结果
+
+	MSGID_S2C_OpenBattlePass		= 2010; // 开启一个新赛季
+	MSGID_S2C_CloseBattlePass       = 2011; // 关闭一个新赛季
+	MSGID_S2C_BattlePassLv			= 2012; // 等级变动通知
+	MSGID_S2C_BattlePassPay			= 2013; // 充值解锁
+	MSGID_S2C_CheckRoleName			= 2014;	// 检查名字合法
+	MSGID_S2C_CancelMatch			= 2015;	// 取消匹配
+	MSGID_S2C_Match					= 2016;	// 匹配
+	MSGID_S2C_Pay			        = 2017;	// 支付
+	MSGID_S2C_InviteResult			= 2018; // 邀请结果
+	MSGID_S2C_InviteNotice			= 2019; // 通知被邀请者
+	MSGID_S2C_AddItem				= 2020; // 获得道具
+	MSGID_S2C_ChangeMoney			= 2021; // 货币改变
+
+	MSGID_S2C_ShopRefNotice			= 2022; // 商店刷新信息
+	MSGID_S2C_ShopRefTime			= 2023;	// 刷新的剩余时间
+	MSGID_S2C_ShopBuyResult			= 2024;	// 购买结果
+	MSGID_S2C_PayFinished			= 2025; //支付完成
+	
+	MSGID_S2C_ChangeName 			= 2026;	//改名
+	MSGID_S2C_ChangeTitle 			= 2027;	//改称号
+	MSGID_S2C_ChangeSignature 		= 2028;	//改签名
+
+	MSGID_S2C_TeamInfo				= 2030;	// 队伍信息
+	MSGID_S2C_EnterTeam_Broadcast	= 2031; // 进入队伍广播
+	MSGID_S2C_ExitTeam_Broadcast	= 2032; // 退出队伍广播
+	MSGID_S2C_Team_Result			= 2033; // 队伍操作结果
+	
+	MSGID_S2C_BuyTagCard_Ret		= 2040;	// 购买身份卡返回结果
+	MSGID_S2C_ChangeTagCard			= 2041;	// 身份卡数量变动
+	MSGID_S2C_TagCardState			= 2042; // 身份卡是否在使用中
+	MSGID_S2C_ResponseLottery		= 2043;	// 抽奖结果
+	MSGID_S2C_ChangeLotteryCoin		= 2044; // 抽奖币改变
+	MSGID_S2C_BuyLotteryCoinRet		= 2045;	// 购买结果
+
+	MSGID_S2C_NggBuyVerify			= 2046;
+	MSGID_S2C_FirstRecharge			= 2047;
+	MSGID_S2C_FirstRechargGoods		= 2048;
+
+	MSGID_S2C_ResetConnect			= 2997;	//断线重连成功
+	MSGID_S2C_Reload				= 2998; //需要重新登录
+	MSGID_S2C_HeartBeat				= 2999;	//心跳包返回
+	//----------------------------------------------------------------------------------------
+	// C2L消息 3000~3999
+	//----------------------------------------------------------------------------------------
+	MSGID_C2L_EnterScene 			= 3000;	//进入游戏场景
+	MSGID_C2L_LoadMapFinished		= 3001; //地图信息加载完成
+	MSGID_C2L_SyncMove   			= 3002; //移动数据
+	
+	MSGID_C2L_Meeting  				= 3003; //开启讨论
+	MSGID_C2L_CheckDead				= 3004; //死者报告
+	MSGID_C2L_Chat  			 	= 3005; //聊天
+	MSGID_C2L_Vote   				= 3006; //投票
+	
+	MSGID_C2L_PuzzleStart  			= 3007; //开始任务
+	MSGID_C2L_PuzzleFinish			= 3008; //任务完成
+	MSGID_C2L_PuzzleFailed  		= 3009; //任务失败
+	MSGID_C2L_DestroyPuzzle   		= 3010; //破坏任务
+
+	MSGID_C2L_PickupItem			= 3011; //拾取道具
+	MSGID_C2L_UseItem				= 3012; //使用道具
+	
+	MSGID_C2L_Jump					= 3013; //跳跃
+	MSGID_C2L_Attack				= 3014; //攻击
+	MSGID_C2L_UseLift				= 3015; //使用电梯
+	MSGID_C2L_UseMonitor			= 3016; //使用监视器
+	MSGID_C2L_CancelMonitor			= 3017; //取消监视器
+	MSGID_C2L_Voice  			 	= 3018; //语音
+	
+	MSGID_C2L_PickUpKey 			= 3019; //钥匙拾取
+	MSGID_C2L_MeetingMove 			= 3020; //会议中移动
+	
+	
+	//狼人游戏------------------------------------------
+	MSGID_C2L_EnterBox 				= 3021; //进入箱子
+	MSGID_C2L_LeaveBox 				= 3022; //离开箱子
+	MSGID_C2L_DestroyBox 			= 3023; //破坏箱子
+	MSGID_C2L_RepairBox 			= 3024; //修复箱子
+	MSGID_C2L_RepairBox_Succeed		= 3025; //修复箱子成功
+	MSGID_C2L_RepairBox_Failed		= 3026; //修复箱子失败
+	
+	//狼人游戏------------------------------------------
+	
+	//躲猫猫游戏------------------------------------------
+	MSGID_C2L_Attack_Stilllife		= 3030; //破坏静态物
+	
+	//躲猫猫游戏------------------------------------------
+	//格斗吃鸡----------------------------------------------
+	MSGID_C2L_UseSkill				= 3040; //攻击
+	MSGID_C2L_ToNextRoom			= 3041; //传送
+	
+	
+	//格斗吃鸡----------------------------------------------
+	MSGID_C2L_Reconnection  		= 3998; //断线重连
+	MSGID_C2L_HeartBeat				= 3999;		//心跳包
+	//----------------------------------------------------------------------------------------
+	// L2C消息 4000~4999
+	//----------------------------------------------------------------------------------------
+	MSGID_L2C_EnterScene				= 4000;	//同步场景信息
+	MSGID_L2C_PlayersInfo_Broadcast		= 4001; //同步玩家信息
+	MSGID_L2C_WaitMeeting_Broadcast		= 4002;	//准备进入讨论
+	MSGID_L2C_SetPos 					= 4003; //移动校验数据
+	MSGID_L2C_SyncMove_Broadcast 		= 4004; //移动数据转发
+	
+	MSGID_L2C_Meeting					= 4005; //开启讨论
+	MSGID_L2C_CheckDead					= 4006; //死者报告
+	MSGID_L2C_Meeting_Broadcast			= 4007; //开启讨论
+	MSGID_L2C_Chat_Broadcast			= 4009; //聊天转发
+	MSGID_L2C_Vote_Broadcast			= 4011; //投票转发
+	MSGID_L2C_MeetingOver_Broadcast		= 4012; //会议结束
+	MSGID_L2C_Voice_Broadcast  			= 4013; //语音转发
+
+	MSGID_L2C_PuzzleStart_Broadcast		= 4014; //任务开始转发
+	MSGID_L2C_PuzzleFinish_Broadcast	= 4015; //任务完成转发
+	MSGID_L2C_PuzzleFailed_Broadcast	= 4016; //任务失败转发
+	MSGID_L2C_DestroyPuzzle_Broadcast	= 4017; //破坏任务转发
+		
+	MSGID_L2C_AddBuff_Broadcast			= 4023; //添加buff
+	MSGID_L2C_RemBuff_Broadcast			= 4024; //移除buff
+	MSGID_L2C_PickupItem_Broadcast		= 4025; //拾取道具结果
+	MSGID_L2C_UseItem_Broadcast			= 4026; //使用道具结果
+	
+	MSGID_L2C_GameStartNotices_Broadcast	= 4022; //准备开始游戏
+	MSGID_L2C_GameStart_Broadcast			= 4027; //游戏开始
+	MSGID_L2C_GameContinue_Broadcast		= 4028; //游戏继续
+	MSGID_L2C_GameClearingNotices_Broadcast	= 4029; //游戏结算通知
+	MSGID_L2C_GameClearing_Broadcast		= 4030; //游戏结算
+	MSGID_L2C_GameOver_Broadcast			= 4031; //游戏结束
+	
+	MSGID_L2C_Jump_Broadcast 		= 4032; //跳跃转发
+	MSGID_L2C_AttributeChange_Broadcast	= 4033; //属性改变转发
+	MSGID_L2C_Attack				= 4034; //攻击结果
+	MSGID_L2C_SyncState_Broadcast	= 4035; //状态同步
+	MSGID_L2C_UseLift_Broadcast		= 4036; //使用电梯
+	MSGID_L2C_UseMonitor_Broadcast	= 4037; //使用监视器结果
+	MSGID_L2C_CancelMonitor_Broadcast = 4038; //取消监视器
+	MSGID_L2C_ChangeGameTime_Broadcast = 4039; //改变游戏时间
+	MSGID_L2C_CreateTrap_Broadcast = 4040;	//创建一个陷阱
+	MSGID_L2C_DestroyTrap_Broadcast = 4041; //销毁一个陷阱
+	MSGID_L2C_Dead_Broadcast = 4042; //玩家死亡
+	MSGID_L2C_LoadMapFinished_Broadcast	= 4043; //地图信息加载完成
+	MSGID_L2C_CorePuzzle_Open = 4044; //核心任务开启
+	MSGID_L2C_TranRoom_Broadcast	= 4045; //使用道具传送房间
+	MSGID_L2C_ItemStateUpdate	= 4046; //更新道具状态
+	
+	MSGID_L2C_KeyData_Broadcast		= 4047; //钥匙信息
+	MSGID_L2C_MeetingMove_Broadcast = 4048; //会议中移动
+	MSGID_L2C_GameState_Broadcast 	= 4049; //游戏状态
+	
+	//狼人游戏------------------------------------------
+	MSGID_L2C_GameStage_Broadcast 			= 4050; //游戏阶段
+	MSGID_L2C_EnterBox_Broadcast 			= 4051; //进入箱子
+	MSGID_L2C_LeaveBox_Broadcast 			= 4052; //离开箱子
+	MSGID_L2C_DestroyBox_Broadcast 			= 4053; //破坏箱子
+	MSGID_L2C_RepairBox_Broadcast 			= 4054; //修复箱子
+	MSGID_L2C_RepairBox_Succeed_Broadcast	= 4055; //修复箱子成功
+	MSGID_L2C_RepairBox_Failed_Broadcast	= 4056; //修复箱子失败
+	MSGID_L2C_JobChange_Broadcast			= 4057; //身份改变
+	
+	//狼人游戏------------------------------------------
+	
+	//躲猫猫游戏------------------------------------------
+	MSGID_L2C_Attack_Stilllife_Broadcast = 4060; //破坏静态物
+	
+	//躲猫猫游戏------------------------------------------
+	//格斗吃鸡----------------------------------------------
+	MSGID_L2C_UseSkill_Broadcast			= 4070; //攻击
+	MSGID_L2C_ToNextRoom_Broadcast			= 4071; //传送
+	
+	
+	//格斗吃鸡----------------------------------------------
+	
+	MSGID_L2C_ConnectionInvalid		= 4997; //连接无效（游戏结束）
+	MSGID_L2C_Reconnection  		= 4998; //断线重连
+	MSGID_L2C_HeartBeat				= 4999;	//心跳包
+	//----------------------------------------------------------------------------------------
+	// C2A消息 5000~5999
+	//----------------------------------------------------------------------------------------
+	MSGID_C2A_Auth 					= 5000;	//账号登录
+	MSGID_C2A_SteamAuth				= 5001;	//账号登录
+	MSGID_C2A_WeGameAuth			= 5002;
+	
+	//----------------------------------------------------------------------------------------
+	// A2C消息 6000~6999
+	//----------------------------------------------------------------------------------------
+	MSGID_A2C_Auth 					= 6000;	//登录返回
+	
+	
+	//---------服务器间消息--------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------
+	// W2S消息 7000~7499
+	//----------------------------------------------------------------------------------------
+	MSGID_W2S_RequestEnter 			= 7000;	//登录游戏
+	MSGID_W2S_PayFinished			= 7001;	//支付完成回复
+	MSGID_W2S_AddItem				= 7002;	//支付完成添加道具
+	MSGID_W2S_NggBuyVerify			= 7003;	//购买验证结果
+	
+	//----------------------------------------------------------------------------------------
+	// S2W消息 7500~7999
+	//----------------------------------------------------------------------------------------
+	MSGID_S2W_RequestEnter			= 7500;	//登录游戏返回
+	MSGID_S2W_PayOrder				= 7501;	//支付订单
+	MSGID_S2W_PayFinished			= 7502;	//支付完成
+	MSGID_S2W_AddItem				= 7503;	//支付完成添加道具返回
+	MSGID_S2W_QueryOrder 			= 7504;	//订单查询
+	MSGID_S2W_NggBuyVerify			= 7505;
+	
+	//----------------------------------------------------------------------------------------
+	// S2G消息 8000~8499
+	//----------------------------------------------------------------------------------------
+	MSGID_S2G_AddPlayerInfo	= 8000;	//添加用户
+	MSGID_S2G_DelPlayerInfo	= 8001;	//删除用户
+	
+	//----------------------------------------------------------------------------------------
+	// G2S消息 8500~8999
+	//----------------------------------------------------------------------------------------
+	MSGID_G2S_PlayerOffline	= 8500;		//用户离线
+
+	//----------------------------------------------------------------------------------------
+	// L2S消息 9000~9499
+	//----------------------------------------------------------------------------------------
+	MSGID_L2S_CreateScene = 9000;	//创建场景
+	MSGID_L2S_GameResult = 9001;	//游戏结果
+	MSGID_L2S_PlayerDead = 9002;	//玩家死亡
+	
+	//----------------------------------------------------------------------------------------
+	// S2L消息 9500~9999
+	//----------------------------------------------------------------------------------------
+	MSGID_S2L_CreateScene = 9500; //创建场景结果
+	MSGID_S2L_EnterScene = 9501; //进入场景
+
+	//----------------------------------------------------------------------------------------
+	// gm消息 10000~11000
+	//----------------------------------------------------------------------------------------
+	MSGID_GM_C2S_Login = 10000; //登录
+	MSGID_GM_S2C_Login = 10001; //登录 ret
+	MSGID_GM_C2S_Mail = 10002; //发送邮件
+	MSGID_GM_S2C_Result = 10003;  //gm执行结果
+	MSGID_GM_C2S_Cmd = 10004;	//gm通用命令
+}
+
