@@ -110,7 +110,7 @@ namespace xicheng.tcp
             }
             catch (Exception e)
             {
-                Log.Error("IP端口号错误或者服务器未开启");
+                Log.Error("IP端口号错误或者服务器未开启."+e.Message);
             }
         }
 
@@ -157,6 +157,7 @@ namespace xicheng.tcp
                 catch (Exception e)
                 {
                     //TODO:断网
+                    Debug.LogException(e);
                 }
             }
 
@@ -381,6 +382,7 @@ namespace xicheng.tcp
                 catch (Exception e)
                 {
                     //TODO:断网
+                    Debug.LogException(e);
                 }
             }
         }

@@ -175,7 +175,7 @@ namespace xicheng.udp
             }
             catch (ObjectDisposedException e) //连接已关闭
             {
-                Debug.LogError("连接已关闭。");
+                Debug.LogError("连接已关闭。"+e.Message);
             }
         }
         
