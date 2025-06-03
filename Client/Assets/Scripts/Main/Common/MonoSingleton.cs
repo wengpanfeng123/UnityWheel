@@ -17,20 +17,12 @@ namespace xicheng.common
 	                {
 	                    m_Instance = new GameObject( $"Singleton of {typeof(T).Name}", typeof(T)).GetComponent<T>();
 						 m_Instance.Init();
+						 DontDestroyOnLoad(m_Instance);
 	                }
 	            }
 	            return m_Instance;
 	        }
 	    }
-
-	    protected virtual void Awake(){
-	   
-	        if( m_Instance == null ){
-	            m_Instance = this as T;
-	            DontDestroyOnLoad(this.gameObject);
-	        }
-	    }
-	    
 
 	    public virtual void Init(){}
 	 

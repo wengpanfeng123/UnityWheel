@@ -20,6 +20,10 @@ namespace Main.Module.Log
             //管理类中可以处理
             Log.EnableInfo = false;
             Log.EnableWarning = false; 
+            
+            // 在代码中动态调整粒子系统参数
+            var particleSystem = GetComponent<ParticleSystem>();
+            var main = particleSystem.main;
         }
     }
 }

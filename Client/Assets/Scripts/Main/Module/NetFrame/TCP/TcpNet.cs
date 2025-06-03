@@ -8,7 +8,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using UniLog;
+using Main.Module.Log;
 using UnityEngine;
 using xicheng.common;
 using Console = System.Console;
@@ -292,7 +292,7 @@ namespace xicheng.tcp
                 catch (Exception e)
                 {
                     //TODO:断网
-                    Log.Warning(e);
+                    Log.Warning(e.Message);
                     throw;
                 }
             }
@@ -340,7 +340,7 @@ namespace xicheng.tcp
                 catch (Exception e)
                 {
                     //TODO:断网
-                    Log.Warning(e);
+                    Log.Warning(e.Message);
                     throw;
                 }
             }

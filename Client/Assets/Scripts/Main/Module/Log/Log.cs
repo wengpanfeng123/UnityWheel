@@ -1,4 +1,6 @@
-﻿namespace Main.Module.Log
+﻿using UnityEngine;
+
+namespace Main.Module.Log
 {
     public static class Log
     {
@@ -17,6 +19,17 @@
             if (EnableInfo)
                 _handler.Log(LogLevel.Info, message, context);
         }
+        
+        public static void Info(string message, Color c)
+        {
+            if (EnableInfo)
+            {
+                ColorUtility.ToHtmlStringRGB(c);
+                //_handler.Log(LogLevel.Info, message, context);
+                Debug.Log((object) string.Format("<color=#{0}> {1} </color>", (object) ColorUtility.ToHtmlStringRGB(c), message));
+            }
+        }
+        
 
         public static void Warning(string message, UnityEngine.Object context = null)
         {

@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 6bccbfa8431e84b4bb456e3b3aa7afa9
   m_SerializeEntries:
-  - m_GUID: 1883c8a4b58d72445a07f369a190e7fa
-    m_Address: Assets/AssetsPackage/Scenes/GameStart.unity
+  - m_GUID: 6b733a1ceb6ae2b4ca1547bc9b45bad2
+    m_Address: Assets/AssetsPackage/Scenes
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

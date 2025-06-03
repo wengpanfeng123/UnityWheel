@@ -814,8 +814,20 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Server: ENABLE_LOG
-    Standalone: ENABLE_LOG
+    Android: UNITY_VISUAL_SCRIPTING
+    EmbeddedLinux: UNITY_VISUAL_SCRIPTING
+    LinuxHeadlessSimulation: UNITY_VISUAL_SCRIPTING
+    Nintendo Switch: UNITY_VISUAL_SCRIPTING
+    PS4: UNITY_VISUAL_SCRIPTING
+    QNX: UNITY_VISUAL_SCRIPTING
+    Server: ENABLE_LOG;UNITY_VISUAL_SCRIPTING
+    Standalone: ENABLE_LOG;UNITY_VISUAL_SCRIPTING;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1
+    VisionOS: UNITY_VISUAL_SCRIPTING
+    WebGL: UNITY_VISUAL_SCRIPTING
+    Windows Store Apps: UNITY_VISUAL_SCRIPTING
+    XboxOne: UNITY_VISUAL_SCRIPTING
+    iPhone: UNITY_VISUAL_SCRIPTING
+    tvOS: UNITY_VISUAL_SCRIPTING
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
