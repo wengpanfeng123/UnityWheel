@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 3198449445621672647}
   - component: {fileID: 3198449445621672641}
   - component: {fileID: -4962427088526832066}
-  - component: {fileID: -7996462869142435821}
+  - component: {fileID: -2103205249234545400}
   m_Layer: 5
   m_Name: LoginUITest
   m_TagString: Untagged
@@ -963,7 +963,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3198449445621672642}
   m_CullTransparentMesh: 1
---- !u!114 &-7996462869142435821
+--- !u!114 &-2103205249234545400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -972,7 +972,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3198449445621672642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acb56c9bad83042d59a073d5817e9915, type: 3}
+  m_Script: {fileID: 11500000, guid: dbd5aa0588f8649c78576665cd998cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Btn_Back: {fileID: 3198449446115862931}

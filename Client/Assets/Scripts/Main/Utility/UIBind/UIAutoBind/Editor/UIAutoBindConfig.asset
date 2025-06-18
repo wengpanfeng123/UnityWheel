@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142e01202f4fc4ca4aeed68e0ce1a2b0, type: 3}
   m_Name: UIAutoBindConfig
   m_EditorClassIdentifier: 
-  outputPath: Assets/Scripts/UI/Generated
+  outputPath: Assets/Scripts/Hotfix/Module/UI
   namespace: UIModule
   useSerializeField: 1

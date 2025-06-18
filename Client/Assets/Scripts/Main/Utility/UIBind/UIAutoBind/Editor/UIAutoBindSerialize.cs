@@ -11,6 +11,7 @@ namespace UI.Gen
 {
     public static class UIAutoBindSerialize
     {
+        private static string _uiScriptRootDir = "Assets/Scripts/Hotfix/Module/UI/";
         [MenuItem("Assets/生成 UI View 脚本并自动绑定",false,11)]
         public static void GenerateAndBindUIScript()
         {
@@ -47,6 +48,7 @@ namespace UI.Gen
 
         private static void GenerateScriptFiles(GameObject go, string className, string path, string ns, out string scriptPath)
         {
+            path = path + "/" + go.name;
             Directory.CreateDirectory(path);
             // scriptPath = Path.Combine(path, $"{className}.designer.cs");
             scriptPath = Path.Combine(path, $"{className}.cs");
