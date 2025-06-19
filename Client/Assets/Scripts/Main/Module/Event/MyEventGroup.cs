@@ -5,7 +5,7 @@ using Main.Module.Log;
 
 namespace xicheng.module.events
 {
-    //事件分组：好处就是可以统一管理，添加销毁。
+    //事件分组：好处就是可以统一管理，统一销毁，防止事件泄露
     //TODO的地方还没开发完成。
     public class MyEventGroup
     {

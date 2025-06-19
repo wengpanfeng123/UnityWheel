@@ -10,7 +10,7 @@ public interface IEvent : IReference
 {
 }
 
-/*​文档1​
+/*文档1
 使用 LinkedList 存储监听器，插入/删除效率高，但遍历可能略慢。
 文档2
 委托合并（+=/-=）底层为链表，性能与文档1接近，但代码更简洁。

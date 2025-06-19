@@ -32,10 +32,12 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Coffee.UIParticle
+    - EasySave3
     - HotUpdate
     - HybridCLR.Runtime
     - Luban.Runtime
     - MainAOT
+    - MemoryPack
     - Sirenix.OdinInspector.Modules.Unity.Addressables
     - SuperScrollView
     showAdvancedSettings: 0

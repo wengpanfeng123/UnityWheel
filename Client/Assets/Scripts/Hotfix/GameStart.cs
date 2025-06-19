@@ -1,28 +1,27 @@
-using System.Collections;
 using System.Collections.Generic;
-using Hotfix.Module;
+using Hotfix;
 using UnityEngine;
 using xicheng.tcp;
 
 public class GameStart : MonoBehaviour
-{
+{ 
     private readonly List<IController> _controllers = new();
     
-    
+    /* 1.各种模块的初始化。
+     * 2.
+     */
     void Start()
     {
         RegisterControllers();
-
         InitCtrl();
+        GameController.Inst.EnterGame();
     }
-
-
+    
     private void RegisterControllers()
     {
+       
         _controllers.Add(UserProxy.Instance);
     }
-
-    
     
     private void InitCtrl()
     {
@@ -45,5 +44,15 @@ public class GameStart : MonoBehaviour
         {
             ctr.OnRelease();
         }
+    }
+
+
+    private void OnApplicationQuit()
+    {
+        
+    }
+    
+    private void OnApplicationPause(bool pauseStatus)
+    {
     }
 }
