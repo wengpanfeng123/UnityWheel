@@ -8,6 +8,7 @@ using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using XiCheng.Archive;
 
 /// <summary>
 /// AOT启动脚本
@@ -229,6 +230,7 @@ public class GameLauncher : MonoBehaviour
     {
         yield return LoadScene(_gameStartScenePath);
         Debug.Log("EnterGame");
+        GameArchive.Init(); //初始化存档数据
     }
 
     #endregion
