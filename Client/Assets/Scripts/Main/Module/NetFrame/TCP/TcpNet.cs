@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Main.Module.Log;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using xicheng.common;
 using Console = System.Console;
@@ -49,7 +50,11 @@ namespace xicheng.tcp
 
         private bool _isSocketRunning; //当前网络状态，true-已连接 false-未连接
         private readonly int _heartbeatTime = 5; //心跳间隔
-
+        private int _heartBeatMsgId = 1;//心跳包消息号默认为1
+        private Thread _realtimeCheckThread; //实时监测线程
+        private Thread _heartbeatThread; // 启动心跳线程
+        //private CancellationTokenSource _ctsRealtimeCheck; //引入取消机制
+        
         private List<NetPacket> _tempPacketsList; //临时缓存
 
         private readonly Dictionary<int, TcpMsgCallBack> _messageCallback = new();
@@ -100,11 +105,6 @@ namespace xicheng.tcp
                         IPAddress ipAddress = IPAddress.Parse(ip);
                         IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, port);
                         socket.BeginConnect(ipEndPoint, ConnectCallback, socket);
-
-                        // 启动实时检测线程
-                        new Thread(RealtimeCheckThread).Start();
-                        // 启动心跳线程
-                        new Thread(HeartbeatThread).Start();
                     }
                 }
             }
@@ -125,11 +125,19 @@ namespace xicheng.tcp
                     _socket = (Socket)ar.AsyncState;
                     _isSocketRunning = true;
                     _socket.EndConnect(ar);
+                    
+                    // 启动实时检测断线线程
+                    _realtimeCheckThread = new Thread(RealtimeCheckDisconnectThread);
+                    _realtimeCheckThread.Start();
+                    // 启动心跳线程
+                    _heartbeatThread = new Thread(HeartbeatThread);
+                    _heartbeatThread.Start();
+                    
+                    
                     _packetQueue.Enqueue(new NetPacket(PacketType.ConnectSucceed));
 
                     //开始接收数据
                     ReadPacket();
-                    //StartReceive();
                 }
                 catch (Exception e)
                 {
@@ -137,7 +145,7 @@ namespace xicheng.tcp
                     _socket = null;
                     _isSocketRunning = false;
                     _packetQueue.Enqueue(new NetPacket(PacketType.ConnectFailed));
-                    Debug.LogError("[ConnectCallback] Connect failed ! " + e.Message);
+                    Log.Error($"[ConnectCallback] Connect failed ! {_heartbeatThread}");
                 }
             }
         }
@@ -209,11 +217,11 @@ namespace xicheng.tcp
         {
             if (!_isSocketRunning)
             {
-                Debug.LogError("[StartReceive] socket disconnect");
+                Log.Error("[StartReceive] socket disconnect");
                 return;
             }
 
-            //创建一个网络包
+            //创建一个网络包----TODO：优化：通过线程池获取。
             NetPacket netPacket = new NetPacket(PacketType.TcpPacket)
             {
                 PacketHeaderBytes = new byte[NetPacket.HeaderSize]
@@ -245,6 +253,7 @@ namespace xicheng.tcp
                     if (readSize == 0)
                     {
                         //TODO:断网
+                        Log.Error($"[ReceiveHeader] 网络已断开");
                         return;
                     }
 
@@ -260,10 +269,10 @@ namespace xicheng.tcp
                         int protoCode =
                             IPAddress.NetworkToHostOrder(BitConverter.ToInt32(netPacket.PacketHeaderBytes, 4));
                         netPacket.ProtoCode = protoCode; //设置协议号
-                        //说明服务器发过来的消息有问题，最多是个空包为0，比如说心跳就是为0
-                        if (bodySize < 0)
+                        //处理心跳包。
+                        if (bodySize == 0 && protoCode == _heartBeatMsgId)
                         {
-                            //TODO:断网
+                            //TODO:心跳包处理。
                             return;
                         }
 
@@ -292,7 +301,7 @@ namespace xicheng.tcp
                 catch (Exception e)
                 {
                     //TODO:断网
-                    Log.Warning(e.Message);
+                    Log.Warning($"[ReceiveHeader]接收头部数据异常 {e.Message}");
                     throw;
                 }
             }
@@ -340,7 +349,7 @@ namespace xicheng.tcp
                 catch (Exception e)
                 {
                     //TODO:断网
-                    Log.Warning(e.Message);
+                    Log.Warning($"[ReceiveBody]接收头部数据异常 {e.Message}");
                     throw;
                 }
             }
@@ -425,49 +434,35 @@ namespace xicheng.tcp
             _packetQueue.Enqueue(new NetPacket(PacketType.Disconnect));
         }
 
-        /*判定socket是否断开
-         注1:Socket.Connected 不是指当前是否处于连接状态，而是指上一次收发是否完成，不是告诉你将来你收发是否能成功的
-         注2:Socket.Poll 此方法无法检测某些类型的连接问题：例如网络电缆损坏，或者远程主机未正常关闭。 必须尝试发送或接收数据才能检测这些类型的错误。
-         return:基于参数1中传递的轮询模式值的 Socket 的状态
-         */
-        public bool IsSocketDisconnect()
-        {
-            lock (this)
-            {
-                if (_socket != null && _isSocketRunning)
-                {
-                    bool p = _socket.Poll(1000, SelectMode.SelectRead); //ture:如果已调用且连接处于挂起状态、数据可供读取，或者连接已关闭、重置或终止
-                    if (p && _socket.Available == 0) //Available 接收到的数据量
-                    {
-                        Debug.Log("Socket has been disconnected");
-                        _isSocketRunning = false;
-                        return true;
-                    }
-                }
 
-                return false;
-            }
-        }
 
         private void Update()
         {
-            //IsSocketDisconnect();
-            GetPackets();
+            GetPackets(); //主线程获取网络数据
         }
 
         #region 断线检测
-
-        // 实时检测线程（每100ms轮询）
-        private void RealtimeCheckThread()
+        
+        /*判定socket是否断开
+            注1:Socket.Connected 不是指当前是否处于连接状态，而是指上一次收发是否完成，不是告诉你将来你收发是否能成功的
+            注2:Socket.Poll 此方法无法检测某些类型的连接问题：例如网络电缆损坏，或者远程主机未正常关闭。 必须尝试发送或接收数据才能检测这些类型的错误。
+            return:基于参数1中传递的轮询模式值的 Socket 的状态
+        */
+        /// <summary>
+        /// 实时检测线程（每100ms轮询）检测断线情况。
+        /// </summary>
+        private void RealtimeCheckDisconnectThread()
         {
             while (_isSocketRunning)
             {
                 try
                 {
-                    bool isDisconnected = _socket.Poll(0, SelectMode.SelectRead) && _socket.Available == 0;
+                    // _socket.Poll=ture:如果已调用且连接处于挂起状态、数据可供读取，或者连接已关闭、重置或终止
+                    // _socket.Available 接收到的数据量
+                    bool isDisconnected = _socket.Poll(100, SelectMode.SelectRead) && _socket.Available == 0;
                     if (isDisconnected)
                     {
-                        Console.WriteLine("[实时检测] 连接已断开！");
+                        Log.Info("[实时检测] 连接已断开！");
                         _isSocketRunning = false;
                         break;
                     }
@@ -489,20 +484,19 @@ namespace xicheng.tcp
             {
                 try
                 {
-                    byte[] ping = new byte[1] { 0x01 };
-                    _socket.Send(ping); // 发送心跳包
+                    SendAsync(_heartBeatMsgId, Array.Empty<byte>()); //心跳协议协议号为1.
                     Thread.Sleep(_heartbeatTime * 1000);
                 }
-                catch
+                catch(Exception e)
                 {
-                    Console.WriteLine("[心跳检测] 连接已断开！");
+                    Log.Info($"[心跳检测] 异常！ {e.Message}");
                     _isSocketRunning = false;
                     break;
                 }
             }
         }
 
-        void CheckByUnityAPI()
+        private void CheckByUnityAPI()
         {
             // 局限性：仅检测设备网络状态，无法判断游戏服务器连接性。
             // 监听网络变化事件

@@ -1,8 +1,3 @@
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using xicheng.ui;
-
 namespace xicheng.ui
 {
 #if UNITY_EDITOR

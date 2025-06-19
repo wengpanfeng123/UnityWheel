@@ -11,7 +11,7 @@ public class SceneTools
     [MenuItem("Scene/Launcher-AOT",false,1)]
     static void OpenLauncher()
     {
-        EditorSceneManager.OpenScene("Assets/AssetsPackage/Scenes/GameLauncher.unity");
+        EditorSceneManager.OpenScene("Assets/Scenes/GameLauncher.unity");
     }
         
     [MenuItem("Scene/GameStart-HotUpdate",false,5)]

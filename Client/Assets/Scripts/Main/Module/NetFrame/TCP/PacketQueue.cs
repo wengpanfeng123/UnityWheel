@@ -13,7 +13,7 @@ namespace xicheng.tcp
     /// </summary>
     public class NetPacketQueue
     {
-        private Queue<NetPacket> m_NetPacketsQueue = new Queue<NetPacket>();
+        private Queue<NetPacket> _netPacketsQueue = new();
 
         /// <summary>
         /// 存储网络包
@@ -23,7 +23,7 @@ namespace xicheng.tcp
         {
             lock (netPacket)
             {
-                m_NetPacketsQueue.Enqueue(netPacket);
+                _netPacketsQueue.Enqueue(netPacket);
             }
         }
 
@@ -33,9 +33,9 @@ namespace xicheng.tcp
         /// <returns></returns>
         public NetPacket Dequeue()
         {
-            lock (m_NetPacketsQueue)
+            lock (_netPacketsQueue)
             {
-                return m_NetPacketsQueue.Count > 0 ? m_NetPacketsQueue.Dequeue() : null;
+                return _netPacketsQueue.Count > 0 ? _netPacketsQueue.Dequeue() : null;
             }
         }
 
@@ -44,9 +44,10 @@ namespace xicheng.tcp
         /// </summary>
         public void Clear()
         {
-            lock (m_NetPacketsQueue)
+            lock (_netPacketsQueue)
             {
-                m_NetPacketsQueue.Clear();
+                _netPacketsQueue.Clear();
+                _netPacketsQueue = null;
             }
         }
     }
@@ -67,7 +68,7 @@ namespace xicheng.tcp
         public PacketType PacketType = PacketType.None; //消息包的类型
         public int ProtoCode; //协议号（消息id）
         public int CurReceive; //当前接收了多少字节
-        public static int HeaderSize = 8; //包头长度：前4个字节,包体长度。后四个字节,协议号
+        public const int HeaderSize = 8; //包头长度：前4个字节,包体长度。后4个字节,协议号
         public byte[] PacketHeaderBytes; //包头内容
         public byte[] PacketBodyBytes; //包体内容
         public byte[] PacketBytes = null; //包的完整数据，发送时调用。

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Pool;
 using xicheng.ui;
 
 public class UIDebugWindow : OdinEditorWindow
@@ -32,6 +33,11 @@ public class UIDebugWindow : OdinEditorWindow
     private static void OpenWindow()
     {
         GetWindow<UIDebugWindow>("UI Debugger").Show();
+        // ObjectPool<UIBase> pool = new ObjectPool<UIBase>( OnCrate);
+        // pool.Get(out var ui);
+        // pool.Release(ui);
+        // pool.Clear();
+        // pool.Dispose();
     }
 
     protected override void OnEnable()
