@@ -174,7 +174,7 @@ public class GameLauncher : MonoBehaviour
 
         if (dllText == null)
         {
-            Debug.LogError($"cant load dllText,path:{path}");
+            Debug.LogError($"[ReadDllBytes] cant load dllText,path:{path}");
             _dllBytes = null;
         }
         else

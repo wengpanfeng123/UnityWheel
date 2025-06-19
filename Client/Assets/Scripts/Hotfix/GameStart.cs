@@ -32,7 +32,7 @@ public class GameStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = _controllers.Count; i >=0 ; i--)
+        for (int i = _controllers.Count-1; i >=0 ; i--)
         {
             _controllers[i].OnUpdate(Time.deltaTime);
         }
