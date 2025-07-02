@@ -35,6 +35,8 @@ MonoBehaviour:
     - EasySave3
     - HotUpdate
     - HybridCLR.Runtime
+    - LitMotion
+    - LitMotion.Extensions
     - Luban.Runtime
     - MainAOT
     - MemoryPack

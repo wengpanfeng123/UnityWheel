@@ -1,0 +1,35 @@
+{
+    "language": "hlsl",
+    "customRules": [
+        {
+            "name": "hlsl-types",
+            "regex": "\\b(float|half|fixed|float2|float3|float4|half2|half3|half4|fixed2|fixed3|fixed4|matrix|sampler2D|Texture2D|SamplerState)\\b",
+            "severity": "ignore"
+        },
+        {
+            "name": "hlsl-semantics",
+            "regex": "\\b(SV_[A-Za-z]+)\\b",
+            "severity": "ignore"
+        },
+        {
+            "name": "urp-functions",
+            "regex": "\\b(TransformObjectToWorld|TransformWorldToObject|UniversalFragmentPBR|SampleSceneColor|SAMPLE_TEXTURE2D)\\b",
+            "severity": "ignore"
+        },
+        {
+            "name": "pragmas",
+            "regex": "#pragma\\s+[a-z_]+",
+            "severity": "ignore"
+        },
+        {
+            "name": "urp-includes",
+            "regex": "#include\\s+\"Packages/com\\.unity\\.render-pipelines\\.universal/.*\"",
+            "severity": "ignore"
+        }
+    ],
+    "disabledRules": [
+        "E0001",
+        "E0002",
+        "W0001" 
+    ]
+}
