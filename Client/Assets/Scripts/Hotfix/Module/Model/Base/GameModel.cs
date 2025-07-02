@@ -1,24 +1,24 @@
 using System.Collections.Generic;
 using XiCheng.Archive;
 
-namespace Hotfix.Module.Model.Base
+namespace Hotfix.Model
 {
     //游戏模块数据管理
     public class GameModel
     {
         private string _gameKey = "xicheng.game";
-        private readonly Dictionary<string, ModelBase> _modelDict = new();
+        private static Dictionary<string, ModelBase> _modelDict = new();
             
         /// <summary>
         /// 获取一个Model实例
         /// </summary>
-        public T GetModel<T>() where T : ModelBase, new()
+        public static T GetModel<T>() where T : ModelBase, new()
         {
             string key = typeof(T).FullName;
             return RegisterModel<T>(key);
         }
 
-        private T RegisterModel<T>(string modelName) where T : ModelBase, new()
+        private static T RegisterModel<T>(string modelName) where T : ModelBase, new()
         {
             if (!_modelDict.TryGetValue(modelName, out var modelInstance))
             {
@@ -33,7 +33,7 @@ namespace Hotfix.Module.Model.Base
         /// <summary>
         /// 进入指定游戏（加载数据）
         /// </summary>
-        public void EnterGame()
+        public static void OnInit()
         {
             //初始化存档
             GameArchive.Init();
@@ -42,7 +42,7 @@ namespace Hotfix.Module.Model.Base
         /// <summary>
         /// 退出指定游戏（保存数据并回收模型）
         /// </summary>
-        public void ExitGame(string gameKey)
+        public static void ExitGame(/*string gameKey*/)
         {
             foreach (var model in _modelDict.Values)
             {
@@ -54,7 +54,7 @@ namespace Hotfix.Module.Model.Base
         /// <summary>
         /// 保存指定游戏的数据
         /// </summary>
-        public void SaveGameData(bool writeToDisk = false)
+        public static void SaveGameData(bool writeToDisk = false)
         {
             foreach (var model in _modelDict.Values)
             {
@@ -73,7 +73,7 @@ namespace Hotfix.Module.Model.Base
         /// <summary>
         /// 保存所有脏的Model（如切后台时统一保存）
         /// </summary>
-        public void SaveAllDirtyModels()
+        public static void SaveAllDirtyModels()
         {
             foreach (var model in _modelDict.Values)
             {
@@ -84,7 +84,7 @@ namespace Hotfix.Module.Model.Base
             }
         }
 
-        public void OnRelease()
+        public static void OnRelease()
         {
             SaveGameData();
             foreach (var model in _modelDict.Values)
@@ -92,6 +92,5 @@ namespace Hotfix.Module.Model.Base
                 model.OnRelease();
             }
         }
-
     }
 }

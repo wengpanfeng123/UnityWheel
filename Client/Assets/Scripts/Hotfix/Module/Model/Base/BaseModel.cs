@@ -1,4 +1,4 @@
-namespace Hotfix.Module.Model.Base
+namespace Hotfix.Model
 {
     //数据基类
     public abstract class ModelBase
@@ -13,6 +13,7 @@ namespace Hotfix.Module.Model.Base
             if (_init)
                 return;
             _init = true;
+            OnStartup();
         }
     
         /// <summary>

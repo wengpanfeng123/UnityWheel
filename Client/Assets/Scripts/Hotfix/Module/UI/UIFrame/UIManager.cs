@@ -12,7 +12,7 @@ using xicheng.common;
 
 namespace xicheng.ui
 {
-    public partial class UIManager : MonoSingleton<UIManager>
+    public partial class UIManager : MonoSingleton<UIManager>,IHotUpdateGameLogic
     {
         private Camera _uiCamera;
         private Transform _uiRoot;
@@ -31,11 +31,12 @@ namespace xicheng.ui
         // 全局打开顺序链表（解决循环检测）
         private LinkedList<UIStateNode> _globalOrderList;
         
-        private void Awake()
+        public void OnInit()
         {
             InitData();
             StartCacheCleanupCoroutine();
         }
+
 
         private void InitData()
         {
@@ -377,6 +378,16 @@ namespace xicheng.ui
         }
 
         private void OnDestroy()
+        {
+
+        }
+
+
+        public void OnUpdate(float deltaTime)
+        {
+        }
+
+        public void OnRelease()
         {
             _instancesDict.Clear();
             _globalOrderList.Clear();

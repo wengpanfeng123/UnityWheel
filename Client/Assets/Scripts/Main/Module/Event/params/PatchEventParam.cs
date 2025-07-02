@@ -1,5 +1,10 @@
 ﻿namespace Main.EventTest
 {
+	public class TestEvent1:EventBase
+	{
+		
+	}
+
 	//如果没有参数需要,就不需定义。
     public class TestEvent : IEvent
     {
@@ -16,6 +21,11 @@
 
 
         public void Clear()
+        {
+	         
+        }
+
+        public void Acquire()
         {
 	         
         }

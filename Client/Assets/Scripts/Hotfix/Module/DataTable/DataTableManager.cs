@@ -6,15 +6,25 @@ using Luban;
 using SimpleJSON;
 using UnityEngine;
 using xicheng.common;
+using xicheng.tcp;
 
-public class DataTableManager : MonoSingleton<DataTableManager>
+public class DataTableManager : MonoSingleton<DataTableManager>,IHotUpdateGameLogic
 {
     private Tables _tables;
-
-    public override void Init()
+    
+    public void OnInit()
     {
-        base.Init();
         Initialized();
+    }
+
+    public void OnUpdate(float deltaTime)
+    {
+ 
+    }
+
+    public void OnRelease()
+    {
+        _tables = null;
     }
 
  
@@ -68,10 +78,5 @@ public class DataTableManager : MonoSingleton<DataTableManager>
             }
             return _tables;
         }
-    }
-
-    void OnDestroy()
-    {
-        _tables = null;
     }
 }

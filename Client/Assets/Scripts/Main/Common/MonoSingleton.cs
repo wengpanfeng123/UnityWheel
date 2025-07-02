@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace xicheng.common
 {
-	public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>{
+	public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
+	{
 		
 		private static T m_Instance = null;
 	    

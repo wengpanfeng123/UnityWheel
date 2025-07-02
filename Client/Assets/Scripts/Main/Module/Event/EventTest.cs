@@ -9,7 +9,7 @@ namespace xicheng.module.events
         {
             
             var testEvent =RefPool.Acquire<TestEvent>();
-            
+       
             //GameEvent.AddListener(typeof(TestEvent), TestEventAction);
             GameEvent.AddListener<TestEvent>(TestEventAction);
             
@@ -25,6 +25,7 @@ namespace xicheng.module.events
             if (GUILayout.Button("EventTest"))
             {
                 TestEvent evt = RefPool.Acquire<TestEvent>();
+ 
                 evt.name = "wengpanfeng";
                 GameEvent.Send(evt);
             }

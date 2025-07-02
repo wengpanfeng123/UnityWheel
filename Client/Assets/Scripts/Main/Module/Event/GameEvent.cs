@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine;using UnityEngine.UIElements;
 
 public interface IEventParam
 {
@@ -8,6 +8,17 @@ public interface IEventParam
 
 public interface IEvent : IReference
 {
+    public void Acquire();
+}
+
+public abstract class EventBase:IReference
+{
+    public virtual void Clear() {}
+
+    public void Acquire<T>() where T : class, IReference, new()
+    {
+        RefPool.Acquire<T>();
+    }
 }
 
 /*文档1
@@ -82,7 +93,6 @@ namespace xicheng.events
                 }
             }
         }
-
 
         public static void RemoveListener<T>(OnEventAction onEvent) where T : IEvent
         {

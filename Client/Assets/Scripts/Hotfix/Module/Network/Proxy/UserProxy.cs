@@ -3,7 +3,7 @@ using Protocol;
 
 namespace xicheng.tcp
 {
-    public class UserProxy:NetProxy<UserProxy>,IController
+    public class UserProxy:NetProxy<UserProxy>,IHotUpdateGameLogic
     {
         public void OnInit()
         {

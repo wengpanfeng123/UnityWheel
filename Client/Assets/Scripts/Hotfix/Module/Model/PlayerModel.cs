@@ -1,6 +1,5 @@
-using Hotfix.Module.Model.Base;
 
-namespace Hotfix.Module.Model
+namespace Hotfix.Model
 {
     public class PlayerModel:ModelBase
     {
