@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
-using xicheng.utility;
 
 namespace xicheng.Vedio
 {   
@@ -327,6 +326,16 @@ namespace xicheng.Vedio
             {
                 _videoPlayer.playbackSpeed = 2f;
             }
+        }
+
+        public void SetRenderMode(VideoRenderMode renderMode)
+        {
+            _videoPlayer.renderMode = renderMode;
+        }
+
+        public void SetRenderTexture()
+        {
+            
         }
     }
 }

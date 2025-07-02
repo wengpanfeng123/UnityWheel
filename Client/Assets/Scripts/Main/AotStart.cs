@@ -13,7 +13,7 @@ using XiCheng.Archive;
 /// <summary>
 /// AOT启动脚本
 /// </summary>
-public class GameLauncher : MonoBehaviour
+public class AotStart : MonoBehaviour
 {
     public Slider slider;
     private byte[] _dllBytes;
