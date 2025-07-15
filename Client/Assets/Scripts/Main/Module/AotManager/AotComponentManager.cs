@@ -15,13 +15,13 @@ namespace xicheng.aot
 {
     public static class AotComponentManager
     {
-        private static readonly Dictionary<string, AotBaseComp> AotBaseDict = new();
+        private static readonly Dictionary<string, BaseAotComp> AotBaseDict = new();
 
         /// <summary>
         /// 注册组件
         /// </summary>
         /// <param name="component">要获取的框架组件类型</param>
-        internal static void RegisterComponent(AotBaseComp component)
+        internal static void RegisterComponent(BaseAotComp component)
         {
             if (!component)
             {
@@ -31,7 +31,7 @@ namespace xicheng.aot
 
             string fullName = component.GetType().FullName;
 
-            if (AotBaseDict.TryGetValue(fullName, out AotBaseComp value))
+            if (AotBaseDict.TryGetValue(fullName, out BaseAotComp value))
             {
                 Debug.LogError($"RegisterComponent {fullName} is already exist");
                 return;
@@ -43,7 +43,7 @@ namespace xicheng.aot
         /// <summary>
         /// 获取框架组件
         /// </summary>
-        public static T GetComp<T>() where T : AotBaseComp
+        public static T GetComp<T>() where T : BaseAotComp
         {
             return (T)GetComponent(typeof(T));
         }
@@ -51,7 +51,7 @@ namespace xicheng.aot
         /// <summary>
         /// 获取框架组件
         /// </summary>
-        public static AotBaseComp GetComponent(Type type)
+        public static BaseAotComp GetComponent(Type type)
         {
             if (null == type)
             {
@@ -64,11 +64,11 @@ namespace xicheng.aot
             //     return null;
             // }
             
-            if (!AotBaseDict.TryGetValue(type.FullName, out AotBaseComp value))
+            if (!AotBaseDict.TryGetValue(type.FullName, out BaseAotComp value))
             {
                 GameObject go = new GameObject(type.Name);
-                go.transform.SetParent(AotComp.Inst.transform);
-                value = go.AddComponent(type) as AotBaseComp;
+                go.transform.SetParent(AotComponent.Inst.transform);
+                value = go.AddComponent(type) as BaseAotComp;
             }
             return value;
         }
@@ -76,14 +76,14 @@ namespace xicheng.aot
         /// <summary>
         /// 获取框架组件
         /// </summary>
-        public static AotBaseComp GetComponent(string typeFullName)
+        public static BaseAotComp GetComponent(string typeFullName)
         {
             if (string.IsNullOrEmpty(typeFullName))
             {
                 Debug.LogError("typeFullName is empty");
                 return null;
             }
-            AotBaseDict.TryGetValue(typeFullName, out AotBaseComp value);
+            AotBaseDict.TryGetValue(typeFullName, out BaseAotComp value);
             return value;
         }
 
@@ -92,7 +92,7 @@ namespace xicheng.aot
         /// </summary>
         public static void ReStart()
         {
-            using (Dictionary<string, AotBaseComp>.Enumerator enumerator = AotBaseDict.GetEnumerator())
+            using (Dictionary<string, BaseAotComp>.Enumerator enumerator = AotBaseDict.GetEnumerator())
             {
                 while (enumerator.MoveNext())
                 {
@@ -107,7 +107,7 @@ namespace xicheng.aot
         /// <param name="closeType">关闭类型</param>
         public static void Close(CloseType closeType)
         {
-            using (Dictionary<string, AotBaseComp>.Enumerator enumerator = AotBaseDict.GetEnumerator())
+            using (Dictionary<string, BaseAotComp>.Enumerator enumerator = AotBaseDict.GetEnumerator())
             {
                 while (enumerator.MoveNext())
                 {

@@ -5,8 +5,7 @@ using xicheng.ReferencePool;
 
 public class RefPool
 {
-    private static readonly Dictionary<Type, ReferenceCollection> ReferenceCollections =
-        new Dictionary<Type, ReferenceCollection>();
+    private static readonly Dictionary<Type, ReferenceCollection> ReferenceCollections = new();
 
     private static bool m_EnableStrictCheck = false;
 

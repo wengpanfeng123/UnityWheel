@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 896770647}
   - component: {fileID: 896770648}
   m_Layer: 0
-  m_Name: "AotComp-\u6682\u672A\u4F7F\u7528"
+  m_Name: AotComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace xicheng.aot
 {
-    public abstract class AotBaseComp:MonoBehaviour
+    public abstract class BaseAotComp:MonoBehaviour
     {
         protected void Awake()
         {

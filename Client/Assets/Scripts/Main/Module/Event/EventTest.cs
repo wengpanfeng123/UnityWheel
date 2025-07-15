@@ -12,12 +12,17 @@ namespace xicheng.module.events
        
             //GameEvent.AddListener(typeof(TestEvent), TestEventAction);
             GameEvent.AddListener<TestEvent>(TestEventAction);
-            
-         
-            
+
+            var eventGroup = EventGroup.Acquire();
+            eventGroup.Subscribe<TestEvent>(TestEventAction);
+            eventGroup.UnSubscribe(typeof(TestEvent),TestEventAction);
+            eventGroup.Notify(new TestEvent());
+            eventGroup.Clear();
+       
+
             //GameEvent.RemoveListener(typeof(TestEvent), TestEventAction);
             //GameEvent.RemoveListener<TestEvent>( TestEventAction);
-       
+
         }
 
         void OnGUI()
