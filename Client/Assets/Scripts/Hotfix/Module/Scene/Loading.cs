@@ -1,6 +1,6 @@
 using System.Text;
 using Hotfix.Module.Scene;
-using Main.Module.Log;
+using xicheng.log.Log;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -67,11 +67,11 @@ public class Loading : MonoBehaviour
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
-            Log.Info($"场景{_gameScene.TargetScenePath}加载成功");
+            ULog.Info($"场景{_gameScene.TargetScenePath}加载成功");
         }
         else
         {
-            Log.Error($"场景{_gameScene.TargetScenePath}加载失败: {handle.OperationException}");
+            ULog.Error($"场景{_gameScene.TargetScenePath}加载失败: {handle.OperationException}");
         }
 
         _loadFinish = true;
@@ -89,12 +89,12 @@ public class Loading : MonoBehaviour
         float value = _sceneAsync.PercentComplete;
         slider.value = value;
         textProgress.text = _builder.Append(value*100).ToString();
-        Log.Info($"场景加载进度: {value * 100f}%");
+        ULog.Info($"场景加载进度: {value * 100f}%");
     }
 
     private void OnDestroy()
     {
-        Log.Info("Loading OnDestroy");
+        ULog.Info("Loading OnDestroy");
 
         // 确保释放资源
         if (_sceneAsync.IsValid())

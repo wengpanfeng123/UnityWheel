@@ -7,7 +7,6 @@ namespace xicheng.common
 {
 	public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 	{
-		
 		private static T m_Instance = null;
 	    
 		public static T Inst{

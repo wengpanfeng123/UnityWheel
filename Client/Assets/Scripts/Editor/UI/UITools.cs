@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Main.Module.Log;
+using xicheng.log.Log;
 using SimpleJSON;
 using xicheng.common;
 
@@ -134,7 +134,7 @@ namespace Hotfix
                 File.Delete(filePath);
             File.WriteAllText(filePath, text, Encoding.UTF8);
             AssetDatabase.Refresh();
-            Log.Info("xc.[UIKey] 生成成功！");
+            ULog.Info("xc.[UIKey] 生成成功！");
         }
     }
 }

@@ -1,8 +1,9 @@
 
 using System.Collections.Generic;
-using Main.Module.Log;
+using xicheng.log.Log;
+using UnityEngine;
 
-namespace XiCheng.Archive
+namespace xicheng.archive
 {
     public enum StorageType
     {
@@ -19,7 +20,7 @@ namespace XiCheng.Archive
         private static IDataStorage _dataStorage;
         private static Dictionary<string, Dictionary<string, object>> _dataDict = new();
         private static bool _isInit = false;
-        public static void Init(StorageType storageType = StorageType.ES3)
+        public static void OnInit(StorageType storageType = StorageType.ES3)
         {
             if (_isInit)
                 return;
@@ -71,16 +72,16 @@ namespace XiCheng.Archive
         }
         
         /// <summary>
-        /// 设置缓存中的数据。(未保存)
+        /// 设置(内存)数据。(未保存)
         /// </summary>
-        public static T SetData<T> (string saveKey, string modelKey, T value)
+        public static T SetData<T> (string modelKey, T value)
         { 
-            if (string.IsNullOrEmpty(saveKey) || string.IsNullOrEmpty(modelKey))
+            if ( string.IsNullOrEmpty(modelKey))
                 return default;
-
-            if (!_dataDict.TryGetValue(saveKey, out var gameData))
+ 
+            if (!_dataDict.TryGetValue(SaveKey, out var gameData))
             {
-                Log.Error($"SetData Error: SaveKey {saveKey} not loaded");
+                ULog.Error($"SetData Error: SaveKey {SaveKey} not loaded");
                 return default;
             }
             gameData[modelKey] = value;
@@ -102,11 +103,12 @@ namespace XiCheng.Archive
             {
                 if (_dataDict.TryGetValue(saveKey, out var gameData))
                 {
-                    _dataStorage.SaveGameData(saveKey, gameData);
+                    _dataStorage.SaveLocalData(saveKey, gameData);
+                    ULog.Info("[Archive] save ",Color.cyan);
                 }
             }
         }
-
+        
         /// <summary>
         /// 关闭存档
         /// </summary>

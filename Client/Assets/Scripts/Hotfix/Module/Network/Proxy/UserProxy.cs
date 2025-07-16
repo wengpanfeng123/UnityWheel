@@ -3,8 +3,10 @@ using Protocol;
 
 namespace xicheng.tcp
 {
-    public class UserProxy:NetProxy<UserProxy>,IHotUpdateGameLogic
+    public class UserProxy:NetProxy<UserProxy>,ILogic
     {
+        public bool InitStartUp => true;
+
         public void OnInit()
         {
             RegisterMsg(MessageId.MsgidC2SCreatePlayer, S2C_ChapterUpdate);
@@ -27,13 +29,7 @@ namespace xicheng.tcp
             //TODO:逻辑处理
             
         }
-
-    
-
-        public void OnUpdate(float deltaTime)
-        {
-             
-        }
+ 
 
         public void OnRelease()
         {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Main.Module.Log;
+using xicheng.log.Log;
 
-namespace XiCheng.Archive
+namespace xicheng.archive
 {
     /// <summary>
     /// 使用ES3作为数据持久化存储实现
@@ -9,7 +9,7 @@ namespace XiCheng.Archive
     public class ES3DataStorage : IDataStorage
     {
         private string GetFilePath(string gameKey) => $"{gameKey}.data";
-        private string GetBackupFilePath(string gameKey) => $"{gameKey}_Backup.data";
+        private string GetBackupFilePath(string gameKey) => $"{gameKey}_backup.data";
 
 
         public ES3DataStorage()
@@ -38,21 +38,21 @@ namespace XiCheng.Archive
             }
             catch (System.Exception e)
             {
-                Log.Error($"ES3 Load Exception: {e.Message}");
+                ULog.Error($"ES3 Load Exception: {e.Message}");
 
                 if (ES3.FileExists(filePath))
                 {
                     ES3.DeleteFile(filePath);
 
                     var emptyData = new Dictionary<string, object>();
-                    SaveGameData(saveKey, emptyData);
+                    SaveLocalData(saveKey, emptyData);
                 }
             }
 
             return new Dictionary<string, object>();
         }
 
-        public void SaveGameData(string saveKey, Dictionary<string, object> data)
+        public void SaveLocalData(string saveKey, Dictionary<string, object> data)
         {
             string filePath = GetFilePath(saveKey);
             try
@@ -67,7 +67,7 @@ namespace XiCheng.Archive
             }
             catch (System.Exception e)
             {
-                Log.Error($"ES3 Save Exception: {e.Message}");
+                ULog.Error($"ES3 Save Exception: {e.Message}");
             }
         }
     }

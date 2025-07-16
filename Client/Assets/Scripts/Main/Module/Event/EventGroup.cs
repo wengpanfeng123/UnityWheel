@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Main.Module.Log;
+using xicheng.log.Log;
 using xicheng.events;
 
 
@@ -49,7 +49,7 @@ namespace xicheng.module.events
                 }
             }
 
-            Log.Error($"[Send] 事件<{typeof(T).Name}>不存在");
+            ULog.Error($"[Send] 事件<{typeof(T).Name}>不存在");
         }
 
 

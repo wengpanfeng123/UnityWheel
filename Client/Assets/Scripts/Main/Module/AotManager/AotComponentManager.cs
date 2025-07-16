@@ -58,11 +58,6 @@ namespace xicheng.aot
                 Debug.LogError("type is null");
                 return null;
             }
-
-            // if (!HsApp.Instance)
-            // {
-            //     return null;
-            // }
             
             if (!AotBaseDict.TryGetValue(type.FullName, out BaseAotComp value))
             {

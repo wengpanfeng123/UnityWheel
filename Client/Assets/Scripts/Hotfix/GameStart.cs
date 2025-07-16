@@ -1,36 +1,26 @@
+using System;
 using Hotfix;
 using Hotfix.Model;
+using Hotfix.Module;
 using UnityEngine;
-using xicheng.events;
 
 public class GameStart : MonoBehaviour
 {
     private void Awake()
-    { }
-    
-    void Start()
     {
-        GameModel.OnInit();
-        GameLogic.OnInit();
+        DontDestroyOnLoad(this); 
+        Application.focusChanged += OnFocusChanged;
     }
     
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        GameLogic.OnUpdate(Time.deltaTime);
+          new GameObject("HotfixEntry").AddComponent<HotfixEntry>();
     }
 
- 
+    private void OnFocusChanged(bool obj)
+    {
+         
+    }
 
-    private void OnApplicationQuit()
-    {
-        GameLogic.OnRelease();
-        GameEvent.OnRelease();
-        GameModel.ExitGame();
-    }
-    
-    private void OnApplicationPause(bool pauseStatus)
-    {
-    }
+
 }

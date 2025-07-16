@@ -8,7 +8,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Main.Module.Log;
+using xicheng.log.Log;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using xicheng.common;
@@ -73,7 +73,7 @@ namespace xicheng.tcp
             {
                 if (!_messageCallback.TryAdd(msgId, callback))
                 {
-                    Log.Error($"重复注册消息回调,msgId:{msgId}");
+                    ULog.Error($"重复注册消息回调,msgId:{msgId}");
                 }
             }
         }
@@ -110,7 +110,7 @@ namespace xicheng.tcp
             }
             catch (Exception e)
             {
-                Log.Error("IP端口号错误或者服务器未开启."+e.Message);
+                ULog.Error("IP端口号错误或者服务器未开启."+e.Message);
             }
         }
 
@@ -145,7 +145,7 @@ namespace xicheng.tcp
                     _socket = null;
                     _isSocketRunning = false;
                     _packetQueue.Enqueue(new NetPacket(PacketType.ConnectFailed));
-                    Log.Error($"[ConnectCallback] Connect failed ! {_heartbeatThread}");
+                    ULog.Error($"[ConnectCallback] Connect failed ! {_heartbeatThread}");
                 }
             }
         }
@@ -202,7 +202,7 @@ namespace xicheng.tcp
                     }
                     else
                     {
-                        Log.Error($" _messageCallback 消息未注册.id ={packet.ProtoCode} ");
+                        ULog.Error($" _messageCallback 消息未注册.id ={packet.ProtoCode} ");
                     }
                 }
             }
@@ -217,7 +217,7 @@ namespace xicheng.tcp
         {
             if (!_isSocketRunning)
             {
-                Log.Error("[StartReceive] socket disconnect");
+                ULog.Error("[StartReceive] socket disconnect");
                 return;
             }
 
@@ -253,7 +253,7 @@ namespace xicheng.tcp
                     if (readSize == 0)
                     {
                         //TODO:断网
-                        Log.Error($"[ReceiveHeader] 网络已断开");
+                        ULog.Error($"[ReceiveHeader] 网络已断开");
                         return;
                     }
 
@@ -301,7 +301,7 @@ namespace xicheng.tcp
                 catch (Exception e)
                 {
                     //TODO:断网
-                    Log.Warning($"[ReceiveHeader]接收头部数据异常 {e.Message}");
+                    ULog.Warning($"[ReceiveHeader]接收头部数据异常 {e.Message}");
                     throw;
                 }
             }
@@ -349,7 +349,7 @@ namespace xicheng.tcp
                 catch (Exception e)
                 {
                     //TODO:断网
-                    Log.Warning($"[ReceiveBody]接收头部数据异常 {e.Message}");
+                    ULog.Warning($"[ReceiveBody]接收头部数据异常 {e.Message}");
                     throw;
                 }
             }
@@ -462,7 +462,7 @@ namespace xicheng.tcp
                     bool isDisconnected = _socket.Poll(100, SelectMode.SelectRead) && _socket.Available == 0;
                     if (isDisconnected)
                     {
-                        Log.Info("[实时检测] 连接已断开！");
+                        ULog.Info("[实时检测] 连接已断开！");
                         _isSocketRunning = false;
                         break;
                     }
@@ -489,7 +489,7 @@ namespace xicheng.tcp
                 }
                 catch(Exception e)
                 {
-                    Log.Info($"[心跳检测] 异常！ {e.Message}");
+                    ULog.Info($"[心跳检测] 异常！ {e.Message}");
                     _isSocketRunning = false;
                     break;
                 }

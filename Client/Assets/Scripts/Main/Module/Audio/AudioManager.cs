@@ -45,7 +45,7 @@ using xicheng.utility;
     
  */
 
-namespace Main.Module.Audio
+namespace xicheng.log.Audio
 {
     public class AudioManager:MonoSingleton<AudioManager>
     {

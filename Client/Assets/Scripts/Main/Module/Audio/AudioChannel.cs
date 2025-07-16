@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Main.Module.Audio
+namespace xicheng.log.Audio
 {
     /// <summary>
     /// 每类声音的播放管理器(对应一类声音的管理（如SFX）)

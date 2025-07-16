@@ -6,13 +6,13 @@ using System.Linq;
 using cfg.ui;
 using DG.Tweening;
 using Hotfix.DataTable;
-using Main.Module.Log;
+using xicheng.log.Log;
 using UnityEngine.AddressableAssets;
 using xicheng.common;
 
 namespace xicheng.ui
 {
-    public partial class UIManager : MonoSingleton<UIManager>,IHotUpdateGameLogic
+    public partial class UIManager : MonoSingleton<UIManager>,IUpdateLogic
     {
         private Camera _uiCamera;
         private Transform _uiRoot;
@@ -30,7 +30,9 @@ namespace xicheng.ui
         private Dictionary<UIKey, Stack<UIBase>> _instancesDict;
         // 全局打开顺序链表（解决循环检测）
         private LinkedList<UIStateNode> _globalOrderList;
-        
+
+        public bool InitStartUp => true;
+
         public void OnInit()
         {
             InitData();
@@ -100,7 +102,7 @@ namespace xicheng.ui
             //加载中不再创建
             if (_loadingList.Contains(uiKey))
             {
-                Log.Info($"{uiKey} is loading");
+                ULog.Info($"{uiKey} is loading");
                 yield break;
             }
 
@@ -131,7 +133,7 @@ namespace xicheng.ui
 
             if (instance == null)
             {
-                Log.Error($"{uiKey} instance is null。实例化失败!" + uiConfig.Path);
+                ULog.Error($"{uiKey} instance is null。实例化失败!" + uiConfig.Path);
                 yield break;
             }
             
@@ -158,7 +160,7 @@ namespace xicheng.ui
             UILayer layerCfg = DT.Table.TbUILayer.Get(newPanel.LayerId);
             if (layerCfg == null)
             {
-                Log.Error($"[HandleExclusiveLayers]不存在层级数据！ uikey = {newPanel.UIKey}");
+                ULog.Error($"[HandleExclusiveLayers]不存在层级数据！ uikey = {newPanel.UIKey}");
                 return;
             }
             
@@ -203,7 +205,7 @@ namespace xicheng.ui
         {
             if (_globalOrderList.Count <= 0)
             {
-                Log.Error("[UIMgr] CloseUI 打开列表为空");
+                ULog.Error("[UIMgr] CloseUI 打开列表为空");
                 return;
             }
             UIStateNode node = _globalOrderList.FirstOrDefault(n => n.Instance == instanceUI);
@@ -223,7 +225,7 @@ namespace xicheng.ui
         {
             if (_globalOrderList.Count <= 0)
             {
-                Log.Error("[UIMgr] CloseUI 打开列表为空"); // 修改：改为记录错误日志
+                ULog.Error("[UIMgr] CloseUI 打开列表为空"); // 修改：改为记录错误日志
                 return;
             }
 
@@ -231,7 +233,7 @@ namespace xicheng.ui
             var uiCfg = GetUICfg(uiKey);
             if (uiCfg == null)
             {
-                Log.Error($"[CloseUI] UI配置表 id =  {uiKey} not found!");
+                ULog.Error($"[CloseUI] UI配置表 id =  {uiKey} not found!");
                 return;
             }
 
@@ -245,7 +247,7 @@ namespace xicheng.ui
             {
                 if (instanceUI == null)
                 {
-                    Log.Error($"[CloseUI] {uiKey}是多实例UI，请传入正确的InstId参数！"); // 修改：改为记录错误日志
+                    ULog.Error($"[CloseUI] {uiKey}是多实例UI，请传入正确的InstId参数！"); // 修改：改为记录错误日志
                     return;
                 }
                 closeUINode = _globalOrderList.FirstOrDefault(n => n.Instance.InstId == instanceUI.InstId);
@@ -271,7 +273,7 @@ namespace xicheng.ui
             
             if (ui != current.Instance)
             {
-                Log.Warning($"回退失败，当前{ui.UIKey}不是顶部UI，请检查逻辑！");
+                ULog.Warning($"回退失败，当前{ui.UIKey}不是顶部UI，请检查逻辑！");
                 return;
             }
             
@@ -291,7 +293,7 @@ namespace xicheng.ui
                     }
                     else
                     {
-                        Log.Warning($"UIKey {key} 已被关闭或不存在");
+                        ULog.Warning($"UIKey {key} 已被关闭或不存在");
                     }
                 }
             }

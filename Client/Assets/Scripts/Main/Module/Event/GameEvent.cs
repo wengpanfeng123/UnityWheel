@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using xicheng.log.Log;
 using UnityEngine;using UnityEngine.UIElements;
 
 public interface IEventParam
@@ -52,7 +53,7 @@ namespace xicheng.events
         private static Dictionary<int, OnEventAction> _eventActionDic;
         // 添加锁对象
         private static readonly object _lock = new object();
-        private static bool _enableLogs = true;
+ 
         //静态构造函数：在类首次被访问时执行一次，初始化静态成员的数据。
         static GameEvent()
         {
@@ -120,7 +121,7 @@ namespace xicheng.events
                 action.Invoke(param);
                 return;
             }
-            LogError($"[Send] 事件<{typeof(T).Name}>不存在");
+            ULog.Info($"[Send] 事件<{typeof(T).Name}>不存在");
         }
 
         public static void OnRelease()
@@ -134,17 +135,6 @@ namespace xicheng.events
                     _eventActionDic = null;
                 }
             }
-        }
-
-        public static void Log(string msg)
-        {
-            if(_enableLogs)
-                Debug.Log("[GameEvent] "+msg);
-        }
-        public static void LogError(string msg)
-        {
-            if(_enableLogs)
-                Debug.LogError("[GameEvent] "+msg);
         }
     }
 }

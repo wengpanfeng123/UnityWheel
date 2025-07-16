@@ -8,12 +8,13 @@ using UnityEngine;
 using xicheng.common;
 using xicheng.tcp;
 
-public class DataTableManager : MonoSingleton<DataTableManager>,IHotUpdateGameLogic
+public class DataTableManager : MonoSingleton<DataTableManager>,ILogic
 {
-    private Tables _tables;
-    
+    private Tables _tables; 
+    public bool InitStartUp => true; 
+
     public void OnInit()
-    {
+    { 
         Initialized();
     }
 

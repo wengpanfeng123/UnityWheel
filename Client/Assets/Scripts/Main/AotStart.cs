@@ -8,7 +8,6 @@ using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using XiCheng.Archive;
 
 /// <summary>
 /// AOT启动脚本
@@ -229,8 +228,7 @@ public class AotStart : MonoBehaviour
     private IEnumerator EnterGame()
     {
         yield return LoadScene(_gameStartScenePath);
-        Debug.Log("EnterGame");
-        GameArchive.Init(); //初始化存档数据
+        Debug.Log("Enter_Hotfix_Game");
     }
 
     #endregion

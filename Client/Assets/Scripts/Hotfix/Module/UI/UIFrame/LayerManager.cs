@@ -4,7 +4,7 @@ using xicheng.module.ui;
 using System.Collections.Generic;
 using System.Linq;
 using Hotfix.DataTable;
-using Main.Module.Log;
+using xicheng.log.Log;
 using UnityEngine;
 namespace xicheng.ui
 {
@@ -89,7 +89,7 @@ namespace xicheng.ui
             LayerData layer = GetLayerData(layerId);
             if (layer ==null)
             {
-                Log.Error($"获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"获取层级数据失败！ uikey = {panel.UIKey}");
             }
             layer.AddUI(panel);
         }
@@ -135,7 +135,7 @@ namespace xicheng.ui
             LayerData layer = GetLayerData(layerId);
             if (layer ==null)
             {
-                Log.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
                 return;
             }
             layer.RemoveUI(panel);
@@ -176,7 +176,7 @@ namespace xicheng.ui
             LayerData layer = GetLayerData(layerId);
             if (layer ==null)
             {
-                Log.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
                 return;
             }
             layer.BringToTop(panel);

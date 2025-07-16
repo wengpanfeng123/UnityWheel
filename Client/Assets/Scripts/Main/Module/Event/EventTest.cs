@@ -7,6 +7,7 @@ namespace xicheng.module.events
     {
         void Start()
         {
+            HotFixEntr
             
             var testEvent =RefPool.Acquire<TestEvent>();
        

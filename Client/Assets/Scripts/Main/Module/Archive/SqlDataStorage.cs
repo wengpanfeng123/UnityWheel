@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace XiCheng.Archive
+namespace xicheng.archive
 {
     /// <summary>
     /// 使用SQL数据库作为数据存储实现（预留，未来可扩展）
@@ -13,7 +13,7 @@ namespace XiCheng.Archive
             return new Dictionary<string, object>();
         }
 
-        public void SaveGameData(string saveKey, Dictionary<string, object> data)
+        public void SaveLocalData(string saveKey, Dictionary<string, object> data)
         {
             // TODO: 这里实现保存到SQL逻辑
         }
