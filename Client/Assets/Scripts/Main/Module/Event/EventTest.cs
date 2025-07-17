@@ -7,8 +7,7 @@ namespace xicheng.module.events
     {
         void Start()
         {
-            HotFixEntr
-            
+         
             var testEvent =RefPool.Acquire<TestEvent>();
        
             //GameEvent.AddListener(typeof(TestEvent), TestEventAction);

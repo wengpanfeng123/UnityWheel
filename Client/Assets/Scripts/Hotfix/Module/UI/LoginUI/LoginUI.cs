@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Xicheng.UI {
-	public partial class LoginUITest : MonoBehaviour
+	public partial class LoginUI : MonoBehaviour
 	{
 	    private void Awake()
 	    {

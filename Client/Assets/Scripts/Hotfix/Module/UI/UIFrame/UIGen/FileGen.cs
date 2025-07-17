@@ -246,7 +246,7 @@ public class {comName}:{inherit}
                 File.WriteAllText(filePath, $"{content}");
             }
 
-            UniLog.Log.Info($"生成{filePath}",Color.cyan);
+            ULog.Info($"生成{filePath}",Color.cyan);
             Debug.Log($"生成{filePath}");
             AssetDatabase.Refresh();
         }

@@ -5,6 +5,8 @@ using UnityEditor;
 using System.Text;
 using System.IO;
 using System.Linq;
+using TMPro;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace UI.Gen
@@ -12,7 +14,7 @@ namespace UI.Gen
     public static class UIAutoBindSerialize
     {
         private static string _uiScriptRootDir = "Assets/Scripts/Hotfix/Module/UI/";
-        [MenuItem("Assets/生成 UI View 脚本并自动绑定",false,11)]
+        [MenuItem("Assets/UI脚本创建并自动绑定",false,11)]
         public static void GenerateAndBindUIScript()
         {
             var go = Selection.activeGameObject;
@@ -35,45 +37,44 @@ namespace UI.Gen
 
             // 1. 生成脚本文件
             GenerateScriptFiles(go, className, path, ns, out var scriptPath);
-
+            Debug.Log($"[UIBind]<--111-->生成脚本 {className}.cs 和 {className}.designer.cs");
             // 2. 添加脚本组件到预制体
             AddScriptComponent(go, scriptPath, ns, className);
-
+            Debug.Log($"[UIBind]<--222-->添加脚本: {className}.cs");
             // 3. 自动绑定组件
             AutoBindComponents(go, className, ns);
-
+            Debug.Log($"[UIBind]<--333-->绑定组件: {className}.cs");
             AssetDatabase.Refresh();
-            Debug.Log($"UI View 生成并绑定完成: {className}");
+            ULog.Info($"[UIBind]<--END-->绑定完成: {className}.cs",Color.green);
         }
 
         private static void GenerateScriptFiles(GameObject go, string className, string path, string ns, out string scriptPath)
         {
             path = path + "/" + go.name;
             Directory.CreateDirectory(path);
-            // scriptPath = Path.Combine(path, $"{className}.designer.cs");
             scriptPath = Path.Combine(path, $"{className}.cs");
             // 主类
             string mainPath = Path.Combine(path, className + ".cs");
             if (!File.Exists(mainPath))
             {
-                var mainSb = new StringBuilder();
-                mainSb.AppendLine("using UnityEngine;");
-                mainSb.AppendLine();
+                var mainBuilder = new StringBuilder();
+                mainBuilder.AppendLine("using UnityEngine;");
+                mainBuilder.AppendLine();
                 if (!string.IsNullOrEmpty(ns))
-                    mainSb.AppendLine($"namespace {ns} {{");
-                mainSb.AppendLine($"\tpublic partial class {className} : MonoBehaviour");
-                mainSb.AppendLine("\t{");
-                mainSb.AppendLine("\t    private void Awake()");
-                mainSb.AppendLine("\t    {");
+                    mainBuilder.AppendLine($"namespace {ns} {{");
+                mainBuilder.AppendLine($"\tpublic partial class {className} : MonoBehaviour");
+                mainBuilder.AppendLine("\t{");
+                mainBuilder.AppendLine("\t    private void Awake()");
+                mainBuilder.AppendLine("\t    {");
                 //mainSb.AppendLine("	        __AutoBindComponents();");
-                mainSb.AppendLine("\t       // TODO: 添加自定义初始化逻辑");
-                mainSb.AppendLine("\t    }");
-                mainSb.AppendLine("\t}");
+                mainBuilder.AppendLine("\t       // TODO: 添加自定义初始化逻辑");
+                mainBuilder.AppendLine("\t    }");
+                mainBuilder.AppendLine("\t}");
                 if (!string.IsNullOrEmpty(ns)) 
-                    mainSb.AppendLine("}");
+                    mainBuilder.AppendLine("}");
 
                 Directory.CreateDirectory(path);
-                File.WriteAllText(mainPath, mainSb.ToString());
+                File.WriteAllText(mainPath, mainBuilder.ToString());
             }
             // designer 文件
             var designerSb = new StringBuilder();
@@ -98,7 +99,7 @@ namespace UI.Gen
             
             File.WriteAllText(Path.Combine(path, className + ".designer.cs"), designerSb.ToString());
             AssetDatabase.Refresh();
-            Debug.Log($"成功生成 UI View：{className}.cs 和 {className}.designer.cs");
+
         }
 
         private static void AddScriptComponent(GameObject go, string scriptPath, string ns, string className)
@@ -154,8 +155,11 @@ namespace UI.Gen
             foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
             {
                 var type = GetComponentTypeByPrefix(t.name);
-                if (type == null) continue;
-
+                if (type == null)
+                {
+                    continue;
+                }
+                
                 var component = t.GetComponent(type);
                 if (component != null)
                 {
@@ -180,12 +184,20 @@ namespace UI.Gen
 
         private static string GetComponentTypeByPrefix(string name)
         {
-            if (name.StartsWith("Btn")) return "Button";
-            if (name.StartsWith("Tmp")) return "TextMeshProUGUI";
-            if (name.StartsWith("Txt")) return "Text";
-            if (name.StartsWith("Img")) return "Image";
-            if (name.StartsWith("Tog")) return "Toggle";
-            if (name.StartsWith("Input")) return "InputField";
+            if (name.StartsWith("Btn") ||name.StartsWith("btn")) 
+                return "Button";
+            if (name.StartsWith("Text") ||name.StartsWith("text")) 
+                return "TextMeshProUGUI";
+            if (name.StartsWith("Txt")||name.StartsWith("txt")) 
+                return "Text";
+            if (name.StartsWith("Img") ||name.StartsWith("img")) 
+                return "Image";
+            if (name.StartsWith("Tog")||name.StartsWith("tog")) 
+                return "Toggle";
+            // if (name.StartsWith("Input")||name.StartsWith("Ipt"))
+            //     return "InputField";
+            if (name.StartsWith("Input")||name.StartsWith("input")||name.StartsWith("Ipt")||name.StartsWith("ipt"))
+                return "TMP_InputField";
             return null;
         }
 

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: UIAutoBindConfig
   m_EditorClassIdentifier: 
   outputPath: Assets/Scripts/Hotfix/Module/UI
-  namespace: UIModule
+  namespace: Xicheng.UI
   useSerializeField: 1

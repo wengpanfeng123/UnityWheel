@@ -686,8 +686,8 @@ GameObject:
   - component: {fileID: 3198449445621672646}
   - component: {fileID: 3198449445621672647}
   - component: {fileID: 3198449445621672641}
-  - component: {fileID: 8740275549905463551}
   - component: {fileID: -4962427088526832066}
+  - component: {fileID: -7487932913294411670}
   m_Layer: 5
   m_Name: LoginUI
   m_TagString: Untagged
@@ -759,19 +759,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
---- !u!114 &8740275549905463551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3198449445621672642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29d2181eaab84a47bd658e864a8f4b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  comSettings: []
 --- !u!222 &-4962427088526832066
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -780,6 +767,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3198449445621672642}
   m_CullTransparentMesh: 1
+--- !u!114 &-7487932913294411670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3198449445621672642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781710ea26f8247dda2ab6be360ef006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3198449445891104217
 GameObject:
   m_ObjectHideFlags: 0
