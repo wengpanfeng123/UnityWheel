@@ -89,7 +89,7 @@ namespace Hotfix
         public static void CreateUIKey()
         {
             StringBuilder sb = new StringBuilder();
-            string filePath = Application.dataPath + $@"/{ResCfg.AssetFolder}/DataTable/ui_tbuipanel.json";
+            string filePath = Application.dataPath + $@"/{ResConst.AssetFolder}/DataTable/ui_tbuipanel.json";
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);

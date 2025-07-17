@@ -1,6 +1,6 @@
+using UnityEngine;
 using cfg;
 using Hotfix;
-using UnityEngine;
 using xicheng.aot;
 using xicheng.archive;
 using Xicheng.Datable;
@@ -50,15 +50,26 @@ public class HotfixEntry : MonoBehaviour
 
     private static LogicSystem _logicSystem;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this); 
+        Application.focusChanged += OnFocusChanged;
+    }
+    
     private void Start()
     {
-        DontDestroyOnLoad(this);
+    
         // 初始化游戏存档数据
         GameArchive.OnInit();
         // 初始化逻辑
         _logicSystem = new LogicSystem();
         _logicSystem.InitializeStartupLogics();
 
+    }
+    
+    private void OnFocusChanged(bool obj)
+    {
+         
     }
     
     void Update()

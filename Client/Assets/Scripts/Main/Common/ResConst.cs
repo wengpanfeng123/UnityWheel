@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// 资源配置（文件夹，路径各种配置）
 /// </summary>
-public class ResCfg
+public class ResConst
 {
     /*关于路径的相关描述。
  * 解析路径:string fullPath =  Application.dataPath + "ABRes/"+'UI/panel/meet/panel_mainui_meet.prefab'

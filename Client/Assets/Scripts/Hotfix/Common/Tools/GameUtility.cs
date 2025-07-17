@@ -4,12 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
-using xicheng.res;
 using Debug = UnityEngine.Debug;
 
 namespace Xicheng.Common
@@ -57,10 +54,6 @@ namespace Xicheng.Common
                 return false;
             }
         }
-
-
-    
-        
 
         public static void DeleteDir(string srcPath)
         {

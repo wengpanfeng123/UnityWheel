@@ -1,14 +1,10 @@
 using cfg.ui;
-using Xicheng.Common;
-using xicheng.module.ui;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Xicheng.DataTable;
 
 namespace Xicheng.UI
 {
-    
     [System.Serializable]
     public class LayerConfig
     {
@@ -20,12 +16,13 @@ namespace Xicheng.UI
     public class UILayerMgr
     {
         private Dictionary<int, LayerData> _layerDic;
+
         public UILayerMgr()
         {
             _layerDic = new Dictionary<int, LayerData>();
             GenerateLayerNode();
         }
-        
+
 
         // 互斥关系配置
         private Dictionary<UILayerType, List<UILayerType>> _exclusionRules = new()
@@ -43,14 +40,14 @@ namespace Xicheng.UI
                 }
             }
         };
-        
+
         private void GenerateLayerNode()
         {
             Transform uiRoot = UIManager.Inst.UIRoot;
             foreach (UILayer item in DT.Table.TbUILayer.DataList)
             {
                 // 创建一个空的GameObject  
-                GameObject emptyNode = new GameObject(item.Id+"_"+item.Name);
+                GameObject emptyNode = new GameObject(item.Id + "_" + item.Name);
                 // 如果你想，可以将这个空节点设置为当前脚本所在GameObject的子节点  
                 emptyNode.transform.SetParent(uiRoot.transform);
                 emptyNode.transform.localPosition = Vector3.zero;
@@ -61,14 +58,14 @@ namespace Xicheng.UI
                 RectTransform rectTransform = emptyNode.GetComponent<RectTransform>();
                 // 1. 设置锚点为四周对齐
                 rectTransform.anchorMin = Vector2.zero; // 左下角 (0,0)
-                rectTransform.anchorMax = Vector2.one;   // 右上角 (1,1)
+                rectTransform.anchorMax = Vector2.one; // 右上角 (1,1)
                 // 2. 强制重置偏移量为0
                 rectTransform.offsetMin = Vector2.zero; // 左/下偏移
                 rectTransform.offsetMax = Vector2.zero; // 右/上偏移
-                _layerDic.Add(item.Id,new LayerData((UILayerType)item.Id, emptyNode));
+                _layerDic.Add(item.Id, new LayerData((UILayerType)item.Id, emptyNode));
             }
         }
-        
+
         private LayerData GetLayerData(int layerId)
         {
             return _layerDic.GetValueOrDefault(layerId);
@@ -87,10 +84,11 @@ namespace Xicheng.UI
         {
             int layerId = GetLayerId(panel.UIKey);
             LayerData layer = GetLayerData(layerId);
-            if (layer ==null)
+            if (layer == null)
             {
                 ULog.Error($"获取层级数据失败！ uikey = {panel.UIKey}");
             }
+
             layer.AddUI(panel);
         }
 
@@ -99,7 +97,6 @@ namespace Xicheng.UI
             return DT.Table.TbUIPanel.Get((int)uiKey).Layer;
         }
 
- 
 
         private void HandleExclusiveLayers(UIBase newPanel)
         {
@@ -133,17 +130,19 @@ namespace Xicheng.UI
         {
             int layerId = GetLayerId(panel.UIKey);
             LayerData layer = GetLayerData(layerId);
-            if (layer ==null)
+            if (layer == null)
             {
                 ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
                 return;
             }
+
             layer.RemoveUI(panel);
         }
-        
-        
+
+
         //动态提层：运行时动态修改UI的层级
-        public void ChangeUILayer(UIBase ui, int newLayerId) {
+        public void ChangeUILayer(UIBase ui, int newLayerId)
+        {
             // 从原层级移除
             var oldLayer = GetLayerData(ui.LayerId);
             oldLayer?.RemoveUI(ui);
@@ -152,7 +151,7 @@ namespace Xicheng.UI
             // 加入新层级
             var newLayer = GetLayerData(newLayerId);
             newLayer.AddUI(ui);
-    
+
             // 处理互斥关系
             UIManager.Inst.HandleExclusive(ui);
         }
@@ -174,11 +173,12 @@ namespace Xicheng.UI
         {
             int layerId = GetLayerId(panel.UIKey);
             LayerData layer = GetLayerData(layerId);
-            if (layer ==null)
+            if (layer == null)
             {
                 ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
                 return;
             }
+
             layer.BringToTop(panel);
         }
     }
