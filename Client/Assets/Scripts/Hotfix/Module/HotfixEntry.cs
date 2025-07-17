@@ -1,7 +1,5 @@
-using System;
 using cfg;
 using Hotfix;
-using Hotfix.Model;
 using UnityEngine;
 using xicheng.aot;
 using xicheng.archive;
@@ -51,13 +49,9 @@ public class HotfixEntry : MonoBehaviour
 
     private static LogicSystem _logicSystem;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     private void Start()
     {
+        DontDestroyOnLoad(this);
         // 初始化游戏存档数据
         GameArchive.OnInit();
         // 初始化逻辑
@@ -70,8 +64,7 @@ public class HotfixEntry : MonoBehaviour
     {
         _logicSystem?.OnUpdate(Time.deltaTime);
     }
-
-
+    
     /// <summary>
     /// 获取框架组件
     /// </summary>

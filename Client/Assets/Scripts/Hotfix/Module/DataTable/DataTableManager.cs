@@ -17,18 +17,12 @@ public class DataTableManager : MonoSingleton<DataTableManager>,ILogic
     { 
         Initialized();
     }
-
-    public void OnUpdate(float deltaTime)
-    {
- 
-    }
-
+    
     public void OnRelease()
     {
         _tables = null;
     }
-
- 
+    
     private void Initialized()
     {
         //只需一行代码即可加载所有配置表。整个游戏运行期间只加载一次（除非要运行中重新加载配置）。
@@ -60,6 +54,7 @@ public class DataTableManager : MonoSingleton<DataTableManager>,ILogic
         string path = Application.dataPath + $"/AssetsPackage/DataTable/{file}.json";
         return JSON.Parse(File.ReadAllText(path, Encoding.UTF8));
     }
+    
     private static ByteBuf LoadByteBuf(string file)
     {
         string path = Application.dataPath + $"/AssetsPackage/DataTable/{file}.bytes";
