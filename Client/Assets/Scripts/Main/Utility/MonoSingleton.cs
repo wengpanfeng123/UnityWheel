@@ -3,7 +3,7 @@
 /// </summary>
 using UnityEngine;
 
-namespace xicheng.utility
+namespace Xicheng.Utility
 {
 	public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>{
 		

@@ -1,12 +1,12 @@
 using cfg.ui;
-using xicheng.common;
+using Xicheng.Common;
 using xicheng.module.ui;
 using System.Collections.Generic;
 using System.Linq;
-using Hotfix.DataTable;
-using xicheng.log.Log;
 using UnityEngine;
-namespace xicheng.ui
+using Xicheng.DataTable;
+
+namespace Xicheng.UI
 {
     
     [System.Serializable]

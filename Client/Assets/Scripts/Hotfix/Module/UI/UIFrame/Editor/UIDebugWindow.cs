@@ -10,7 +10,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
-using xicheng.ui;
+using Xicheng.UI;
 
 public class UIDebugWindow : OdinEditorWindow
 {

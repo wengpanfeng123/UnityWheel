@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using xicheng.common;
+using Xicheng.Common;
 
 public enum CloseType
 {

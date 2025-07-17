@@ -11,7 +11,8 @@ using System.Threading;
 using xicheng.log.Log;
 using UnityEditor.VersionControl;
 using UnityEngine;
-using xicheng.common;
+using Xicheng.Common;
+using Xicheng.Utility;
 using Console = System.Console;
 
 /*

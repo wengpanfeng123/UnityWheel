@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using xicheng.utility;
+using Xicheng.Utility;
 
 /* 注意事项：
    无可用设备检查   Microphone.devices.Length > 0，否则避免调用录音相关函数

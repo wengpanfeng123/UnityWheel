@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using xicheng.common;
+using Xicheng.Common;
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(UIGen))]

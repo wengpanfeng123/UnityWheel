@@ -7,10 +7,10 @@ using System.Text;
 using Hotfix.Common;
 using xicheng.log.Log;
 using UnityEditor;
-using xicheng.uisystem.gen;
+using Xicheng.UIsystem.gen;
 using UnityEngine;
 
-namespace xicheng.common
+namespace Xicheng.Common
 {
     public class FileGen
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Hotfix.Model;
 using xicheng.archive;
-using xicheng.common;
+using Xicheng.Utility;
 
 
 //游戏模块数据管理

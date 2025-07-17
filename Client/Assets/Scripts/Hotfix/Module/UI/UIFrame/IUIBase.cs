@@ -1,6 +1,6 @@
 using xicheng.module.ui;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public interface IUIBase
     {

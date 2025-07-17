@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using cfg.ui;
 using DG.Tweening;
-using Hotfix.DataTable;
-using xicheng.log.Log;
+using Xicheng.DataTable;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
-using xicheng.common;
+using Xicheng.Utility;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public partial class UIManager : MonoSingleton<UIManager>,IUpdateLogic
     {
@@ -42,7 +41,7 @@ namespace xicheng.ui
 
         private void InitData()
         {
-            _uiRoot = GameObject.FindWithTag("UIRoot").transform;
+            _uiRoot = GameObject.Find("UIRoot").transform;
             _uiCamera = _uiRoot.Find("UICamera").GetComponent<Camera>();
             _instancesDict = new();
             _globalOrderList = new();

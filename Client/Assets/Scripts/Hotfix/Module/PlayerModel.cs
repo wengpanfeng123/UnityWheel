@@ -1,6 +1,6 @@
 
 using xicheng.archive;
-using xicheng.ui;
+using Xicheng.UI;
 
 namespace Hotfix.Model
 {

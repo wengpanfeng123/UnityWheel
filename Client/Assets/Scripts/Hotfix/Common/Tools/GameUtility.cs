@@ -12,7 +12,7 @@ using UnityEngine;
 using xicheng.res;
 using Debug = UnityEngine.Debug;
 
-namespace xicheng.common
+namespace Xicheng.Common
 {
     public static class GameUtility
     {

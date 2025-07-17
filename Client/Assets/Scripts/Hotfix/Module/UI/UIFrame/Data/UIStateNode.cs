@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     // 链表节点定义
     /// <summary>

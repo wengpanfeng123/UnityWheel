@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using xicheng.log.Log;
+using Xicheng.Datable;
 using xicheng.tcp;
-using xicheng.ui;
+using Xicheng.UI;
 
 namespace Hotfix
 {

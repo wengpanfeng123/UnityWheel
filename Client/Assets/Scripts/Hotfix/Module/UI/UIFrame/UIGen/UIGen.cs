@@ -6,7 +6,7 @@ using Hotfix.Common;
 using UnityEditor;
 using UnityEngine;
 
-namespace xicheng.common
+namespace Xicheng.Common
 {
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using xicheng.common;
+using Xicheng.Common;
+using Xicheng.Utility;
 
 public delegate void CallBack();
 

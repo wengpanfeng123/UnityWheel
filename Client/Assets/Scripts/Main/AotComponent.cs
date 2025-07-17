@@ -1,5 +1,5 @@
 using UnityEngine;
-using xicheng.utility;
+using Xicheng.Utility;
 
 namespace xicheng.aot
 {

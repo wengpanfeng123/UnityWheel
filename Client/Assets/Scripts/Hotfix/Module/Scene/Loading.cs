@@ -1,5 +1,5 @@
 using System.Text;
-using Hotfix.Module.Scene;
+using Xicheng.Secne;
 using xicheng.log.Log;
 using TMPro;
 using UnityEngine;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace xicheng.utility
+namespace Xicheng.Utility
 {
     public static class WaitCache
     {

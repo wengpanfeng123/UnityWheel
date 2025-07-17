@@ -5,9 +5,10 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
-using xicheng.common;
+using Xicheng.Common;
+using Xicheng.Utility;
 
-namespace Hotfix.Module.Scene
+namespace Xicheng.Secne
 {
     public class GameScene:MonoSingleton<GameScene>
     {

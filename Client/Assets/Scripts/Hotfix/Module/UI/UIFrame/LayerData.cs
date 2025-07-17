@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using cfg.ui;
-using Hotfix.DataTable;
+using Xicheng.DataTable;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public class LayerData
     {

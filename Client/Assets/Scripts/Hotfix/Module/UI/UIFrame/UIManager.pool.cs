@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public partial class UIManager
     {

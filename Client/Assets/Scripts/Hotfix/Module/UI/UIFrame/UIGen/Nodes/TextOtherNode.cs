@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace xicheng.uisystem.gen
+namespace Xicheng.UIsystem.gen
 {
     public class TextOtherNode:Node
     {

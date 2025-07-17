@@ -12,7 +12,7 @@ namespace Main.Utility.Pool.GoPools
     public class GoPool<T> : IDisposable where T : MonoBehaviour
     {
         // 对象池核心存储
-        private readonly Stack<T> _pool = new Stack<T>();
+        private readonly Stack<T> _pool = new();
         private readonly GameObject _prefab;
         private readonly Transform _parent;
         private readonly Action<T> _onGet;

@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using xicheng.common;
+using Xicheng.Common;
+using Xicheng.Utility;
 
 namespace ECS
 { 

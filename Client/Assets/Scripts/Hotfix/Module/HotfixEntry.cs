@@ -3,8 +3,9 @@ using Hotfix;
 using UnityEngine;
 using xicheng.aot;
 using xicheng.archive;
+using Xicheng.Datable;
 using xicheng.events;
-using xicheng.ui;
+using Xicheng.UI;
 
 public class HotfixEntry : MonoBehaviour
 {

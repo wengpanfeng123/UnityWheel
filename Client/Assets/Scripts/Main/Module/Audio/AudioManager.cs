@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using xicheng.utility;
+using Xicheng.Utility;
 
 /*
  * 1.集中控制

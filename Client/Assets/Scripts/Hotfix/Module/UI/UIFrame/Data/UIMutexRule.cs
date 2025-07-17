@@ -1,4 +1,4 @@
-﻿namespace xicheng.ui
+﻿namespace Xicheng.UI
 {
     public enum UIMutexRule
     {

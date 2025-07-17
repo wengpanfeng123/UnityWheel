@@ -5,7 +5,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using UnityEngine;
-using xicheng.common;
+using Xicheng.Common;
+using Xicheng.Utility;
 
 /* 
   ***** 指数退避算法 *****
