@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace xicheng.mic
+namespace Xicheng.mic
 {
     public class TestMic:MonoBehaviour
     {

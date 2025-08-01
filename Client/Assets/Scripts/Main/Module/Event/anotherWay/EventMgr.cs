@@ -13,14 +13,20 @@ public delegate void CallBack<T, U, V>(T arg1, U arg2, V arg3);
 
 public delegate void CallBack<T, U, V, X>(T arg1, U arg2, V arg3, X arg4);
 
-public class EventMgr : MonoSingleton<EventMgr>,ILogic
+public class EventMgr : MonoSingleton<EventMgr>
 {
     private Dictionary<int, Delegate> _eventDict;
 
+    
     public bool InitStartUp => true;
-    public void OnInit()
+    public void OnStartUp()
     {
         _eventDict = new Dictionary<int, Delegate>();
+    }
+
+    public void OnAppPause(bool isPause)
+    {
+         
     }
 
     public void AddListener(string eType, CallBack handler)
@@ -204,5 +210,10 @@ public class EventMgr : MonoSingleton<EventMgr>,ILogic
             _eventDict.Clear();
             _eventDict = null;
         }
+    }
+
+    public void OnAppQuit()
+    {
+        throw new NotImplementedException();
     }
 }

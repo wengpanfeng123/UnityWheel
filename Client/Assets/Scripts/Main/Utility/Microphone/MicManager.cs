@@ -13,7 +13,7 @@ using Xicheng.Utility;
    多平台差异      Android需要动态权限申请，iOS需在Info.plist中添加NSMicrophoneUsageDescription
    iOS延迟问题     iOS 开启录音后前几帧数据可能为静音，建议预热录制 0.5s
  */
-namespace xicheng.mic
+namespace Xicheng.mic
 {
     /// <summary>
     /// 麦克风管理器

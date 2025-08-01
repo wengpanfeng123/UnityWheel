@@ -1,13 +1,13 @@
 ﻿using Google.Protobuf;
 using Protocol;
 
-namespace xicheng.tcp
+namespace Xicheng.tcp
 {
-    public class UserProxy:NetProxy<UserProxy>,ILogic
+    public class UserProxy:NetProxy<UserProxy>
     {
         public bool InitStartUp => true;
 
-        public void OnInit()
+        public void OnStartUp()
         {
             RegisterMsg(MessageId.MsgidC2SCreatePlayer, S2C_ChapterUpdate);
         }

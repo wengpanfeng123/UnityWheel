@@ -1,9 +1,7 @@
-
-using System.Collections.Generic;
-using xicheng.log.Log;
 using UnityEngine;
+using System.Collections.Generic;
 
-namespace xicheng.archive
+namespace Xicheng.Archive
 {
     public enum StorageType
     {
@@ -20,7 +18,7 @@ namespace xicheng.archive
         private static IDataStorage _dataStorage;
         private static Dictionary<string, Dictionary<string, object>> _dataDict = new();
         private static bool _isInit = false;
-        public static void OnInit(StorageType storageType = StorageType.ES3)
+        public static void OnStartUp(StorageType storageType = StorageType.ES3)
         {
             if (_isInit)
                 return;

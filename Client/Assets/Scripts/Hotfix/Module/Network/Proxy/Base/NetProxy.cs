@@ -16,7 +16,7 @@ public abstract  class Singleton<T> where  T:class, new()
 }
 
 
-namespace xicheng.tcp
+namespace Xicheng.tcp
 {
     /// <summary>
     /// 网络消息代理

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace xicheng.log
+namespace Xicheng.log
 {
     //默认控制台输出实现
     public class UnityConsoleLogHandler:ILogHandler

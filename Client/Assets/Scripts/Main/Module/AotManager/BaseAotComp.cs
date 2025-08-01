@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace xicheng.aot
+namespace Xicheng.aot
 {
     public abstract class BaseAotComp:MonoBehaviour
     {

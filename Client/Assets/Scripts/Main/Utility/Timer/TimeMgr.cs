@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Xicheng.Utility;
 
-public class TimeMgr : MonoBehaviour
+public class TimeMgr : MonoSingleton<TimeMgr>
 {
     // 优先队列（最小堆）
     private PriorityQueue<Timer> _timers = new();

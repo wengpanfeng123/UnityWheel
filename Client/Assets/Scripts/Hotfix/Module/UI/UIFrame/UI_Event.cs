@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace xicheng.module.ui
+namespace Xicheng.module.ui
 {
     
  using System.Collections.Generic;

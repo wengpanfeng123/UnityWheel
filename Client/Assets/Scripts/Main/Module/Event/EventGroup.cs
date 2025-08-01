@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using xicheng.log.Log;
-using xicheng.events;
+using Xicheng.log.Log;
+using Xicheng.events;
 
 
-namespace xicheng.module.events
+namespace Xicheng.module.events
 {
     //事件分组：好处就是可以统一管理，统一销毁，防止事件泄露
 

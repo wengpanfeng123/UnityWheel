@@ -1,6 +1,6 @@
 using System.Text;
 using Xicheng.Secne;
-using xicheng.log.Log;
+using Xicheng.log.Log;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;

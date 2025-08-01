@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace xicheng.log.Audio
+namespace Xicheng.log.Audio
 {
     /* AudioObject池化播放（适合爆发型音效）
      * UI按钮点击、连击命中等 SFX 不能都用一个 AudioSource。

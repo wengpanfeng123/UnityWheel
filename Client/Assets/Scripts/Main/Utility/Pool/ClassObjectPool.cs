@@ -6,7 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace xicheng.res
+namespace Xicheng.res
 {
     public class ClassObjectPool<T> where T : class, new()
     {

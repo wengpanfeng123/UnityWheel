@@ -106,7 +106,7 @@ using Xicheng.Utility;
   
   
  */
-namespace xicheng.udp
+namespace Xicheng.udp
 {
     /// <summary>
     /// udp 网络框架(可靠性传输)

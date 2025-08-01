@@ -1,7 +1,7 @@
 using UnityEngine;
 using Xicheng.Utility;
 
-namespace xicheng.aot
+namespace Xicheng.aot
 {
     public class AotComponent:MonoSingleton<AotComponent>
     {

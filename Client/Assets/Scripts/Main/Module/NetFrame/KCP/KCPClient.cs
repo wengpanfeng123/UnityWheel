@@ -3,7 +3,7 @@ using System.Threading;
 using kcp2k;
 using UnityEngine;
 
-namespace xicheng.net.KCP
+namespace Xicheng.net.KCP
 {
     public class KCPClient
     {

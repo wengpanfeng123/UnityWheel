@@ -1,40 +1,51 @@
 using System.Collections.Generic;
-using UnityEngine;
-using xicheng.aot;
-using xicheng.archive;
+using Hotfix;
+using Hotfix.Model;
+using Xicheng.Archive;
 
-namespace Hotfix.Model
+namespace Hotfix
 {
-    //游戏模块数据管理
-    public class ModelComponent:BaseAotComp
+
+
+    /// <summary>
+    /// 不同的功能模块数据管理
+    /// </summary>
+    public class ModelManager : ILogic
     {
         private string _gameKey = "xicheng.game";
-        private readonly Dictionary<string, ModelBase> _modelDict = new();
-            
-        
-        //按照模块去加载数据，本质上都是读取一个存档文件，读取文件内容，然后反序列化成对象。
-        
+        private readonly Dictionary<string, BaseModel> _modelDict = new();
+
+
+        public bool InitStartUp => true;
+
+        public void OnStartUp()
+        {
+            //提前注册或者使用时注册
+        }
+
+
         /// <summary>
         /// 获取一个Model实例
         /// </summary>
-        public T GetModel<T>() where T : ModelBase, new()
+        public T GetModel<T>() where T : BaseModel, new()
         {
             string key = typeof(T).FullName;
             return RegisterModel<T>(key);
         }
 
-        private T RegisterModel<T>(string modelName) where T : ModelBase, new()
+        private T RegisterModel<T>(string modelName) where T : BaseModel, new()
         {
             if (!_modelDict.TryGetValue(modelName, out var modelInstance))
             {
                 modelInstance = new T();
                 _modelDict.Add(modelName, modelInstance);
             }
+
             var model = modelInstance as T;
             model?.Startup();
             return model;
         }
-   
+
         /// <summary>
         ///  保存所有model数据
         /// </summary>
@@ -45,21 +56,34 @@ namespace Hotfix.Model
             {
                 model.Save();
             }
-            
+
             if (writeToDisk)
             {
                 GameArchive.SaveLocal();
             }
         }
-        
-        
+
+
         public void OnRelease()
         {
             foreach (var model in _modelDict.Values)
             {
                 model.OnRelease();
             }
-            SaveData(false);
+
+            SaveData();
+        }
+
+
+        public void OnAppPause(bool isPause)
+        {
+            SaveData(isPause);
+        }
+
+
+        public void OnAppQuit()
+        {
+            SaveData(true);
         }
     }
 }

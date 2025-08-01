@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using xicheng.module.ui;
+using Xicheng.module.ui;
 
 namespace Xicheng.UI
 {

@@ -1,7 +1,8 @@
 ﻿using Main.EventTest;
 using UnityEngine;
-using xicheng.events;
-namespace xicheng.module.events
+using Xicheng.events;
+
+namespace Xicheng.module.events
 {
     public class EventTest : MonoBehaviour
     {

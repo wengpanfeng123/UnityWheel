@@ -1,4 +1,4 @@
-using xicheng.ReferencePool;
+using Xicheng.ReferencePool;
 using UnityEngine;
 
 

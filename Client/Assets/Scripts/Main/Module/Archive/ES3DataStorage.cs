@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using xicheng.log.Log;
+using Xicheng.log.Log;
 
-namespace xicheng.archive
+namespace Xicheng.Archive
 {
     /// <summary>
     /// 使用ES3作为数据持久化存储实现

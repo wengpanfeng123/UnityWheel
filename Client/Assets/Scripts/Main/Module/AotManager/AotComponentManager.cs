@@ -11,7 +11,7 @@ public enum CloseType
 }
 
 
-namespace xicheng.aot
+namespace Xicheng.aot
 {
     public static class AotComponentManager
     {

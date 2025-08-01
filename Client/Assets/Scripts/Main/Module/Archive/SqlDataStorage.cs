@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace xicheng.archive
+namespace Xicheng.Archive
 {
     /// <summary>
     /// 使用SQL数据库作为数据存储实现（预留，未来可扩展）

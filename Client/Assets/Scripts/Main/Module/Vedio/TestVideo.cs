@@ -2,7 +2,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace xicheng.Vedio
+namespace Xicheng.Vedio
 {
     public class VideoPlayerExample : MonoBehaviour
     {

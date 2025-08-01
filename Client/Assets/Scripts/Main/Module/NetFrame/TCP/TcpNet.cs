@@ -8,7 +8,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using xicheng.log.Log;
+using Xicheng.log.Log;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using Xicheng.Common;
@@ -42,7 +42,7 @@ public enum TerminalType
 
 public delegate void TcpMsgCallBack(uint msgId, byte[] body,int terminalId);
 
-namespace xicheng.tcp
+namespace Xicheng.tcp
 {
     public class TcpNet : MonoSingleton<TcpNet>
     {

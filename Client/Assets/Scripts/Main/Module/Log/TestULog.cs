@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace xicheng.log.Log
+namespace Xicheng.log.Log
 {
     public class TestULog : MonoBehaviour
     {

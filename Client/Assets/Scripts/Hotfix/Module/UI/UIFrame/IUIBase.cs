@@ -1,4 +1,4 @@
-using xicheng.module.ui;
+using Xicheng.module.ui;
 
 namespace Xicheng.UI
 {

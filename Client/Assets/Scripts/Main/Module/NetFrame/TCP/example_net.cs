@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine.AI;
 
-namespace xicheng.tcp
+namespace Xicheng.tcp
 {
     public class example_net : MonoBehaviour
     {

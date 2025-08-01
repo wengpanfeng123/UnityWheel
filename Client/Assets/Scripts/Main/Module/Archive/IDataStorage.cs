@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace xicheng.archive
+namespace Xicheng.Archive
 {
     /// <summary>
     /// 游戏存档存取接口，支持本地存储、SQL存储等扩展

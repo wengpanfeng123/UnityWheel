@@ -1,5 +1,5 @@
 
-using xicheng.archive;
+using Xicheng.Archive;
 using Xicheng.UI;
 
 namespace Hotfix.Model
@@ -12,16 +12,16 @@ namespace Hotfix.Model
         public float Height;
     }
 
-    public class PlayerModel:ModelBase
+    public class PlayerModel:BaseModel
     {
         private PlayerData _playerData;
         private readonly string _modelKey = nameof(PlayerModel);
+        
         public override void OnStartup()
         {
             _playerData = GameArchive.GetData<PlayerData>(_modelKey);
-           var t = HotfixEntry.GetLogic<UIManager>().UIRoot;
-           var st = HotfixEntry.GetLogic<ModelManager>();
-           st.GetModel<PlayerModel>();
+           // GameManager.GetModel<PlayerModel>();
+           // GameManager.GetSystem<MyTestSystem>();
         }
         
         public override void Save()

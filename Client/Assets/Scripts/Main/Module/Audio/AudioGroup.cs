@@ -1,4 +1,4 @@
-﻿namespace xicheng.log.Audio
+﻿namespace Xicheng.log.Audio
 {
     public enum AudioGroup {
         BGM, //背景音乐

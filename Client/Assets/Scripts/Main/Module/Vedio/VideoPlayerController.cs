@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace xicheng.Vedio
+namespace Xicheng.Vedio
 {   
     /*
     • ✅ 支持本地和网络视频播放

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using cfg;
+using Hotfix;
 using Luban;
 using SimpleJSON;
 using UnityEngine;
@@ -9,17 +10,14 @@ using Xicheng.Utility;
 
 namespace Xicheng.Datable
 {
-
-    public class DataTableManager : MonoSingleton<DataTableManager>, ILogic
+    public class DataTableManager : MonoSingleton<DataTableManager>
     {
         private Tables _tables;
-        public bool InitStartUp => true;
-
-        public void OnInit()
+        public void OnStartUp()
         {
             Initialized();
         }
-
+        
         public void OnRelease()
         {
             _tables = null;

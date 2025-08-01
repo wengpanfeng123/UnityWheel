@@ -11,7 +11,7 @@ using Xicheng.Utility;
 
 namespace Xicheng.UI
 {
-    public partial class UIManager : MonoSingleton<UIManager>,IUpdateLogic
+    public partial class UIManager : MonoSingleton<UIManager>
     {
         private Camera _uiCamera;
         private Transform _uiRoot;
@@ -32,7 +32,7 @@ namespace Xicheng.UI
 
         public bool InitStartUp => true;
 
-        public void OnInit()
+        public void OnStartUp()
         {
             InitData();
             StartCacheCleanupCoroutine();
@@ -381,11 +381,6 @@ namespace Xicheng.UI
         private void OnDestroy()
         {
 
-        }
-
-
-        public void OnUpdate(float deltaTime)
-        {
         }
 
         public void OnRelease()

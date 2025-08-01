@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using xicheng.log.Log;
+using Xicheng.log.Log;
 using UnityEngine;using UnityEngine.UIElements;
 
 public interface IEventParam
@@ -43,7 +43,7 @@ public abstract class EventBase:IReference
     全局配置（如 AppSettings）。
     扩展方法容器(如：扩展Transform的方法)
  */
-namespace xicheng.events
+namespace Xicheng.events
 {
     public static class GameEvent
     {

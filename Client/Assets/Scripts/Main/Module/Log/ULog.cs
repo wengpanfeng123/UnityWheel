@@ -1,6 +1,6 @@
-﻿using xicheng.log.Log;
+﻿using Xicheng.log.Log;
 using UnityEngine;
-using xicheng.log;
+using Xicheng.log;
 
 
 public static class ULog

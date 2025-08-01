@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Threading;
 using cfg.ui;
-using xicheng.module.ui;
+using Xicheng.module.ui;
 
 namespace Xicheng.UI
 {

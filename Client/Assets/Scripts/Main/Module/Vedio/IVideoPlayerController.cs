@@ -1,4 +1,4 @@
-namespace xicheng.Vedio
+namespace Xicheng.Vedio
 {
     /// <summary>
     /// 视频播放器接口定义
