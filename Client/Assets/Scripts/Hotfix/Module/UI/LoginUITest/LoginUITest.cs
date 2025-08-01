@@ -1,11 +1,13 @@
 using UnityEngine;
 
 namespace Xicheng.UI {
-	public partial class LoginUITest : MonoBehaviour
+	public partial class LoginUITest : UIBase
 	{
-	    private void Awake()
-	    {
-	       // TODO: 添加自定义初始化逻辑
-	    }
+		public override UIKey _UIKey_ => UIKey.CardUI;
+
+		private void Awake()
+		{
+			// TODO: 添加自定义初始化逻辑
+		}
 	}
 }

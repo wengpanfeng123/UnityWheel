@@ -82,11 +82,11 @@ namespace Xicheng.UI
 
         private void AddToLayerData(UIBase panel)
         {
-            int layerId = GetLayerId(panel.UIKey);
+            int layerId = GetLayerId(panel._UIKey_);
             LayerData layer = GetLayerData(layerId);
             if (layer == null)
             {
-                ULog.Error($"获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"获取层级数据失败！ uikey = {panel._UIKey_}");
             }
 
             layer.AddUI(panel);
@@ -128,11 +128,11 @@ namespace Xicheng.UI
 
         public void OnRemoveUI(UIBase panel)
         {
-            int layerId = GetLayerId(panel.UIKey);
+            int layerId = GetLayerId(panel._UIKey_);
             LayerData layer = GetLayerData(layerId);
             if (layer == null)
             {
-                ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel._UIKey_}");
                 return;
             }
 
@@ -171,11 +171,11 @@ namespace Xicheng.UI
 
         public void BringToTop(UIBase panel)
         {
-            int layerId = GetLayerId(panel.UIKey);
+            int layerId = GetLayerId(panel._UIKey_);
             LayerData layer = GetLayerData(layerId);
             if (layer == null)
             {
-                ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel._UIKey_}");
                 return;
             }
 

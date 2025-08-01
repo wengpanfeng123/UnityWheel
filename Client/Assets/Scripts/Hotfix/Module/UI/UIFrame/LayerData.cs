@@ -97,7 +97,7 @@ namespace Xicheng.UI
                 var panel = _uiQueues[i];
                 if (panel == null || panel.UIStatus == UIStatus.StatusHiding)
                     continue;
-                _hideUIs.Add(panel.UIKey);
+                _hideUIs.Add(panel._UIKey_);
                 UIManager.Inst.HideUI(panel);
             }
 

@@ -51,7 +51,7 @@ namespace Xicheng.UI
             }
         }
         private static long _instIdCounter = 0;
-        public abstract UIKey UIKey { get; }
+        public abstract UIKey _UIKey_ { get; }
 
         protected virtual void Awake()
         {
@@ -140,7 +140,7 @@ namespace Xicheng.UI
 
         public UIPanel GetCfg()
         {
-            var panel = UIManager.Inst.GetUICfg(UIKey);
+            var panel = UIManager.Inst.GetUICfg(_UIKey_);
             return panel;
         }
 

@@ -75,7 +75,7 @@ namespace Xicheng.UI
              */
             if (!isMultiInstance)
             {
-                var existingNode = _globalOrderList.FirstOrDefault(n => n.Instance.UIKey == uiKey);
+                var existingNode = _globalOrderList.FirstOrDefault(n => n.Instance._UIKey_ == uiKey);
                 //是否被打开过。
                 if (existingNode != null)
                 {
@@ -159,7 +159,7 @@ namespace Xicheng.UI
             UILayer layerCfg = DT.Table.TbUILayer.Get(newPanel.LayerId);
             if (layerCfg == null)
             {
-                ULog.Error($"[HandleExclusiveLayers]不存在层级数据！ uikey = {newPanel.UIKey}");
+                ULog.Error($"[HandleExclusiveLayers]不存在层级数据！ uikey = {newPanel._UIKey_}");
                 return;
             }
             
@@ -181,7 +181,7 @@ namespace Xicheng.UI
                 //处理互斥内容
                 if (isExclusive || isSameLayerExclusive)
                 {
-                    currentNode.Value.HiddenChildren.Add(node.Instance.UIKey);
+                    currentNode.Value.HiddenChildren.Add(node.Instance._UIKey_);
                     node.Instance.OnHide();
                 }
             }
@@ -210,9 +210,9 @@ namespace Xicheng.UI
             UIStateNode node = _globalOrderList.FirstOrDefault(n => n.Instance == instanceUI);
             if (node != null)
             {
-                UIClose(node);
-                if(_loadingList.Contains(node.Instance.UIKey))
-                    _loadingList.Remove(node.Instance.UIKey); 
+                _UIClose_(node);
+                if(_loadingList.Contains(node.Instance._UIKey_))
+                    _loadingList.Remove(node.Instance._UIKey_); 
             }
         }
 
@@ -240,7 +240,7 @@ namespace Xicheng.UI
             UIStateNode closeUINode = null;
             if (!isMulti)
             {
-                closeUINode = _globalOrderList.FirstOrDefault(n => n.Instance.UIKey == uiKey);
+                closeUINode = _globalOrderList.FirstOrDefault(n => n.Instance._UIKey_ == uiKey);
             }
             else
             {
@@ -254,8 +254,8 @@ namespace Xicheng.UI
 
             if (closeUINode != null)
             {
-                UIClose(closeUINode);
-                _loadingList.Remove(closeUINode.Instance.UIKey); 
+                _UIClose_(closeUINode);
+                _loadingList.Remove(closeUINode.Instance._UIKey_); 
             }
         }
         
@@ -272,11 +272,11 @@ namespace Xicheng.UI
             
             if (ui != current.Instance)
             {
-                ULog.Warning($"回退失败，当前{ui.UIKey}不是顶部UI，请检查逻辑！");
+                ULog.Warning($"回退失败，当前{ui._UIKey_}不是顶部UI，请检查逻辑！");
                 return;
             }
             
-            UIClose(current);
+            _UIClose_(current);
             
             //显示上个节点。
             LinkedListNode<UIStateNode> prevNode = _globalOrderList.Last.Previous;
@@ -285,7 +285,7 @@ namespace Xicheng.UI
             {
                 foreach (var key in prevNode.Value.HiddenChildren) 
                 {
-                    var node = _globalOrderList.FirstOrDefault(n => n.Instance.UIKey == key);
+                    var node = _globalOrderList.FirstOrDefault(n => n.Instance._UIKey_ == key);
                     if (node != null && node.Instance.UIStatus == UIStatus.StatusHiding)
                     {
                         node.Instance.Redisplay();
@@ -298,7 +298,7 @@ namespace Xicheng.UI
             }
         }
         
-        private void UIClose(UIStateNode node)
+        private void _UIClose_(UIStateNode node)
         {
             if (node != null && node.Instance != null)
             {
@@ -325,7 +325,7 @@ namespace Xicheng.UI
             foreach (var node in _globalOrderList)
             {
                 // 获取层级配置，假设UILayer配置新增IsPersistent字段
-                var cfg =  GetUICfg(node.Instance.UIKey);
+                var cfg =  GetUICfg(node.Instance._UIKey_);
                 if (cfg is { IsResident: false })
                 {
                     nodesToRemove.Add(node);

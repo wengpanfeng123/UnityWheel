@@ -11,7 +11,7 @@ namespace Xicheng.UI
         
         public void Recycle(UIBase instance)
         {
-            var uiKey = instance.UIKey;
+            var uiKey = instance._UIKey_;
             if (!_instancesDict.TryGetValue(uiKey, out var stack)) 
             {
                 stack = new Stack<UIBase>();

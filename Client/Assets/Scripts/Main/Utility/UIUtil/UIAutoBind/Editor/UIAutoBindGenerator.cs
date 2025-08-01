@@ -10,7 +10,7 @@ namespace UI.Gen
 {
     public static class UIAutoBindGenerator
     {
-        [MenuItem("GameObject/生成 UI View 脚本", false, 11)]
+        [MenuItem("GameObject/生成UI-View脚本", false, 11)]
         public static void GenerateUIScript()
         {
             var go = Selection.activeGameObject;
