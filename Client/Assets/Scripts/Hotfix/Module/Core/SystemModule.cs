@@ -15,7 +15,7 @@ namespace Hotfix
             //TODO: 注册系统\逻辑类
             
             RegisterSystem<ILogic>(new MyTestSystem());
- 
+            
         }
         
         private T RegisterSystem<T>(T logic) where T : class, ILogic
@@ -50,12 +50,12 @@ namespace Hotfix
             return sys as T;
         }
 
-        public override void OnRelease()
+        public override void OnClose()
         {
-            base.OnRelease();
+            base.OnClose();
             foreach (var sys in _systems.Values)
             {
-                sys.OnRelease();
+                sys.OnClose();
             }
 
             _systems?.Clear();

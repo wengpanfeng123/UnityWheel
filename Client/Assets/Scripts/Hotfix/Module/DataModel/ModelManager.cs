@@ -64,7 +64,7 @@ namespace Hotfix
         }
 
 
-        public void OnRelease()
+        public void OnClose()
         {
             foreach (var model in _modelDict.Values)
             {

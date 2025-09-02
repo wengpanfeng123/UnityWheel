@@ -20,7 +20,7 @@ namespace Hotfix
         /// <summary>
         /// app退出
         /// </summary>    
-        void OnRelease();
+        void OnClose();
 
         /// <summary>
         /// app退出
@@ -58,7 +58,7 @@ namespace Hotfix
         {
         }
 
-        public virtual void OnRelease()
+        public virtual void OnClose()
         {
         }
 

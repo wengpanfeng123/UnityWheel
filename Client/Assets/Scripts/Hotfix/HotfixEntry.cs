@@ -7,7 +7,6 @@ public class HotfixEntry : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this); 
-        
         GameManager.Inst.OnAwake();
     }
     

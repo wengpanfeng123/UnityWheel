@@ -13,7 +13,7 @@ namespace Hotfix
             throw new System.NotImplementedException();
         }
 
-        public void OnRelease()
+        public void OnClose()
         {
             throw new System.NotImplementedException();
         }

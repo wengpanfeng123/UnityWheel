@@ -15,15 +15,16 @@ namespace Hotfix
     public class GameManager : MonoSingleton<GameManager>
     {
         private bool _isInitialized;
-        private Dictionary<Type, ILogic> _logicDict;
-        private static List<GameModule> _modules; //游戏模块
-
+        private static DataModule _dataModule;
+        private static SystemModule _systemModule;
+        
         [SerializeField]
         private long maxTimeSlice = 30; //最小时间片段
         private Stopwatch _watch;
         private long _frameTime;
         
-        
+        public Action<bool> ApplicationPause;
+        public Action ApplicationQuit;
         /// <summary>
         /// 处理器是否繁忙
         /// </summary>
@@ -31,16 +32,10 @@ namespace Hotfix
 
         public void OnAwake()
         {
-            _logicDict = new();
-            //通过这里注册的模块，走统一的生命周期管理。
-            _modules = new(4)
-            {
-                new DataModule(),
-                new SystemModule()
-            };
+            _dataModule = new();
+            _systemModule = new();
         }
-
-
+        
         /// <summary>
         /// 初始化所有标记为启动初始化的逻辑
         /// </summary>
@@ -50,40 +45,40 @@ namespace Hotfix
                 return;
             _watch = Stopwatch.StartNew();
 
-            foreach (var module in _modules)
-                module.OnStartUp();
+            _dataModule.OnStartUp();
+            _systemModule.OnStartUp();
         }
         
         private void Update()
         {
             _frameTime = _watch.ElapsedMilliseconds;
-            
-            foreach (var t in _modules)
-            {
-                t.OnUpdate(Time.deltaTime);
-            }
-        }
-
-        private void OnDestroy()
-        {
-            OnClose();
-            foreach (var t in _modules)
-                t.OnDestroy();
-        }
-
-        void OnApplicationQuit()
-        {
-            foreach (var t in _modules)
-                t.OnAppQuit();
-            GameEvent.OnRelease();
+            _dataModule.OnUpdate(Time.deltaTime);
+            _systemModule.OnUpdate(Time.deltaTime);
         }
 
         void OnApplicationPause(bool isPause)
         {
-            foreach (var t in _modules)
-            {
-                t.OnAppPause(isPause);
-            }
+            _systemModule.OnAppPause(isPause);
+            _dataModule.OnAppPause(isPause);
+
+            ApplicationPause?.Invoke(isPause);
+        }
+
+        void OnApplicationQuit()
+        {
+            _systemModule.OnAppQuit();
+            _dataModule.OnAppQuit();
+            
+            ApplicationQuit?.Invoke();
+            GameEvent.OnRelease();
+        }
+        
+        private void OnDestroy()
+        {
+            _dataModule.OnDestroy();
+            _systemModule.OnDestroy();
+            
+            OnClose();
         }
 
         /// <summary>
@@ -91,26 +86,22 @@ namespace Hotfix
         /// </summary>
         public void OnClose()
         {
-            foreach (var logic in _modules)
-            {
-                logic.OnRelease();
-            }
-
-            _logicDict.Clear();
-            _logicDict = null;
+            _dataModule.OnClose();
+            _systemModule.OnClose();
             _isInitialized = false;
         }
 
         #region 获取系统或者逻辑类
 
+        
         public static T GetModel<T>() where T : BaseModel, new()
         {
-            return ((DataModule)_modules[0]).GetModel<T>();
+            return _dataModule.GetModel<T>();
         }
 
         public static T GetSystem<T>() where T : class, ILogic
         {
-            return ((SystemModule)_modules[1]).GetSystem<T>();
+            return _systemModule.GetSystem<T>();
         }
 
         #endregion
