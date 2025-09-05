@@ -7,9 +7,9 @@ namespace Xicheng.log.Log
     {
         private string logFilePath = Application.persistentDataPath + "/log.txt";
 
-        public void Log(LogLevel level, string message, UnityEngine.Object context = null)
+        public void Log(LogLevels levels, string message, UnityEngine.Object context = null)
         {
-            string formatted = $"[{System.DateTime.Now}][{level}] {message}";
+            string formatted = $"[{System.DateTime.Now}][{levels}] {message}";
             File.AppendAllText(logFilePath, formatted + "\n");
         }
     }

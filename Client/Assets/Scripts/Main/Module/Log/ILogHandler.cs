@@ -1,4 +1,4 @@
 ﻿public interface ILogHandler
 {
-    void Log(LogLevel level, string message, UnityEngine.Object context = null);   
+    void Log(LogLevels levels, string message, UnityEngine.Object context = null);   
 }

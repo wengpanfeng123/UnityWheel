@@ -5,20 +5,20 @@ namespace Xicheng.log
     //默认控制台输出实现
     public class UnityConsoleLogHandler:ILogHandler
     {
-        public void Log(LogLevel level, string message, UnityEngine.Object context = null)
+        public void Log(LogLevels levels, string message, UnityEngine.Object context = null)
         {
-            switch (level)
+            switch (levels)
             {
-                case LogLevel.Info:
+                case LogLevels.Info:
                     Debug.Log(message, context);
                     break;
-                case LogLevel.Warning:
+                case LogLevels.Warning:
                     Debug.LogWarning(message, context);
                     break;
-                case LogLevel.Error:
+                case LogLevels.Error:
                     Debug.LogError(message, context);
                     break;
-                case LogLevel.Exception:
+                case LogLevels.Exception:
                     Debug.LogException(new System.Exception(message), context);
                     break;
             }

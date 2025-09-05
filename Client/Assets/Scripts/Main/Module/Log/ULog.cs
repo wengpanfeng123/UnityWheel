@@ -19,7 +19,7 @@ public static class ULog
     public static void Info(string message, Object context = null)
     {
         if (EnableInfo)
-            _handler.Log(LogLevel.Info, message, context);
+            _handler.Log(LogLevels.Info, message, context);
     }
 
     public static void Info(string message, Color c)
@@ -37,17 +37,17 @@ public static class ULog
     public static void Warning(string message, UnityEngine.Object context = null)
     {
         if (EnableWarning)
-            _handler.Log(LogLevel.Warning, message, context);
+            _handler.Log(LogLevels.Warning, message, context);
     }
 
     public static void Error(string message, UnityEngine.Object context = null)
     {
         if (EnableError)
-            _handler.Log(LogLevel.Error, message, context);
+            _handler.Log(LogLevels.Error, message, context);
     }
 
     public static void Exception(System.Exception e, UnityEngine.Object context = null)
     {
-        _handler.Log(LogLevel.Exception, e.Message, context);
+        _handler.Log(LogLevels.Exception, e.Message, context);
     }
 }
