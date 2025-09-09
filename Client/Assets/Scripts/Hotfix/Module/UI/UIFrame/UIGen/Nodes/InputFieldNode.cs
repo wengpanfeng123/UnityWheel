@@ -27,7 +27,7 @@ namespace Xicheng.Common
 
         public override string getLocalFind()
         {
-            string inputFiled = $@"        {VarDefine} = Finder.InputField(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string inputFiled = $@"        {VarDefine} = Finder.InputField(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return inputFiled;
         }
     }

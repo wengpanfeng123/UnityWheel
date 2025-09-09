@@ -11,7 +11,7 @@ namespace Xicheng.Common
         //TODO:待修改
         public override string getVarDefine()
         {
-            return $@"    self.{transform.name} = FindGameObject(t, ""{GameUtility.GetPath(root, transform)}"")";
+            return $@"    self.{transform.name} = FindGameObject(t, ""{TransformUtil.GetPath(root, transform)}"")";
         }
 
         public override string getLocalFind()
@@ -28,7 +28,7 @@ namespace Xicheng.Common
 
         public  string getLocalFin1d()
         {
-            string go = $@"        {VarDefine} = Finder.GameObject(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string go = $@"        {VarDefine} = Finder.GameObject(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return go;
            
         }

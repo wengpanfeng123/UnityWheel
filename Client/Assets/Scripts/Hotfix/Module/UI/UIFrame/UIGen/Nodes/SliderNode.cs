@@ -25,7 +25,7 @@ namespace Xicheng.UIsystem.gen
 
         public override string getLocalFind()
         {
-            string slider = $@"        {VarDefine} = Finder.Slider(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string slider = $@"        {VarDefine} = Finder.Slider(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return slider;
         }
     }

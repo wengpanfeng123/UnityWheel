@@ -19,7 +19,7 @@ namespace Xicheng.UIsystem.gen
 
         public override string getLocalFind()
         {
-            string text = $@"        {VarDefine} = Finder.Text(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string text = $@"        {VarDefine} = Finder.Text(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return text;
         }
     }

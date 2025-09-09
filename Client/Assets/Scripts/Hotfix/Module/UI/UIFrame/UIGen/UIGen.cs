@@ -48,7 +48,7 @@ namespace Xicheng.Common
         public void CollectComs()
         {
             var children = new List<Transform>();
-            GameUtility.CollectAllChildren(transform, false, ref children);
+            TransformUtil.CollectAllChildren(transform, false, ref children);
 
             List<ComSetting> newComSettings = new List<ComSetting>();
             foreach (var child in children)

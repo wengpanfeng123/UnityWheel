@@ -21,7 +21,7 @@ namespace Xicheng.UIsystem.gen
 
         public override string getLocalFind()
         {
-            string text = $@"        _{transform.name} = Finder.TextMeshPro(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string text = $@"        _{transform.name} = Finder.TextMeshPro(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return text;
         }
     }

@@ -44,8 +44,8 @@ public partial class FileUtils
         try
         {　　　　
             DirectoryInfo dir = new DirectoryInfo(srcPath);　　　　
-            FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //获取目录下（不包含子目录）的文件和子目录
-            foreach (FileSystemInfo i in fileinfo)
+            FileSystemInfo[] fileInfo = dir.GetFileSystemInfos();  //获取目录下（不包含子目录）的文件和子目录
+            foreach (FileSystemInfo i in fileInfo)
             {
                 if (i is DirectoryInfo)     //判断是否文件夹
                 {
@@ -69,6 +69,19 @@ public partial class FileUtils
         {
             Debug.LogError(e.Message);
             throw;
+        }
+    }
+    
+    public static void SafeCopy(string source, string dest)
+    {
+        foreach (string dirPath in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
+        {
+            Directory.CreateDirectory(dirPath.Replace(source, dest));
+        }
+
+        foreach (string filePath in Directory.GetFiles(source, "*.*", SearchOption.AllDirectories))
+        {
+            File.Copy(filePath, filePath.Replace(source, dest), true);
         }
     }
 }

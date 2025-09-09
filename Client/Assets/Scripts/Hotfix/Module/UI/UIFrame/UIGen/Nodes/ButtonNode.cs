@@ -24,7 +24,7 @@ namespace Xicheng.Common
 
         public override string getLocalFind()
         {
-            string button = $@"        {VarDefine} = Finder.Button(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string button = $@"        {VarDefine} = Finder.Button(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return button;
             //return "local FindButton = CS.VirtualWorld.Utils.LuaUtils.FindButton";
         }

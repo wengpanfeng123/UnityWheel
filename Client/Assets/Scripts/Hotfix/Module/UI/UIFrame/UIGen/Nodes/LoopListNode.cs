@@ -21,7 +21,7 @@ namespace Xicheng.UIsystem.gen
 
         public override string getLocalFind()
         {
-            string text = $@"        {VarDefine} = Finder.LoopListView2(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string text = $@"        {VarDefine} = Finder.LoopListView2(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return text;
         }
     }
