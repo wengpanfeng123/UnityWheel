@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using kcp2k;
+using UnityEngine;
 
 namespace Xicheng.Audio
 {
@@ -22,6 +23,7 @@ namespace Xicheng.Audio
             _source.loop = loop;
             _source.volume = volume;
             _source.Play();
+            ULog.InfoYellow($"[Audio] play {clip.name}");
         }
 
         public void Stop() => _source.Stop();

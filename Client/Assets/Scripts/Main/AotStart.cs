@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,9 +17,10 @@ public class AotStart : MonoBehaviour
 {
     public Slider slider;
     private byte[] _dllBytes;
-    
+
     private readonly string _gameStartScenePath = "Assets/AssetsPackage/Scenes/GameStart.unity";
     private readonly string _hotUpdateDllPath = "Assets/AssetsPackage/HotUpdateDlls/HotUpdateDll/HotUpdate.dll.bytes";
+    
     void Start()
     {
         StartCoroutine(GameLaunch());
@@ -26,12 +28,12 @@ public class AotStart : MonoBehaviour
 
     private IEnumerator GameLaunch()
     {
-        yield return DoUpdateAddressadble(); // 检测更新ab
+        yield return DoUpdateAddressable(); // 检测更新ab
         yield return LoadDll(); //加载热更ab
-        yield return EnterGame(); //启动游戏
+       EnterGame();//启动游戏
     }
-
-    IEnumerator DoUpdateAddressadble()
+    
+    IEnumerator DoUpdateAddressable()
     {
         AsyncOperationHandle<IResourceLocator> initHandle = Addressables.InitializeAsync();
         yield return initHandle;
@@ -126,7 +128,7 @@ public class AotStart : MonoBehaviour
         yield return LoadMetadataForAOTAssemblies();
         yield return LoadGameHotUpdateDll();
         yield return ReloadAddressableCatalog();
-        Debug.Log("LoadAssemblies finish!");
+        ULog.InfoCyan("[LoadDll] LoadAssemblies finish!");
         yield return null;
     }
 
@@ -194,19 +196,9 @@ public class AotStart : MonoBehaviour
         op.WaitForCompletion();
         return op.Result;
     }
+ 
 
-    public IEnumerator LoadScene(string sceneName)
-    {
-        var op = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-        yield return op;
-        if (op.Status != AsyncOperationStatus.Succeeded)
-        {
-            Debug.LogError(
-                $"load scene failed,exception:{op.OperationException.Message} \r\n {op.OperationException.StackTrace}");
-        }
-    }
-
-    public void UnloadAsset(UnityEngine.Object asset)
+    private void UnloadAsset(Object asset)
     {
         if (asset != null)
             Addressables.Release(asset);
@@ -225,10 +217,13 @@ public class AotStart : MonoBehaviour
         }
     }
     
-    private IEnumerator EnterGame()
+    private void EnterGame()
     {
-        yield return LoadScene(_gameStartScenePath);
-        Debug.Log("Enter_Hotfix_Game");
+        var op = Addressables.LoadSceneAsync(_gameStartScenePath);
+        op.Completed += handle =>
+        {
+            ULog.InfoWhite("[EnterGame] Load 'GameStart' SceneEnd");
+        };
     }
 
     #endregion

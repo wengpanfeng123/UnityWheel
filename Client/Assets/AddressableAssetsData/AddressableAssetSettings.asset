@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 7bfae3c0addbaa84cb8e3cf0a2ad1de1
   m_currentHash:
     serializedVersion: 2
-    Hash: 3e0268510732d838069d1405da84c0de
+    Hash: 80bbcb0bd488247a3dbcc0d6b2eaf183
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/OSX/StandaloneOSX;ServerData/StandaloneOSX
+          m_Data: Library/com.unity.addressables/aa/Android/Android;ServerData/Android
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean

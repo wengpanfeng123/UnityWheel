@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Hotfix.Common;
+using kcp2k;
 using Sirenix.OdinInspector;
 using Xicheng.Resource;
 using UnityEngine;
@@ -104,6 +105,11 @@ namespace Xicheng.Audio
             var audioClip = Res.LoadAsset<AudioClip>(location);
             _audioCache[clipName] = audioClip; // 存入缓存
             _agent[type].Play(audioClip, loop, volume); // 播放音频
+        }
+
+        public void PlayBGM(string clipName, bool loop = false, float volume = 1f)
+        {
+            Play(AudioType.BGM, clipName, loop, volume);
         }
 
         public void Stop(AudioType type)

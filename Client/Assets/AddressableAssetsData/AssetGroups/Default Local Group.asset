@@ -27,6 +27,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93b22078d2eca7d4da96cc77070d06ed
+    m_Address: Assets/AssetsPackage/UI/Sprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6eafd53772a83f4c8977f64678bc135
+    m_Address: Assets/AssetsPackage/UI/Prefabs
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9b93bd6efa8259746a34f150134e51fe, type: 2}
   m_SchemaSet:

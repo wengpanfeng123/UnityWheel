@@ -15,12 +15,31 @@ namespace Hotfix.Common
         }
         
         /// <summary>
-        /// 获取音频路径
+        /// 获取UI预制体路径
         /// </summary>
         /// <returns></returns>
         public static string GetUIPrefab(string prefabName)
         {
-            return  $"{AssetFolder}/Audio/{prefabName}.prefab";
+            return  $"{AssetFolder}/UI/Prefabs/{prefabName}.prefab";
         }
+        
+        /// <summary>
+        /// 获取UI预制体路径
+        /// </summary>
+        /// <returns></returns>
+        public static string GetUISprite(string spriteName)
+        {
+            return  $"{AssetFolder}/UI/Sprites/{spriteName}.png";
+        }
+        
+        /// <summary>
+        /// 获取场景路径
+        /// </summary>
+        public static string GetScene(string sceneName)
+        {
+            return  $"{AssetFolder}/Scenes/{sceneName}.unity";
+        }
+        
+        
     }
 }

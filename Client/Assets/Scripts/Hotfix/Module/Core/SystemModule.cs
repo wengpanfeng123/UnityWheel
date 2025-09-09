@@ -11,10 +11,8 @@ namespace Hotfix
         
         public override void OnStartUp()
         {
-            base.OnStartUp();
-            //TODO: 注册系统\逻辑类
-            
-            RegisterSystem<ILogic>(new MyTestSystem());
+            //TODO: 注册逻辑类
+            RegisterSystem<ILogic>(new EnterMainSystem()).OnStartUp();
             
         }
         
