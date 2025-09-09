@@ -352,21 +352,21 @@ namespace Xicheng.UI
         }
 
         //入场动画
-        private IEnumerator PlayOpenAnim(UIBase ui,object args)
-        {
-            // 实现你的入场动画逻辑
-            ui.transform.localScale = Vector3.zero;
-            yield return ui.transform.DOScale(Vector3.one, 0.2f).WaitForCompletion();
-            ui.OnShow(args);
-        }
+        // private IEnumerator PlayOpenAnim(UIBase ui,object args)
+        // {
+        //     // 实现你的入场动画逻辑
+        //     ui.transform.localScale = Vector3.zero;
+        //     yield return ui.transform.DOScale(Vector3.one, 0.2f).WaitForCompletion();
+        //     ui.OnShow(args);
+        // }
         
         //退场动画
-        private IEnumerator PlayExitAnim(UIBase ui)
-        {
-            // 实现你的退场动画逻辑 
-            yield return ui.transform.DOScale(Vector3.zero, 0.2f).WaitForCompletion();
-            ui.OnHide();
-        }
+        // private IEnumerator PlayExitAnim(UIBase ui)
+        // {
+        //     // 实现你的退场动画逻辑 
+        //     yield return ui.transform.DOScale(UnityEngine.Vector3.zero, 0.2f).WaitForCompletion();
+        //     ui.OnHide();
+        // }
         
         private int _uiIndex=0;
         public int UIIndex => _uiIndex++;

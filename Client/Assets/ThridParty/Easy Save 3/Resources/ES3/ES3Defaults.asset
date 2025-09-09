@@ -33,7 +33,6 @@ MonoBehaviour:
     - Assembly-CSharp
     - Coffee.UIParticle
     - EasySave3
-    - Editor
     - HotUpdate
     - HybridCLR.Runtime
     - LitMotion

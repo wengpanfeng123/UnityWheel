@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -6,6 +5,7 @@ using System.Text;
 using System.IO;
  
 
+#if UNITY_EDITOR
 namespace UI.Gen
 {
     public static class UIAutoBindGenerator
@@ -138,3 +138,4 @@ namespace UI.Gen
         }
     }
 }
+#endif

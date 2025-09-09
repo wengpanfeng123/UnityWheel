@@ -145,7 +145,6 @@ namespace Xicheng.Audio
         public void ClearAudioClip(string clipName)
         {
             string location = AssetPath.GetAudio(clipName);
-            // 1. 先从缓存中查找
             if (_audioCache.TryGetValue(location, out AudioClip cachedClip))
             {
                 Res.UnloadAsset(cachedClip);

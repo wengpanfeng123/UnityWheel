@@ -7,7 +7,6 @@
 
 using System;
 using System.Diagnostics;
-using Hotfix.Common;
 using UnityEngine;
 
 /// <summary>
@@ -15,6 +14,8 @@ using UnityEngine;
 /// </summary>
 public static class OpenFolders
 {
+    private static readonly string ExcelPath =  Application.dataPath + "/../../Common/Configs/DataTables/Datas";
+    
 #if UNITY_EDITOR
     /// <summary>
     /// 打开Excel表文件夹。
@@ -22,7 +23,7 @@ public static class OpenFolders
     [UnityEditor.MenuItem("Tools/Open Folder/ExcelPath", false, 9)]
     public static void OpenDataTablePath()
     {
-        Execute(PathConst.ExcelPath);
+        Execute(ExcelPath);
     }
 
 
