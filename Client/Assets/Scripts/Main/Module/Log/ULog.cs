@@ -22,6 +22,32 @@ public static class ULog
             _handler.Log(LogLevels.Info, message, context);
     }
 
+    public static void InfoWhite(string message, Object context = null)
+    {
+        Info(message, Color.white);
+    }
+
+    public static void InfoGreen(string message, Object context = null)
+    {
+        Info(message, Color.green);
+    }
+
+    public static void InfoCyan(string message, Object context = null)
+    {
+        Info(message, Color.cyan);
+    }
+
+    public static void InfoYellow(string message, Object context = null)
+    {
+        Info(message, Color.yellow);
+    }
+
+    public static void InfoRed(string message, Object context = null)
+    {
+        Info(message, Color.red);
+    }
+
+
     public static void Info(string message, Color c)
     {
         if (EnableInfo)

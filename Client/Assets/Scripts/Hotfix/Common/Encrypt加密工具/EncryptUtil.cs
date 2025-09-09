@@ -94,10 +94,10 @@ namespace HsJam
         #region RSA
         //公钥加密，私钥解密。
 
-        public static void InitRsa()
-        {
-            string original = "Unity机密数据";
-        }
+        // public static void InitRsa()
+        // {
+        //     string original = "Unity机密数据";
+        // }
 
         // 生成RSA密钥对
         public static (string publicKey, string privateKey) GenerateKeyPair()

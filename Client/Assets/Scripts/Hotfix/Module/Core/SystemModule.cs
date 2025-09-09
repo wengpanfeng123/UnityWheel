@@ -6,7 +6,7 @@ namespace Hotfix
 {
     public class SystemModule : GameModule
     {
-        private Dictionary<string, ILogic> _systems;
+        private Dictionary<string, ILogic> _systems = new();
         private List<IUpdateLogic> _logicUpdateList = new();
         
         public override void OnStartUp()

@@ -63,17 +63,8 @@ namespace Xicheng.Common
             foreach (var file in dir.GetFiles())
                 file.Delete();
         }
-
-        public static void OpenFolder(string folderPath)
-        {
-            if (string.IsNullOrEmpty(folderPath))
-                return;
-            global::OpenFolder.Execute(folderPath);
-            
-            //Application.OpenURL(folderPath);
-        }
-
-     
+        
+        
         /// /////////////////////////Transform相关////////////////////////////
         /// <summary>
         /// 面向目标方向

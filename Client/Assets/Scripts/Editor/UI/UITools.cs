@@ -93,7 +93,6 @@ namespace Hotfix
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
-             
                 JSONNode  jNode = SimpleJSON.JSONNode.Parse(json);
                 foreach (var node in jNode.AsArray)
                 {
@@ -103,9 +102,7 @@ namespace Hotfix
               
                     int id = int.Parse(node.Value["id"]);
                     string line = "\t"+$"  {key} = {id},"+ '\n';
-                    //Debug.Log("path :" + line );
                     sb.Append(line);
-
                 }
                 CreateKeyClass(sb.ToString());
                 sb.Clear();

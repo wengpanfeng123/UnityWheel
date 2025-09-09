@@ -5,17 +5,13 @@ using Xicheng.Archive;
 
 namespace Hotfix
 {
-
-
     /// <summary>
     /// 不同的功能模块数据管理
     /// </summary>
     public class ModelManager : ILogic
     {
-        private string _gameKey = "xicheng.game";
         private readonly Dictionary<string, BaseModel> _modelDict = new();
-
-
+        
         public bool InitStartUp => true;
 
         public void OnStartUp()

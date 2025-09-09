@@ -2,16 +2,13 @@
 {
 	public class DefaultParam : IEventParam
 	{
-		public int id;
-		public string name;
+		public int Id;
+		public string Name;
 		public DefaultParam(int eventId)
 		{
-			id = eventId;
+			Id = eventId;
 		}
-		public DefaultParam(string name)
-		{
-			name = name;
-		}
+		public DefaultParam(string name) => Name = name;
 	}
 
 	public class UserEventParam

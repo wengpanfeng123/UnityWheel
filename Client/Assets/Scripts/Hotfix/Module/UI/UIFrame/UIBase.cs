@@ -28,7 +28,7 @@ namespace Xicheng.UI
         private long _instId; //位唯一实例ID
         private object _args; //onshow参数
         private int _depthOrder;
-        private int _depthInterval = 10;
+        //private int _depthInterval = 10;
         
         public long RecycleTime; //进入对象池后才会赋值
         
