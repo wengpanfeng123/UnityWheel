@@ -5,15 +5,12 @@ using UnityEditor;
 using System.Text;
 using System.IO;
 using System.Linq;
-using TMPro;
-using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace UI.Gen
 {
     public static class UIAutoBindSerialize
     {
-        private static string _uiScriptRootDir = "Assets/Scripts/Hotfix/Module/UI/";
         [MenuItem("Assets/UI脚本创建并自动绑定",false,11)]
         public static void GenerateAndBindUIScript()
         {

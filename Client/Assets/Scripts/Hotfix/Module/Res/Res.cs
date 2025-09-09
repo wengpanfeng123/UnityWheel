@@ -13,6 +13,9 @@ using UnityEngine.AddressableAssets;
 
 namespace Xicheng.Resource
 {
+    /// <summary>
+    /// 简单包装了Addressables资源加载
+    /// </summary>
     public static class Res
     {
         public static T LoadAsset<T>(string path)
@@ -23,5 +26,24 @@ namespace Xicheng.Resource
             op.WaitForCompletion();
             return op.Result;
         }
+        
+        public static void UnloadAsset(Object asset)
+        {
+            Addressables.Release(asset);
+        }
+        
+        #region 实例化、销毁对象
+        public static GameObject Instantiate(string path)
+        {
+            var op = Addressables.InstantiateAsync(path);
+            return op.Result;
+        }
+
+        public static void ReleaseInstance(GameObject instance)
+        {
+            Addressables.ReleaseInstance(instance);
+        }
+        
+        #endregion
     }
 }

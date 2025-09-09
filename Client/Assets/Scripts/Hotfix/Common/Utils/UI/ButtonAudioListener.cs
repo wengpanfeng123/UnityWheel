@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Xicheng.log.Audio;
+using Xicheng.Audio;
+using AudioType = Xicheng.Audio.AudioType;
 
 namespace HsJam
 {
@@ -38,7 +39,7 @@ namespace HsJam
                 return;
             }
             ULog.Info($"{gameObject.name}--Click--{clickAudioName}");
-            AudioManager.Inst.Play(AudioGroup.UI,"clickAudioName");
+            AudioManager.Inst.Play(AudioType.UI,"btnClick.wav");
         }
 
         public void OnPointerUp(PointerEventData eventData)

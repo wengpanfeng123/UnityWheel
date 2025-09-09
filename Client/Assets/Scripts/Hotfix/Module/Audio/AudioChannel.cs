@@ -13,6 +13,7 @@ namespace Xicheng.Audio
         {
             _source = gameObject.AddComponent<AudioSource>();
             _source.playOnAwake = false;
+            //_source.PlayOneShot();  短小音效，自动处理。
         }
 
         public void Play(AudioClip clip, bool loop, float volume) 
@@ -26,5 +27,21 @@ namespace Xicheng.Audio
         public void Stop() => _source.Stop();
 
         public void SetVolume(float vol) => _source.volume = vol;
+        
+        /// <summary>
+        /// 暂停音效播放
+        /// </summary>
+        public void Pause()
+        {
+            _source?.Pause();
+        }
+
+        /// <summary>
+        /// 恢复音效播放
+        /// </summary>
+        public void UnPause()
+        {
+            _source?.UnPause();
+        }
     }
 }
