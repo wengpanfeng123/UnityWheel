@@ -13,15 +13,14 @@ namespace Xicheng.UI
 {
     public partial class UIManager : MonoSingleton<UIManager>
     {
-        private Camera _uiCamera;
-        private Transform _uiRoot;
+        private UIRoot _uiRoot;
         private List<UIKey> _loadingList;
         private UILayerMgr _layerMgr;
         private UIBase _activityUI;
         
         #region 属性
-        public Transform UIRoot => _uiRoot;
-        public Camera UICam => _uiCamera;
+        public UIRoot UIRoot => _uiRoot;
+        public Camera UICam => _uiRoot.uiCam;
         #endregion
         
         // 新方案  新增成员变量
@@ -29,9 +28,7 @@ namespace Xicheng.UI
         private Dictionary<UIKey, Stack<UIBase>> _instancesDict;
         // 全局打开顺序链表（解决循环检测）
         private LinkedList<UIStateNode> _globalOrderList;
-
-        public bool InitStartUp => true;
-
+ 
         public void OnStartUp()
         {
             InitData();
@@ -41,8 +38,7 @@ namespace Xicheng.UI
 
         private void InitData()
         {
-            _uiRoot = GameObject.Find("UIRoot").transform;
-            _uiCamera = _uiRoot.Find("UICamera").GetComponent<Camera>();
+            _uiRoot = FindObjectOfType<UIRoot>();
             _instancesDict = new();
             _globalOrderList = new();
             _layerMgr = new UILayerMgr();

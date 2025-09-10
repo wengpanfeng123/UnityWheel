@@ -43,13 +43,13 @@ namespace Xicheng.UI
 
         private void GenerateLayerNode()
         {
-            Transform uiRoot = UIManager.Inst.UIRoot;
+            Transform safeArea = UIManager.Inst.UIRoot.safeArea;
             foreach (UILayer item in DT.Table.TbUILayer.DataList)
             {
                 // 创建一个空的GameObject  
                 GameObject emptyNode = new GameObject(item.Id + "_" + item.Name);
                 // 如果你想，可以将这个空节点设置为当前脚本所在GameObject的子节点  
-                emptyNode.transform.SetParent(uiRoot.transform);
+                emptyNode.transform.SetParent(safeArea);
                 emptyNode.transform.localPosition = Vector3.zero;
                 emptyNode.transform.localScale = Vector3.one;
                 emptyNode.AddComponent<Canvas>();

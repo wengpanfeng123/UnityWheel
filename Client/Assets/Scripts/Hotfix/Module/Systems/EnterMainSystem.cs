@@ -1,4 +1,5 @@
 using Xicheng.Audio;
+using Xicheng.UI;
 
 namespace Hotfix
 {
@@ -10,6 +11,8 @@ namespace Hotfix
             
             //播放音频
             AudioManager.Inst.PlayBGM("bgmHall.mp3",true);
+            //UI初始化
+            UIManager.Inst.OnStartUp();
         }
         
         

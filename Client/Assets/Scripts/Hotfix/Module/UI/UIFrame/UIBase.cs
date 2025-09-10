@@ -115,7 +115,7 @@ namespace Xicheng.UI
         public virtual void OnRecycle()
         {
             gameObject.SetActive(false);
-            transform.SetParent(UIManager.Inst.UIRoot); // 重置父节点
+            transform.SetParent(UIManager.Inst.UIRoot.transform); // 重置父节点
             transform.localPosition = Vector3.zero; // 重置位置
             RecycleTime = (long)(Time.realtimeSinceStartup * 1000); // 毫秒时间戳
         }

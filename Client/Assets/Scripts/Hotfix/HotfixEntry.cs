@@ -3,7 +3,6 @@ using Hotfix;
 
 public class HotfixEntry : MonoBehaviour
 {
-    
     private void Awake()
     {
         DontDestroyOnLoad(this); 
