@@ -9,9 +9,9 @@ namespace Xicheng.UI
     /// </summary>
     public class UIStateNode
     {
-        public UIBase Instance;
-        public List<UIKey> HiddenChildren; // 该UI打开时隐藏的子级
-        public DateTime OpenTime;
+        public UIBase Instance; //UI实例
+        public List<UIKey> HiddenChildren; // 该UI打开时隐藏的子级（层级互斥时用到）
+        public DateTime OpenTime; //打开UI的时间节点
 
         public void UpdateOpenTime()
         {

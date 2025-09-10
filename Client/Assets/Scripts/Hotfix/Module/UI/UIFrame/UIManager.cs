@@ -81,6 +81,7 @@ namespace Xicheng.UI
                     existingNode.UpdateOpenTime();
                     // 2. 刷新数据
                     existingNode.Instance.OnShow(args);
+                    PlayOpenAnim(existingNode.Instance);
                     _activityUI = existingNode.Instance;
 
                     // 3. 重新计算互斥层级
@@ -142,7 +143,8 @@ namespace Xicheng.UI
             instance.OnInit(uiKey); 
             //添加到层管理器
             _layerMgr.AddToLayer(instance); 
-            instance.OnShow(args);  
+            instance.OnShow(args);
+            PlayOpenAnim(instance);
             _loadingList.Remove(uiKey);
             _activityUI = instance; //设置为活动界面
             onComplete?.Invoke((T)instance);
@@ -348,13 +350,13 @@ namespace Xicheng.UI
         }
 
         //入场动画
-        // private IEnumerator PlayOpenAnim(UIBase ui,object args)
-        // {
-        //     // 实现你的入场动画逻辑
-        //     ui.transform.localScale = Vector3.zero;
-        //     yield return ui.transform.DOScale(Vector3.one, 0.2f).WaitForCompletion();
-        //     ui.OnShow(args);
-        // }
+        private void PlayOpenAnim(UIBase ui)
+        {
+            var openAnimation = ui.GetComponent<Animation>();
+            if (openAnimation == null)
+                openAnimation = ui.gameObject.AddComponent<Animation>();
+            openAnimation.Play("UIOpenScale");
+        }
         
         //退场动画
         // private IEnumerator PlayExitAnim(UIBase ui)
