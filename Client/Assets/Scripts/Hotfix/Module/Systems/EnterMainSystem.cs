@@ -14,6 +14,7 @@ namespace Hotfix
         
         
         
+        
 
         public void OnAppPause(bool isPause)
         {
