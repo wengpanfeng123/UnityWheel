@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Hotfix;
 using Hotfix.Model;
 using Xicheng.Archive;
+using Xicheng.Datable;
 
 namespace Hotfix
 {
@@ -11,11 +12,13 @@ namespace Hotfix
     public class ModelManager : ILogic
     {
         private readonly Dictionary<string, BaseModel> _modelDict = new();
-        
-        public bool InitStartUp => true;
 
         public void OnStartUp()
         {
+            //初始化游戏存档数据
+            GameArchive.OnStartUp();
+            //初始化数据表
+            DataTableManager.Inst.OnStartUp();
             //提前注册或者使用时注册
         }
 

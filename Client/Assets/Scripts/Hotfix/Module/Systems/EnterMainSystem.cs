@@ -1,4 +1,5 @@
 using Xicheng.Audio;
+using Xicheng.Screens;
 using Xicheng.UI;
 
 namespace Hotfix
@@ -8,7 +9,8 @@ namespace Hotfix
       
         public void OnStartUp()
         {
-            
+            //屏幕初始化
+            ScreenManager.Inst.OnStartUp();
             //播放音频
             AudioManager.Inst.PlayBGM("bgmHall.mp3",true);
             //UI初始化

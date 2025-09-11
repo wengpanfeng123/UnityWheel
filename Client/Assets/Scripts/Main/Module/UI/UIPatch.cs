@@ -51,7 +51,7 @@ namespace HsJam
         public void SetProgress(float progressValue)
         {
             slider.value = progressValue;
-            Debug.Log($"已下载: {progressValue}");
+            Debug.Log($"下载进度: {progressValue * 100}%");
         }
 
         public void OnDestroy()
