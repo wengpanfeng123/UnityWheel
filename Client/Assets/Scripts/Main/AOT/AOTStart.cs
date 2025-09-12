@@ -23,8 +23,18 @@ namespace Xicheng.AOT
 
         void Start()
         {
+            InitLog();
             InitUIPatch();
             StartCoroutine(GameLaunch());
+        }
+
+        private void InitLog()
+        {
+            #if ENABLE_LOG
+                ULog.SetLogSwitch(true);
+            #else
+                ULog.SetLogSwitch(false);
+            #endif
         }
 
         private void InitUIPatch()
@@ -135,7 +145,7 @@ namespace Xicheng.AOT
 
         private IEnumerator LoadDll()
         {
-            uiPatch.SetStage("load meta and update dll,reload catalog");
+            uiPatch.SetStage("load dll");
             yield return LoadMetadataForAOTAssemblies();
             yield return LoadGameHotUpdateDll();
             yield return ReloadAddressableCatalog();

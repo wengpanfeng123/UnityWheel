@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Xicheng.log.Log;
-using UnityEngine;using UnityEngine.UIElements;
 
 public interface IEventParam
 {

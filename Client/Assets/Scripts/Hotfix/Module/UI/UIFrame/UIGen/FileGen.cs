@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Hotfix.Common;
-using Xicheng.log.Log;
 using UnityEditor;
 using Xicheng.UIsystem.gen;
 using UnityEngine;
