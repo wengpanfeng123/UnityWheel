@@ -77,7 +77,7 @@ namespace HsJam
 
 #if UNITY_ANDROID
             // 等待一帧以确保截图文件生成
-            yield return new WaitForSeconds(0.1f);
+            yield return 0;
 #endif
             onComplete?.Invoke(filePath);
         }
