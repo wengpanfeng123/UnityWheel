@@ -1,5 +1,5 @@
 <linker>
-  <assembly fullname="SROptions">
+  <assembly fullname="Assembly-CSharp">
     <type fullname="SROptions" preserve="all"/>
   </assembly>
 </linker>

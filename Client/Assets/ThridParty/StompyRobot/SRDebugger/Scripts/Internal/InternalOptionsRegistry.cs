@@ -15,47 +15,28 @@ namespace SRDebugger.Internal
     {
         private List<object> _registeredContainers = new List<object>();
         private Action<object> _handler;
-        private Action<object> _removeHandler;
 
         public void AddOptionContainer(object obj)
         {
-            if (!_registeredContainers.Contains(obj))
-            {
-                _registeredContainers.Add(obj);
-            }
-            
             if (_handler != null)
             {
                 _handler(obj);
+                return;
             }
+
+            _registeredContainers.Add(obj);
         }
 
-        public void SetHandler(Action<object> action, Action<object> removeAction)
+        public void SetHandler(Action<object> action)
         {
             _handler = action;
-            _removeHandler = removeAction;
-            
+
             foreach (object o in _registeredContainers)
             {
                 _handler(o);
             }
-            
-            //_registeredContainers = null;
-        }
 
-        public void RemoveOptionContainer(Type type)
-        {
-            for (int i = _registeredContainers.Count - 1; i >= 0; --i)
-            {
-                if (_registeredContainers[i].GetType() == type)
-                {
-                    if (_removeHandler != null)
-                    {
-                        _removeHandler(_registeredContainers[i]);
-                        _registeredContainers.Remove(_registeredContainers[i]);
-                    }
-                }
-            }
+            _registeredContainers = null;
         }
     }
 }

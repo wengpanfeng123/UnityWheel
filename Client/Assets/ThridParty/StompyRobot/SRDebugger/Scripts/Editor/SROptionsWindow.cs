@@ -160,9 +160,6 @@ namespace SRDebugger.Editor
                     option.Property.ValueChanged += OnOptionPropertyValueChanged;
                 }
             }
-            
-            _options = _options.OrderBy(kv => kv.Value[0].SortPriority).ToDictionary(kv => kv.Key, kv => kv.Value);
-            
 
             foreach (var kv in _options)
             {

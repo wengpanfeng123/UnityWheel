@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using SRF.Service;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -26,31 +25,6 @@ public partial class SROptions : INotifyPropertyChanged
         SRServiceManager.GetService<SRDebugger.Internal.InternalOptionsRegistry>().AddOptionContainer(Current);
     }
 #endif
-
-    private static SRDebugger.Internal.InternalOptionsRegistry _internalOptionsRegistry;
-
-    private static SRDebugger.Internal.InternalOptionsRegistry InternalOptionsRegistr
-    {
-        get
-        {
-            if (null == _internalOptionsRegistry)
-            {
-                _internalOptionsRegistry = SRServiceManager.GetService<SRDebugger.Internal.InternalOptionsRegistry>();
-            }
-
-            return _internalOptionsRegistry;
-        }
-    }
-    
-    public static void AddGameTools(object obj)
-    {
-        InternalOptionsRegistr.AddOptionContainer(obj);
-    }
-    
-    public static void RemoveGameTools(Type type)
-    {
-        InternalOptionsRegistr.RemoveOptionContainer(type);
-    }
 
     public event SROptionsPropertyChanged PropertyChanged;
     

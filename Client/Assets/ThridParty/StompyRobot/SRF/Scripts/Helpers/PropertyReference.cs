@@ -152,15 +152,7 @@ namespace SRF.Helpers
         {
             if (_getter != null)
             {
-                try
-                {
-                    return _getter();
-                }
-                catch(Exception e)
-                {
-                    Debug.Log(e);
-                    return null;
-                }
+                return _getter();
             }
 
             return null;

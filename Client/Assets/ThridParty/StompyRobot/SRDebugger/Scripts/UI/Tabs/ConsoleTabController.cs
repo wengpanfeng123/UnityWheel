@@ -212,7 +212,7 @@ namespace SRDebugger.UI.Tabs
                     SetCopyToClipboardButtonState(CopyToClipboardStates.Visible);
                 }
 
-                var text = entry.Message +"\n\n" +
+                var text = entry.Message + Environment.NewLine +
                            (!string.IsNullOrEmpty(entry.StackTrace)
                                ? entry.StackTrace
                                : SRDebugStrings.Current.Console_NoStackTrace);
@@ -220,7 +220,7 @@ namespace SRDebugger.UI.Tabs
                 if (text.Length > MaxLength)
                 {
                     text = text.Substring(0, MaxLength);
-                    text += "\n\n" + SRDebugStrings.Current.Console_MessageTruncated;
+                    text += "\n" + SRDebugStrings.Current.Console_MessageTruncated;
                 }
 
                 StackTraceText.text = text;

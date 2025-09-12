@@ -2,11 +2,6 @@
 
 public partial class SROptions
 {
-    public sealed class SROptionsGameTools : Attribute
-    {
-        
-    }
-    
     // For compatibility with older versions of SRDebugger, this simply inherits from the component model version.
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method)]

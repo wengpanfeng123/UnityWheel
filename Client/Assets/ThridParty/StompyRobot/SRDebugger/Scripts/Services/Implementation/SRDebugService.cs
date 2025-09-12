@@ -90,7 +90,7 @@
 
             // Add any options containers that were created on init
             var internalRegistry = SRServiceManager.GetService<InternalOptionsRegistry>();
-            internalRegistry.SetHandler(_optionsService.AddContainer, _optionsService.RemoveContainer);
+            internalRegistry.SetHandler(_optionsService.AddContainer);
         }
 
         public Settings Settings

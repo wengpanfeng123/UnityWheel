@@ -43,7 +43,6 @@ MonoBehaviour:
     - Sirenix.OdinInspector.Modules.Unity.Addressables
     - spine-csharp
     - spine-unity
-    - SROptions
     - StompyRobot.SRDebugger
     - StompyRobot.SRF
     - SuperScrollView

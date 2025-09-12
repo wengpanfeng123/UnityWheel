@@ -1,5 +1,4 @@
-﻿
-namespace SRDebugger.Services.Implementation
+﻿namespace SRDebugger.Services.Implementation
 {
     using System;
     using System.Collections.Generic;
@@ -87,8 +86,7 @@ namespace SRDebugger.Services.Implementation
         {
             if (_optionContainerLookup.ContainsKey(optionContainer))
             {
-                // Log.Error("An options container should only be added once.");
-                return;
+                throw new Exception("An options container should only be added once.");
             }
 
             List<OptionDefinition> options = new List<OptionDefinition>();
