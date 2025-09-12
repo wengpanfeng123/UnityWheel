@@ -41,6 +41,8 @@ MonoBehaviour:
     - MainAOT
     - MemoryPack
     - Sirenix.OdinInspector.Modules.Unity.Addressables
+    - spine-csharp
+    - spine-unity
     - SuperScrollView
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0

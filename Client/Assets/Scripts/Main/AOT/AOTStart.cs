@@ -52,7 +52,7 @@ namespace Xicheng.AOT
             yield return checkHandle;
             if (checkHandle.Status != AsyncOperationStatus.Succeeded)
             {
-                 ULog.Error($"CheckForCatalogUpdates Error{checkHandle.OperationException}");
+                ULog.Error($"CheckForCatalogUpdates Error{checkHandle.OperationException}");
                 uiPatch.SetStage("CheckForCatalogUpdates error ");
                 yield break;
             }
@@ -86,12 +86,12 @@ namespace Xicheng.AOT
                     yield return sizeHandle;
                     if (sizeHandle.Status != AsyncOperationStatus.Succeeded)
                     {
-                         ULog.Error($"GetDownloadSizeAsync Error{sizeHandle.OperationException}");
+                        ULog.Error($"GetDownloadSizeAsync Error{sizeHandle.OperationException}");
                         yield break;
                     }
 
                     long totalDownloadSize = sizeHandle.Result;
-                     ULog.InfoWhite("download size : " + totalDownloadSize);
+                    ULog.InfoWhite("[Launcher] Resource download size : " + totalDownloadSize);
                     if (totalDownloadSize > 0)
                     {
                         // 下载依赖
@@ -100,7 +100,7 @@ namespace Xicheng.AOT
                         {
                             if (downloadHandle.Status == AsyncOperationStatus.Failed)
                             {
-                                 ULog.Error($"DownloadDependenciesAsync Error{downloadHandle.OperationException}");
+                                ULog.Error($"DownloadDependenciesAsync Error{downloadHandle.OperationException}");
                                 yield break;
                             }
 
@@ -112,14 +112,14 @@ namespace Xicheng.AOT
 
                         if (downloadHandle.Status == AsyncOperationStatus.Succeeded)
                         {
-                             ULog.InfoWhite("下载完毕!");
-                            uiPatch.SetStage("Download resources finish");
+                            ULog.InfoWhite("[Launcher] Resource download end!");
+                            uiPatch.SetStage("Download resources end");
                             uiPatch.SetProgress(1);
                         }
                     }
                     else
                     {
-                         ULog.InfoWhite("无下载");
+                        ULog.InfoWhite("[Launcher]无下载");
                         uiPatch.SetStage("no download resources");
                         uiPatch.SetProgress(1);
                     }
@@ -127,7 +127,7 @@ namespace Xicheng.AOT
             }
             else
             {
-                ULog.InfoWhite("没有检测到更新!");
+                ULog.InfoWhite("[Launcher]没有检测到更新!");
                 uiPatch.SetStage("check no update");
                 uiPatch.SetProgress(1);
             }
@@ -139,7 +139,7 @@ namespace Xicheng.AOT
             yield return LoadMetadataForAOTAssemblies();
             yield return LoadGameHotUpdateDll();
             yield return ReloadAddressableCatalog();
-            ULog.InfoWhite("[LoadDll] LoadAssemblies finish!");
+            ULog.InfoWhite("[Launcher] LoadAssemblies finish!");
             yield return null;
         }
 
@@ -149,7 +149,7 @@ namespace Xicheng.AOT
             if (_dllBytes != null)
             {
                 var assembly = Assembly.Load(_dllBytes);
-                 ULog.InfoWhite($"Load Assembly success,assembly Name:{assembly.FullName}");
+                ULog.InfoWhite($"[Launcher]Load Assembly success,assembly Name:{assembly.FullName}");
             }
 
             yield return null;
@@ -162,23 +162,23 @@ namespace Xicheng.AOT
             {
                 "mscorlib.dll",
                 //"System.dll",
-                //"System.Core.dll", // 如果使用了Linq，需要这个
+                "System.Core.dll", // 如果使用了Linq，需要这个
             };
-
+            
             foreach (var aotDllName in aotDllList)
             {
                 var path = $"Assets/AssetsPackage/HotUpdateDlls/MetaDataDll/{aotDllName}.bytes";
                 ReadDllBytes(path);
                 if (_dllBytes != null)
                 {
-                    var err = HybridCLR.RuntimeApi.LoadMetadataForAOTAssembly(_dllBytes, HomologousImageMode.SuperSet);
-                     ULog.InfoWhite($"LoadMetadataForAOTAssembly:{aotDllName}. ret:{err}");
+                    var err = RuntimeApi.LoadMetadataForAOTAssembly(_dllBytes, HomologousImageMode.SuperSet);
+                    ULog.InfoWhite($"[Launcher]加载元数据:{aotDllName}. ret:{err}");
                 }
             }
 
             yield return null;
 
-             ULog.InfoWhite("LoadMetadataForAOTAssemblies finish!");
+            ULog.InfoWhite("[Launcher]LoadMetadataForAOTAssemblies Finish!");
         }
 
         private void ReadDllBytes(string path)
@@ -187,7 +187,7 @@ namespace Xicheng.AOT
 
             if (dllText == null)
             {
-                 ULog.Error($"[ReadDllBytes] can not load dllText,path:{path}");
+                ULog.Error($"[ReadDllBytes] can not load dllText,path:{path}");
                 _dllBytes = null;
             }
             else
@@ -224,7 +224,7 @@ namespace Xicheng.AOT
             yield return op;
             if (op.Status != AsyncOperationStatus.Succeeded)
             {
-                 ULog.Error(
+                ULog.Error(
                     $"load content catalog failed, exception:{op.OperationException.Message} \r\n {op.OperationException.StackTrace}");
             }
         }
@@ -232,7 +232,7 @@ namespace Xicheng.AOT
         private void EnterGame()
         {
             var op = Addressables.LoadSceneAsync(MainConst.GameStartPath);
-            op.Completed += handle => { ULog.InfoWhite("[EnterGame] Load 'GameStart.unity' end"); };
+            op.Completed += handle => { ULog.InfoWhite("[Launcher]  Load 'GameStart.unity' end"); };
         }
 
         #endregion

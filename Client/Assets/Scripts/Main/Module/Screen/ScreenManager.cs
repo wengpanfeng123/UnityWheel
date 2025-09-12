@@ -36,8 +36,7 @@ namespace Xicheng.Screens
 
     public class ScreenManager : MonoSingleton<ScreenManager>
     {
-        [Header("是否支持横屏")]
-        public bool isSupportLandScape = false; //是否支持横屏
+        [Header("是否支持横屏")] public bool isSupportLandScape = false; //是否支持横屏
 
         //游戏窗口屏幕像素宽高
         public Vector2 ScreenSize => new(Screen.width, Screen.height);
@@ -48,32 +47,31 @@ namespace Xicheng.Screens
         //当前屏幕模式
         public EScreenMode CurScreenMode { get; private set; }
 
- 
+
         public Action<EScreenMode, Vector2Int> OnScreenSwitch;
 
         public bool IsPortrait { get; private set; } //true:竖屏  false:横屏
         private readonly float _squareScreenThreshold = 1.5f; //方形屏阈值判断(1.5是经验值)
 
+
+        private bool _initOrientation = false;
+
         public void OnStartUp()
         {
-            SetScreenOrientation();
-            SetScreenMode();
+            //SetScreenOrientation();
         }
-
-        private void Start()
-        {
-            SetScreenOrientation();
-        }
-
-
         
         private void SetScreenOrientation()
         {
+            if (_initOrientation)
+                return;
+            _initOrientation = true;
             Screen.orientation = ScreenOrientation.AutoRotation; //屏幕自动旋转
             Screen.autorotateToPortrait = true;
             Screen.autorotateToPortraitUpsideDown = false;
             Screen.autorotateToLandscapeLeft = isSupportLandScape;
             Screen.autorotateToLandscapeRight = isSupportLandScape;
+            ULog.InfoRed("[Screen] SetOrientation:" + Screen.orientation);
         }
 
         private void SetScreenMode()
@@ -84,7 +82,7 @@ namespace Xicheng.Screens
             CurScreenMode = GetByScreenOrientation();
             //无论是横屏还是竖屏，都能计算出屏幕固有的纵横比
             // ReSharper disable once PossibleLossOfFraction
-            float scale = Mathf.Max(width, height) / Mathf.Min(width, height);
+            float scale = Mathf.Max(width, height)*1.0f / Mathf.Min(width, height)*1.0f;
             //小于1.5认为是方形屏幕, 大于等于1.5认为是正常
             if (scale < _squareScreenThreshold)
             {
@@ -101,15 +99,17 @@ namespace Xicheng.Screens
                     CurScreenMode = IsPortrait ? EScreenMode.SquarePortrait : EScreenMode.SquareLandscape;
                 }
             }
+            ULog.InfoRed("[Screen] SetScreenMode:" + CurScreenMode);
         }
 
         public void OnRectTransformDimensionsChange()
         {
             ULog.InfoRed("[Screen] OnRectTransformDimensionsChange");
+            SetScreenOrientation();
             SetScreenMode();
             OnScreenSwitch?.Invoke(CurScreenMode, new Vector2Int(Screen.width, Screen.height));
         }
- 
+
         private EScreenMode GetByScreenOrientation()
         {
             EScreenMode screenMode = EScreenMode.None;

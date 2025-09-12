@@ -44,7 +44,7 @@ namespace Xicheng.UIAdapter
             scaler.referenceResolution = portraitScreen ? portraitResolution : landSpaceResolution;
 
             string screen = portraitScreen ? "竖屏" : "横屏";   
-            ULog.InfoYellow($"分辨率:{scaler.referenceResolution} {screen} 适配:{adaptMode}");
+            ULog.InfoYellow($"[SafeArea] 分辨率:{scaler.referenceResolution} {screen} 适配:{adaptMode}");
             float aspect = (float)Screen.width / Screen.height;
             switch (adaptMode)
             {
@@ -80,7 +80,7 @@ namespace Xicheng.UIAdapter
             }
             rectTransform.anchorMin = min;
             rectTransform.anchorMax = max;
-            ULog.InfoYellow($"[SafeArea]anchorMin:{min} anchorMax:{max}");
+            ULog.InfoYellow($"[SafeArea] anchorMin:{min} anchorMax:{max}");
         }
 
         /// <summary>
