@@ -127,7 +127,8 @@ namespace HsEditor
 
         private static void DrawToolbarArea(Rect rect, List<Action> handlers)
         {
-            if (rect.width <= 0) return;
+            if (rect.width <= 0) 
+                return;
 
             GUILayout.BeginArea(rect);
             GUILayout.BeginHorizontal();
