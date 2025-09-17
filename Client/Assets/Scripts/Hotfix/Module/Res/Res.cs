@@ -26,7 +26,29 @@ namespace Xicheng.Resource
             op.WaitForCompletion();
             return op.Result;
         }
+
+
+        public static Sprite LoadSprite(string path)
+        {
+            var handle = Addressables.LoadAssetAsync<Sprite>(path);
+            if (!handle.IsValid())
+                return null;
+
+            handle.WaitForCompletion();
+            return handle.Result;
+        }
         
+        public static Texture2D LoadTexture(string path)
+        {
+            var handle = Addressables.LoadAssetAsync<Texture2D>(path);
+            if (!handle.IsValid())
+                return null;
+
+            handle.WaitForCompletion();
+            return handle.Result;
+        }
+
+
         public static void UnloadAsset(Object asset)
         {
             Addressables.Release(asset);

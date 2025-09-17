@@ -40,6 +40,7 @@ MonoBehaviour:
     - Luban.Runtime
     - MainAOT
     - MemoryPack
+    - MessagePack.Unity
     - Sirenix.OdinInspector.Modules.Unity.Addressables
     - spine-csharp
     - spine-unity

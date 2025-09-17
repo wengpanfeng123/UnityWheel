@@ -4,9 +4,9 @@ using UnityEngine;
 
 // RedPointNodePathDrawer.cs
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using System.Collections.Generic;
 using XiCheng.RedSystem;
 
 [CustomPropertyDrawer(typeof(RedPointNodeSelectorAttribute))]
