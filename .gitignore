@@ -20,3 +20,5 @@ Client/Assets/StreamingAssets
 Client/*.csproj
 Client/Client.sln
 Client/UserSettings/Layouts/default-2022.dwlt
+Client/Client.sln.DotSettings.user
+Client/Client.sln.DotSettings.user

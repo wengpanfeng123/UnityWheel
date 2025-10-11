@@ -1,3 +1,13 @@
+/*************************************************************************
+ * Copyright  #AUTHOR#. All rights reserved.
+ *------------------------------------------------------------------------
+ * File     : GoPool.cs
+ * Author   : xicheng
+ * Date     : 2025.9.24
+ * Tips     : TIPS
+ * Description : 高性能GameObject对象池
+ *************************************************************************/
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
