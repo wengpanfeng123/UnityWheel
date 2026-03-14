@@ -1,0 +1,73 @@
+配置AI规范
+全局规则：适用所有项目
+	系统提示词、保持良好的注释习惯、有用的注释要保留下来，不要随意删除。
+注释规范：
+	(1)注释语言清晰简洁，避免重述显而易见的内容，不要描述代码功能，而要描述实现原因和具体实现方式。
+	(2)
+日志规范：
+
+专用规则：适用当前项目
+
+代码要模块化，功能要分明，避免过大的文件(只要代码文件超过500行就要拆分更小的模块)。
+命名要保持统一规范(文件名、函数名、变量名)。
+按功能逻辑划分目录结构。
+
+告诉AI项目技术框架。
+
+openClaw
+提示词优化工程
+Skills
+
+Ubuntu 用户名：xicheng  123456
+
+curl -fsSL https://openclaw.ai/install.sh | bash
+
+ds_openclaw：
+sk-5b8834c13dcb482894a1a733527be706
+
+初始化向导：
+openclaw onboard --install-daemon
+
+web控制台：
+openclaw gateway start
+
+飞书后台AppID:
+	cli_a9213f4980f89bd1
+飞书后台AppSecret:
+	Wt14bagoxoFMYZqv9cLrFgedwfsVZHOh
+	
+{
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek/deepseek-chat",
+  "deepseek": {
+    "apiKey": "sk-5b8834c13dcb482894a1a733527be706"
+  },
+  "channels": {
+    "feishu": {
+      "groupPolicy": "open",
+      "connectionMode": "websocket",
+      "appId": "cli_a9213f4980f89bd1",
+      "appSecret": "Wt14bagoxoFMYZqv9cLrFgedwfsVZHOh",
+      "verificationToken": "MGElSQ3gL7aWRHlkvppYdg21w4LeRWdX"
+    }
+  },
+  "gateway": {
+	"host": "127.0.0.1",
+	"port": 18789,
+	"token": "new-super-secret-token-7890"
+  },
+}
+
+/home/xicheng/.openclaw/workspace/.openclaw
+
+在 Windows 里找到 Linux 中的.openclaw 目录,
+打开 Windows 文件资源管理器,直接在顶部地址栏复制输入这串，回车：
+\\wsl$
+
+# 启动Gateway服务
+	openclaw gateway start
+# 或使用systemd（推荐，开机自启）
+	openclaw gateway enable
+停止服务：
+	openclaw gateway stop
+	openclaw gateway status
