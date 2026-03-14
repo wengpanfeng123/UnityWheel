@@ -1,9 +1,9 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using xicheng.common;
+using Xicheng.Common;
 
-namespace xicheng.uisystem.gen
+namespace Xicheng.UIsystem.gen
 {
     public class LoopListNode:Node
     {
@@ -21,7 +21,7 @@ namespace xicheng.uisystem.gen
 
         public override string getLocalFind()
         {
-            string text = $@"        {VarDefine} = Finder.LoopListView2(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string text = $@"        {VarDefine} = Finder.LoopListView2(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return text;
         }
     }

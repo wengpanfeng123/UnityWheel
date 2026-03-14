@@ -3,7 +3,7 @@ using Google.Protobuf;
 using Protocol;
 using UnityEngine;
 
-namespace xicheng.tcp
+namespace Xicheng.tcp
 {
     public class TestProto:MonoBehaviour
     {

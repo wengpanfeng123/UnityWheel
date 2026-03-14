@@ -1,6 +1,7 @@
 ﻿using cfg;
+using Xicheng.Datable;
 
-namespace Hotfix.DataTable
+namespace Xicheng.DataTable
 {
     public static class DT
     {

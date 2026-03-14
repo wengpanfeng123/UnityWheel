@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using cfg.ui;
-using Hotfix.DataTable;
+using Xicheng.DataTable;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public class LayerData
     {
@@ -97,7 +97,7 @@ namespace xicheng.ui
                 var panel = _uiQueues[i];
                 if (panel == null || panel.UIStatus == UIStatus.StatusHiding)
                     continue;
-                _hideUIs.Add(panel.UIKey);
+                _hideUIs.Add(panel._UIKey_);
                 UIManager.Inst.HideUI(panel);
             }
 

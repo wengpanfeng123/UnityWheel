@@ -5,7 +5,7 @@ using System.Diagnostics;
 using Hotfix;
 using UnityEditor;
 using UnityEngine;
-using xicheng.common;
+using Xicheng.Common;
 using Debug = UnityEngine.Debug;
 
 public class ExcelExport : MonoBehaviour {

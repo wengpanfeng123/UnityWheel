@@ -1,4 +1,4 @@
-using Hotfix.Module.Scene;
+using Xicheng.Secne;
 using UnityEngine;
 
 public class TestScene : MonoBehaviour

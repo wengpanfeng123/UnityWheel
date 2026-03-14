@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using xicheng.common;
+using Xicheng.Common;
 
-namespace xicheng.uisystem.gen
+namespace Xicheng.UIsystem.gen
 {
     public class SliderNode : Node
     {
@@ -25,7 +25,7 @@ namespace xicheng.uisystem.gen
 
         public override string getLocalFind()
         {
-            string slider = $@"        {VarDefine} = Finder.Slider(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string slider = $@"        {VarDefine} = Finder.Slider(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return slider;
         }
     }

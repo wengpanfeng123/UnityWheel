@@ -17,13 +17,23 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 7bfae3c0addbaa84cb8e3cf0a2ad1de1
   m_SerializeEntries:
+  - m_GUID: 093f35c917af3ef4da727f547806c43a
+    m_Address: Assets/Scenes/TestScene1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 17ed294094f238a49a934027c5d52d9e
     m_Address: Assets/Scenes/TestScene2.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 093f35c917af3ef4da727f547806c43a
-    m_Address: Assets/Scenes/TestScene1.unity
+  - m_GUID: 93b22078d2eca7d4da96cc77070d06ed
+    m_Address: Assets/AssetsPackage/UI/Sprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6eafd53772a83f4c8977f64678bc135
+    m_Address: Assets/AssetsPackage/UI/Prefabs
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,5 +41,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 9b93bd6efa8259746a34f150134e51fe, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d68cf68876964f343a6587a191cb3526, type: 2}
     - {fileID: 11400000, guid: a9ac27c085d2c77428ede700999f09c5, type: 2}
+    - {fileID: 11400000, guid: d68cf68876964f343a6587a191cb3526, type: 2}

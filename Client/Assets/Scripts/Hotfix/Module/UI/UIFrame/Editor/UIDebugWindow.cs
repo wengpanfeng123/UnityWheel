@@ -10,7 +10,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
-using xicheng.ui;
+using Xicheng.UI;
 
 public class UIDebugWindow : OdinEditorWindow
 {
@@ -101,7 +101,7 @@ public class UIDebugWindow : OdinEditorWindow
 
         public UIDebugInfo(UIStateNode node)
         {
-            UIKey = node.Instance.UIKey;
+            UIKey = node.Instance._UIKey_;
             InstId = node.Instance.InstId;
             Status = node.Instance.UIStatus;
             Layer = (UILayerType)node.Instance.LayerId;

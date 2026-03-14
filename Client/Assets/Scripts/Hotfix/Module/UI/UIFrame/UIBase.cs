@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Threading;
 using cfg.ui;
-using xicheng.module.ui;
+using Xicheng.module.ui;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public enum UIStatus
     {
@@ -28,7 +28,7 @@ namespace xicheng.ui
         private long _instId; //位唯一实例ID
         private object _args; //onshow参数
         private int _depthOrder;
-        private int _depthInterval = 10;
+        //private int _depthInterval = 10;
         
         public long RecycleTime; //进入对象池后才会赋值
         
@@ -51,7 +51,7 @@ namespace xicheng.ui
             }
         }
         private static long _instIdCounter = 0;
-        public abstract UIKey UIKey { get; }
+        public abstract UIKey _UIKey_ { get; }
 
         protected virtual void Awake()
         {
@@ -115,7 +115,7 @@ namespace xicheng.ui
         public virtual void OnRecycle()
         {
             gameObject.SetActive(false);
-            transform.SetParent(UIManager.Inst.UIRoot); // 重置父节点
+            transform.SetParent(UIManager.Inst.UIRoot.transform); // 重置父节点
             transform.localPosition = Vector3.zero; // 重置位置
             RecycleTime = (long)(Time.realtimeSinceStartup * 1000); // 毫秒时间戳
         }
@@ -140,7 +140,7 @@ namespace xicheng.ui
 
         public UIPanel GetCfg()
         {
-            var panel = UIManager.Inst.GetUICfg(UIKey);
+            var panel = UIManager.Inst.GetUICfg(_UIKey_);
             return panel;
         }
 

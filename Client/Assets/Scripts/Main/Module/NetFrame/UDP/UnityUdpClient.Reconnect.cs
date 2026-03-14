@@ -1,6 +1,6 @@
 using System;
 
-namespace xicheng.udp
+namespace Xicheng.udp
 {
     //重连策略
     [Serializable]

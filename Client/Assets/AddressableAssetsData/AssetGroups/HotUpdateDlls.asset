@@ -17,13 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9cb6b85a5d7da8749960dda52450905d
   m_SerializeEntries:
-  - m_GUID: d045c5ed218be77458013eeb9667bb6e
-    m_Address: Assets/AssetsPackage/HotUpdateDlls/HotUpdateDll
+  - m_GUID: 7c5abf16de2297f4998d4aca95b24fbb
+    m_Address: Assets/AssetsPackage/HotUpdateDlls/MetaDataDll
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7c5abf16de2297f4998d4aca95b24fbb
-    m_Address: Assets/AssetsPackage/HotUpdateDlls/MetaDataDll
+  - m_GUID: c8a7222d2c4e2864294f088b0eab63d7
+    m_Address: Assets/AssetsPackage/HotUpdateDlls
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d045c5ed218be77458013eeb9667bb6e
+    m_Address: Assets/AssetsPackage/HotUpdateDlls/HotUpdateDll
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

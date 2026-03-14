@@ -1,0 +1,38 @@
+{
+    // 文件关联
+    "files.associations": {
+        "*.shader": "hlsl",
+        "*.cginc": "hlsl",
+        "*.compute": "hlsl",
+        "*.hlsl": "hlsl"
+    },
+    
+    // 代码提示设置
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    
+    // GLSL Lint配置
+    "glsllint.enable": true,
+    "glsllint.run": "onSave",
+    "glsllint.config": "${workspaceFolder}/.vscode/glsllintrc.json",
+    
+    // 其他有用设置
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4,
+    "editor.renderWhitespace": "all",
+    "workbench.colorTheme": "Default Dark+",
+    "files.eol": "\n",
+
+
+    "editor.snippets.insertMode": "replace",
+    "[hlsl]": {
+    "editor.defaultFormatter": "smilebags.shaderlabvs"
+    },
+
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000
+}

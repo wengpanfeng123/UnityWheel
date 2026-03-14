@@ -1,28 +1,26 @@
 using System;
 using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using cfg.ui;
 using DG.Tweening;
-using Hotfix.DataTable;
-using Main.Module.Log;
+using Xicheng.DataTable;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
-using xicheng.common;
+using Xicheng.Utility;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public partial class UIManager : MonoSingleton<UIManager>
     {
-        private Camera _uiCamera;
-        private Transform _uiRoot;
+        private UIRoot _uiRoot;
         private List<UIKey> _loadingList;
         private UILayerMgr _layerMgr;
         private UIBase _activityUI;
         
         #region 属性
-        public Transform UIRoot => _uiRoot;
-        public Camera UICam => _uiCamera;
+        public UIRoot UIRoot => _uiRoot;
+        public Camera UICam => _uiRoot.uiCam;
         #endregion
         
         // 新方案  新增成员变量
@@ -30,17 +28,17 @@ namespace xicheng.ui
         private Dictionary<UIKey, Stack<UIBase>> _instancesDict;
         // 全局打开顺序链表（解决循环检测）
         private LinkedList<UIStateNode> _globalOrderList;
-        
-        private void Awake()
+ 
+        public void OnStartUp()
         {
             InitData();
             StartCacheCleanupCoroutine();
         }
 
+
         private void InitData()
         {
-            _uiRoot = GameObject.FindWithTag("UIRoot").transform;
-            _uiCamera = _uiRoot.Find("UICamera").GetComponent<Camera>();
+            _uiRoot = FindObjectOfType<UIRoot>();
             _instancesDict = new();
             _globalOrderList = new();
             _layerMgr = new UILayerMgr();
@@ -73,7 +71,7 @@ namespace xicheng.ui
              */
             if (!isMultiInstance)
             {
-                var existingNode = _globalOrderList.FirstOrDefault(n => n.Instance.UIKey == uiKey);
+                var existingNode = _globalOrderList.FirstOrDefault(n => n.Instance._UIKey_ == uiKey);
                 //是否被打开过。
                 if (existingNode != null)
                 {
@@ -83,6 +81,7 @@ namespace xicheng.ui
                     existingNode.UpdateOpenTime();
                     // 2. 刷新数据
                     existingNode.Instance.OnShow(args);
+                    PlayOpenAnim(existingNode.Instance);
                     _activityUI = existingNode.Instance;
 
                     // 3. 重新计算互斥层级
@@ -99,7 +98,7 @@ namespace xicheng.ui
             //加载中不再创建
             if (_loadingList.Contains(uiKey))
             {
-                Log.Info($"{uiKey} is loading");
+                ULog.Info($"{uiKey} is loading");
                 yield break;
             }
 
@@ -130,7 +129,7 @@ namespace xicheng.ui
 
             if (instance == null)
             {
-                Log.Error($"{uiKey} instance is null。实例化失败!" + uiConfig.Path);
+                ULog.Error($"{uiKey} instance is null。实例化失败!" + uiConfig.Path);
                 yield break;
             }
             
@@ -144,7 +143,8 @@ namespace xicheng.ui
             instance.OnInit(uiKey); 
             //添加到层管理器
             _layerMgr.AddToLayer(instance); 
-            instance.OnShow(args);  
+            instance.OnShow(args);
+            PlayOpenAnim(instance);
             _loadingList.Remove(uiKey);
             _activityUI = instance; //设置为活动界面
             onComplete?.Invoke((T)instance);
@@ -157,7 +157,7 @@ namespace xicheng.ui
             UILayer layerCfg = DT.Table.TbUILayer.Get(newPanel.LayerId);
             if (layerCfg == null)
             {
-                Log.Error($"[HandleExclusiveLayers]不存在层级数据！ uikey = {newPanel.UIKey}");
+                ULog.Error($"[HandleExclusiveLayers]不存在层级数据！ uikey = {newPanel._UIKey_}");
                 return;
             }
             
@@ -179,7 +179,7 @@ namespace xicheng.ui
                 //处理互斥内容
                 if (isExclusive || isSameLayerExclusive)
                 {
-                    currentNode.Value.HiddenChildren.Add(node.Instance.UIKey);
+                    currentNode.Value.HiddenChildren.Add(node.Instance._UIKey_);
                     node.Instance.OnHide();
                 }
             }
@@ -202,15 +202,15 @@ namespace xicheng.ui
         {
             if (_globalOrderList.Count <= 0)
             {
-                Log.Error("[UIMgr] CloseUI 打开列表为空");
+                ULog.Error("[UIMgr] CloseUI 打开列表为空");
                 return;
             }
             UIStateNode node = _globalOrderList.FirstOrDefault(n => n.Instance == instanceUI);
             if (node != null)
             {
-                UIClose(node);
-                if(_loadingList.Contains(node.Instance.UIKey))
-                    _loadingList.Remove(node.Instance.UIKey); 
+                _UIClose_(node);
+                if(_loadingList.Contains(node.Instance._UIKey_))
+                    _loadingList.Remove(node.Instance._UIKey_); 
             }
         }
 
@@ -222,7 +222,7 @@ namespace xicheng.ui
         {
             if (_globalOrderList.Count <= 0)
             {
-                Log.Error("[UIMgr] CloseUI 打开列表为空"); // 修改：改为记录错误日志
+                ULog.Error("[UIMgr] CloseUI 打开列表为空"); // 修改：改为记录错误日志
                 return;
             }
 
@@ -230,7 +230,7 @@ namespace xicheng.ui
             var uiCfg = GetUICfg(uiKey);
             if (uiCfg == null)
             {
-                Log.Error($"[CloseUI] UI配置表 id =  {uiKey} not found!");
+                ULog.Error($"[CloseUI] UI配置表 id =  {uiKey} not found!");
                 return;
             }
 
@@ -238,13 +238,13 @@ namespace xicheng.ui
             UIStateNode closeUINode = null;
             if (!isMulti)
             {
-                closeUINode = _globalOrderList.FirstOrDefault(n => n.Instance.UIKey == uiKey);
+                closeUINode = _globalOrderList.FirstOrDefault(n => n.Instance._UIKey_ == uiKey);
             }
             else
             {
                 if (instanceUI == null)
                 {
-                    Log.Error($"[CloseUI] {uiKey}是多实例UI，请传入正确的InstId参数！"); // 修改：改为记录错误日志
+                    ULog.Error($"[CloseUI] {uiKey}是多实例UI，请传入正确的InstId参数！"); // 修改：改为记录错误日志
                     return;
                 }
                 closeUINode = _globalOrderList.FirstOrDefault(n => n.Instance.InstId == instanceUI.InstId);
@@ -252,8 +252,8 @@ namespace xicheng.ui
 
             if (closeUINode != null)
             {
-                UIClose(closeUINode);
-                _loadingList.Remove(closeUINode.Instance.UIKey); 
+                _UIClose_(closeUINode);
+                _loadingList.Remove(closeUINode.Instance._UIKey_); 
             }
         }
         
@@ -270,11 +270,11 @@ namespace xicheng.ui
             
             if (ui != current.Instance)
             {
-                Log.Warning($"回退失败，当前{ui.UIKey}不是顶部UI，请检查逻辑！");
+                ULog.Warning($"回退失败，当前{ui._UIKey_}不是顶部UI，请检查逻辑！");
                 return;
             }
             
-            UIClose(current);
+            _UIClose_(current);
             
             //显示上个节点。
             LinkedListNode<UIStateNode> prevNode = _globalOrderList.Last.Previous;
@@ -283,20 +283,20 @@ namespace xicheng.ui
             {
                 foreach (var key in prevNode.Value.HiddenChildren) 
                 {
-                    var node = _globalOrderList.FirstOrDefault(n => n.Instance.UIKey == key);
+                    var node = _globalOrderList.FirstOrDefault(n => n.Instance._UIKey_ == key);
                     if (node != null && node.Instance.UIStatus == UIStatus.StatusHiding)
                     {
                         node.Instance.Redisplay();
                     }
                     else
                     {
-                        Log.Warning($"UIKey {key} 已被关闭或不存在");
+                        ULog.Warning($"UIKey {key} 已被关闭或不存在");
                     }
                 }
             }
         }
         
-        private void UIClose(UIStateNode node)
+        private void _UIClose_(UIStateNode node)
         {
             if (node != null && node.Instance != null)
             {
@@ -323,7 +323,7 @@ namespace xicheng.ui
             foreach (var node in _globalOrderList)
             {
                 // 获取层级配置，假设UILayer配置新增IsPersistent字段
-                var cfg =  GetUICfg(node.Instance.UIKey);
+                var cfg =  GetUICfg(node.Instance._UIKey_);
                 if (cfg is { IsResident: false })
                 {
                     nodesToRemove.Add(node);
@@ -350,21 +350,21 @@ namespace xicheng.ui
         }
 
         //入场动画
-        private IEnumerator PlayOpenAnim(UIBase ui,object args)
+        private void PlayOpenAnim(UIBase ui)
         {
-            // 实现你的入场动画逻辑
-            ui.transform.localScale = Vector3.zero;
-            yield return ui.transform.DOScale(Vector3.one, 0.2f).WaitForCompletion();
-            ui.OnShow(args);
+            var openAnimation = ui.GetComponent<Animation>();
+            if (openAnimation == null)
+                openAnimation = ui.gameObject.AddComponent<Animation>();
+            openAnimation.Play("UIOpenScale");
         }
         
         //退场动画
-        private IEnumerator PlayExitAnim(UIBase ui)
-        {
-            // 实现你的退场动画逻辑 
-            yield return ui.transform.DOScale(Vector3.zero, 0.2f).WaitForCompletion();
-            ui.OnHide();
-        }
+        // private IEnumerator PlayExitAnim(UIBase ui)
+        // {
+        //     // 实现你的退场动画逻辑 
+        //     yield return ui.transform.DOScale(UnityEngine.Vector3.zero, 0.2f).WaitForCompletion();
+        //     ui.OnHide();
+        // }
         
         private int _uiIndex=0;
         public int UIIndex => _uiIndex++;
@@ -377,6 +377,11 @@ namespace xicheng.ui
         }
 
         private void OnDestroy()
+        {
+
+        }
+
+        public void OnRelease()
         {
             _instancesDict.Clear();
             _globalOrderList.Clear();

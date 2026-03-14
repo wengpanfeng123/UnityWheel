@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace xicheng.udp
+namespace Xicheng.udp
 {
     //主线程调度器（解决跨线程问题）
     public class MainThreadDispatcher

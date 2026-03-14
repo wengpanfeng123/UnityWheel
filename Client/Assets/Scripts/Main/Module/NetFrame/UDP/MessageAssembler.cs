@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace xicheng.udp
+namespace Xicheng.udp
 {
     /*
       1. 分帧的核心作用

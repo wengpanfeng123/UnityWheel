@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using xicheng.module.ui;
+using Xicheng.module.ui;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     
     public partial class UIBase

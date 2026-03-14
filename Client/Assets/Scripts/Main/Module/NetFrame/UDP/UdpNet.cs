@@ -5,7 +5,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using UnityEngine;
-using xicheng.common;
+using Xicheng.Common;
+using Xicheng.Utility;
 
 /* 
   ***** 指数退避算法 *****
@@ -105,7 +106,7 @@ using xicheng.common;
   
   
  */
-namespace xicheng.udp
+namespace Xicheng.udp
 {
     /// <summary>
     /// udp 网络框架(可靠性传输)

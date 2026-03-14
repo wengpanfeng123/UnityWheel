@@ -1,9 +1,9 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using xicheng.common;
+using Xicheng.Common;
 
-namespace xicheng.uisystem.gen
+namespace Xicheng.UIsystem.gen
 {
     public class TMPNode:Node
     {
@@ -21,7 +21,7 @@ namespace xicheng.uisystem.gen
 
         public override string getLocalFind()
         {
-            string text = $@"        _{transform.name} = Finder.TextMeshPro(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string text = $@"        _{transform.name} = Finder.TextMeshPro(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return text;
         }
     }

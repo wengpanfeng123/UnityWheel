@@ -7,6 +7,6 @@ dotnet %LUBAN_DLL% ^
     -d json ^
 	-c cs-simple-json ^
     --conf %CONF_ROOT%\luban.conf ^
-	-x outputCodeDir=..\..\Client\Assets\Scripts\Hotfix\DataTable ^
+	-x outputCodeDir=..\..\Client\Assets\Scripts\Hotfix\TableScript ^
 	-x outputDataDir=..\..\Client\Assets\AssetsPackage\DataTable
 pause

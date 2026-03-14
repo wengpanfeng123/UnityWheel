@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using xicheng.common;
+using Xicheng.Common;
 
-namespace xicheng.uisystem.gen
+namespace Xicheng.UIsystem.gen
 {
     public class TextNode:Node
     {
@@ -19,7 +19,7 @@ namespace xicheng.uisystem.gen
 
         public override string getLocalFind()
         {
-            string text = $@"        {VarDefine} = Finder.Text(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string text = $@"        {VarDefine} = Finder.Text(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return text;
         }
     }

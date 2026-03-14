@@ -8,12 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneTools  
 {
-    [MenuItem("Scene/Launcher-AOT",false,1)]
-    static void OpenLauncher()
-    {
-        EditorSceneManager.OpenScene("Assets/Scenes/GameLauncher.unity");
-    }
-        
     [MenuItem("Scene/GameStart-HotUpdate",false,5)]
     static void OpenGameStart()
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace xicheng.common
+namespace Xicheng.Common
 {
     public class GoNode : Node
     {
@@ -17,7 +17,7 @@ namespace xicheng.common
 
         public override string getLocalFind()
         {
-            string go = $@"        {VarDefine} = Finder.GameObject(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string go = $@"        {VarDefine} = Finder.GameObject(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return go;
            
         }

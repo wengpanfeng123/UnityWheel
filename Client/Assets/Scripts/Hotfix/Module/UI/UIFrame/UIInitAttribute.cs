@@ -1,7 +1,7 @@
 using System;
-using xicheng.module.ui;
+using Xicheng.module.ui;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class UIInitAttribute:Attribute

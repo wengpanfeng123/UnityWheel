@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace xicheng.common
+namespace Xicheng.Common
 {
     public class InputFieldNode:Node
     {
@@ -27,7 +27,7 @@ namespace xicheng.common
 
         public override string getLocalFind()
         {
-            string inputFiled = $@"        {VarDefine} = Finder.InputField(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string inputFiled = $@"        {VarDefine} = Finder.InputField(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return inputFiled;
         }
     }

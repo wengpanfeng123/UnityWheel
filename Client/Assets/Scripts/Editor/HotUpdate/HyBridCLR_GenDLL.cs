@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using HybridCLR.Editor;
@@ -24,6 +25,11 @@ public class HyBridCLR_GenDLL
     //TODO:元数据引用路径。AOTGenericReferences--自动根据项目去引用元数据dll--
     static string AOTGenericReferencesPath => $"{Application.dataPath}/HybridCLRGenerate/AOTGenericReferences.cs";
     
+    private const string UNITY_JDK_11_PATH = "/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/";
+    private const string SYSTEM_JDK_17_PATH = "/Library/Java/JavaVirtualMachines/jdk-17.0.15.jdk/Contents/Home/";
+
+    
+    
     [MenuItem("Build/HybridCLR/第一次GenerateAll拷贝热更dll以及元数据dll")]
     private static void HybridCLRCopyDll()
     {
@@ -34,6 +40,8 @@ public class HyBridCLR_GenDLL
             Debug.LogError("HybridCLR is not Installer");
             return;
         }
+        // 在生成方法中添加
+        //Environment.SetEnvironmentVariable("SKIP_JDK_VERSION_CHECK", "true");
 
         //执行HybridCLR
         PrebuildCommand.GenerateAll();

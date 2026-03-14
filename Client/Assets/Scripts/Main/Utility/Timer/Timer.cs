@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-
-// 定时器类
-using System;
-using UnityEngine;
+ 
 
 // 定时器类
 public class Timer : IComparable<Timer>

@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Main.Module.Log;
 using SimpleJSON;
-using xicheng.common;
+using Xicheng.Common;
 
 namespace Hotfix
 {
@@ -89,11 +88,10 @@ namespace Hotfix
         public static void CreateUIKey()
         {
             StringBuilder sb = new StringBuilder();
-            string filePath = Application.dataPath + $@"/{ResCfg.AssetFolder}/DataTable/ui_tbuipanel.json";
+            string filePath = Application.dataPath + $@"/{ResConst.AssetFolder}/DataTable/ui_tbuipanel.json";
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
-             
                 JSONNode  jNode = SimpleJSON.JSONNode.Parse(json);
                 foreach (var node in jNode.AsArray)
                 {
@@ -103,9 +101,7 @@ namespace Hotfix
               
                     int id = int.Parse(node.Value["id"]);
                     string line = "\t"+$"  {key} = {id},"+ '\n';
-                    //Debug.Log("path :" + line );
                     sb.Append(line);
-
                 }
                 CreateKeyClass(sb.ToString());
                 sb.Clear();
@@ -134,7 +130,7 @@ namespace Hotfix
                 File.Delete(filePath);
             File.WriteAllText(filePath, text, Encoding.UTF8);
             AssetDatabase.Refresh();
-            Log.Info("xc.[UIKey] 生成成功！");
+            ULog.Info("xc.[UIKey] 生成成功！");
         }
     }
 }

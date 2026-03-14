@@ -1,11 +1,13 @@
 ﻿using Google.Protobuf;
 using Protocol;
 
-namespace xicheng.tcp
+namespace Xicheng.tcp
 {
-    public class UserProxy:NetProxy<UserProxy>,IController
+    public class UserProxy:NetProxy<UserProxy>
     {
-        public void OnInit()
+        public bool InitStartUp => true;
+
+        public void OnStartUp()
         {
             RegisterMsg(MessageId.MsgidC2SCreatePlayer, S2C_ChapterUpdate);
         }
@@ -27,13 +29,7 @@ namespace xicheng.tcp
             //TODO:逻辑处理
             
         }
-
-    
-
-        public void OnUpdate(float deltaTime)
-        {
-             
-        }
+ 
 
         public void OnRelease()
         {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace xicheng.module.ui
+namespace Xicheng.module.ui
 {
     
  using System.Collections.Generic;
@@ -43,7 +43,7 @@ public class UI_Event : EventTrigger
     
     public AxisEventDelegate onMove = null;
 
-    private static PointerEventData _pointData = null;
+ 
 
     //设置参数
     public void SetData(string key ,object val)

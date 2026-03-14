@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace xicheng.ReferencePool
+namespace Xicheng.ReferencePool
 {
     /*
      * Add() 向引用池中追加指定数量的引用。追加的引用标记为Unused。引用计数+1.

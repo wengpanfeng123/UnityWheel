@@ -5,12 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Hotfix.Common;
-using Main.Module.Log;
 using UnityEditor;
-using xicheng.uisystem.gen;
+using Xicheng.UIsystem.gen;
 using UnityEngine;
 
-namespace xicheng.common
+namespace Xicheng.Common
 {
     public class FileGen
     {
@@ -246,7 +245,7 @@ public class {comName}:{inherit}
                 File.WriteAllText(filePath, $"{content}");
             }
 
-            UniLog.Log.Info($"生成{filePath}",Color.cyan);
+            ULog.Info($"生成{filePath}",Color.cyan);
             Debug.Log($"生成{filePath}");
             AssetDatabase.Refresh();
         }

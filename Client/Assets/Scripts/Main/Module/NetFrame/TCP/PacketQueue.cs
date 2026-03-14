@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace xicheng.tcp
+namespace Xicheng.tcp
 {
 
     /// <summary>

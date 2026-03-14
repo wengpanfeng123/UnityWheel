@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-namespace UIModule {
+namespace Xicheng.UI {
 	public partial class LoginUITest 
 	{
 	   public Button Btn_Back;
 
-	   public Text TxtWelcome;
+	   public Text txtWelcom;
 
-	   public TextMeshProUGUI TmpAge;
+	   public TextMeshProUGUI textName;
 
-	   public InputField InputUserName;
+	   public TMP_InputField InputName;
 
-	   public InputField InputPwd;
+	   public TextMeshProUGUI Text;
 
 	}
 }

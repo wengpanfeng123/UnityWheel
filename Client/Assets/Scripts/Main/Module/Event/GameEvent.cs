@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public interface IEventParam
 {
@@ -8,6 +7,17 @@ public interface IEventParam
 
 public interface IEvent : IReference
 {
+    public void Acquire();
+}
+
+public abstract class EventBase:IReference
+{
+    public virtual void Clear() {}
+
+    public void Acquire<T>() where T : class, IReference, new()
+    {
+        RefPool.Acquire<T>();
+    }
 }
 
 /*文档1
@@ -31,7 +41,7 @@ public interface IEvent : IReference
     全局配置（如 AppSettings）。
     扩展方法容器(如：扩展Transform的方法)
  */
-namespace xicheng.events
+namespace Xicheng.events
 {
     public static class GameEvent
     {
@@ -41,7 +51,7 @@ namespace xicheng.events
         private static Dictionary<int, OnEventAction> _eventActionDic;
         // 添加锁对象
         private static readonly object _lock = new object();
-        private static bool _enableLogs = true;
+ 
         //静态构造函数：在类首次被访问时执行一次，初始化静态成员的数据。
         static GameEvent()
         {
@@ -83,7 +93,6 @@ namespace xicheng.events
             }
         }
 
-
         public static void RemoveListener<T>(OnEventAction onEvent) where T : IEvent
         {
             int eventKey = typeof(T).GetHashCode();
@@ -110,7 +119,7 @@ namespace xicheng.events
                 action.Invoke(param);
                 return;
             }
-            LogError($"[Send] 事件<{typeof(T).Name}>不存在");
+            ULog.Info($"[Send] 事件<{typeof(T).Name}>不存在");
         }
 
         public static void OnRelease()
@@ -124,17 +133,6 @@ namespace xicheng.events
                     _eventActionDic = null;
                 }
             }
-        }
-
-        public static void Log(string msg)
-        {
-            if(_enableLogs)
-                Debug.Log("[GameEvent] "+msg);
-        }
-        public static void LogError(string msg)
-        {
-            if(_enableLogs)
-                Debug.LogError("[GameEvent] "+msg);
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace xicheng.ui
+namespace Xicheng.UI
 {
 #if UNITY_EDITOR
    // [CustomEditor(typeof(LayerManager))]

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public partial class UIManager
     {
@@ -11,7 +11,7 @@ namespace xicheng.ui
         
         public void Recycle(UIBase instance)
         {
-            var uiKey = instance.UIKey;
+            var uiKey = instance._UIKey_;
             if (!_instancesDict.TryGetValue(uiKey, out var stack)) 
             {
                 stack = new Stack<UIBase>();

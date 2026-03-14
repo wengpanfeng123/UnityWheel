@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace xicheng.common
+namespace Xicheng.Common
 {
     public class RawImageNode : Node
     {
@@ -18,7 +18,7 @@ namespace xicheng.common
 
         public override string getLocalFind()
         {
-            string image = $@"        {VarDefine} = Finder.RawImage(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string image = $@"        {VarDefine} = Finder.RawImage(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return image;
             //return "local FindRawImage = CS.VirtualWorld.Utils.LuaUtils.FindRawImage";
         }

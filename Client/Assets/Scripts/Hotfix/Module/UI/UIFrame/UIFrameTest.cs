@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace xicheng.module.uiframe
+namespace Xicheng.module.uiframe
 {
     public class UIFrameTest:MonoBehaviour
     {

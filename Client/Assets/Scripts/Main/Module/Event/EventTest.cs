@@ -1,23 +1,29 @@
 ﻿using Main.EventTest;
 using UnityEngine;
-using xicheng.events;
-namespace xicheng.module.events
+using Xicheng.events;
+
+namespace Xicheng.module.events
 {
     public class EventTest : MonoBehaviour
     {
         void Start()
         {
-            
+         
             var testEvent =RefPool.Acquire<TestEvent>();
-            
+       
             //GameEvent.AddListener(typeof(TestEvent), TestEventAction);
             GameEvent.AddListener<TestEvent>(TestEventAction);
-            
-         
-            
+
+            var eventGroup = EventGroup.Acquire();
+            eventGroup.Subscribe<TestEvent>(TestEventAction);
+            eventGroup.UnSubscribe(typeof(TestEvent),TestEventAction);
+            eventGroup.Notify(new TestEvent());
+            eventGroup.Clear();
+       
+
             //GameEvent.RemoveListener(typeof(TestEvent), TestEventAction);
             //GameEvent.RemoveListener<TestEvent>( TestEventAction);
-       
+
         }
 
         void OnGUI()
@@ -25,6 +31,7 @@ namespace xicheng.module.events
             if (GUILayout.Button("EventTest"))
             {
                 TestEvent evt = RefPool.Acquire<TestEvent>();
+ 
                 evt.name = "wengpanfeng";
                 GameEvent.Send(evt);
             }

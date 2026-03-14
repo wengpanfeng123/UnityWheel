@@ -1,14 +1,10 @@
 using cfg.ui;
-using xicheng.common;
-using xicheng.module.ui;
 using System.Collections.Generic;
-using System.Linq;
-using Hotfix.DataTable;
-using Main.Module.Log;
 using UnityEngine;
-namespace xicheng.ui
+using Xicheng.DataTable;
+
+namespace Xicheng.UI
 {
-    
     [System.Serializable]
     public class LayerConfig
     {
@@ -20,12 +16,13 @@ namespace xicheng.ui
     public class UILayerMgr
     {
         private Dictionary<int, LayerData> _layerDic;
+
         public UILayerMgr()
         {
             _layerDic = new Dictionary<int, LayerData>();
             GenerateLayerNode();
         }
-        
+
 
         // 互斥关系配置
         private Dictionary<UILayerType, List<UILayerType>> _exclusionRules = new()
@@ -43,16 +40,16 @@ namespace xicheng.ui
                 }
             }
         };
-        
+
         private void GenerateLayerNode()
         {
-            Transform uiRoot = UIManager.Inst.UIRoot;
+            Transform safeArea = UIManager.Inst.UIRoot.safeArea;
             foreach (UILayer item in DT.Table.TbUILayer.DataList)
             {
                 // 创建一个空的GameObject  
-                GameObject emptyNode = new GameObject(item.Id+"_"+item.Name);
+                GameObject emptyNode = new GameObject(item.Id + "_" + item.Name);
                 // 如果你想，可以将这个空节点设置为当前脚本所在GameObject的子节点  
-                emptyNode.transform.SetParent(uiRoot.transform);
+                emptyNode.transform.SetParent(safeArea);
                 emptyNode.transform.localPosition = Vector3.zero;
                 emptyNode.transform.localScale = Vector3.one;
                 emptyNode.AddComponent<Canvas>();
@@ -61,14 +58,14 @@ namespace xicheng.ui
                 RectTransform rectTransform = emptyNode.GetComponent<RectTransform>();
                 // 1. 设置锚点为四周对齐
                 rectTransform.anchorMin = Vector2.zero; // 左下角 (0,0)
-                rectTransform.anchorMax = Vector2.one;   // 右上角 (1,1)
+                rectTransform.anchorMax = Vector2.one; // 右上角 (1,1)
                 // 2. 强制重置偏移量为0
                 rectTransform.offsetMin = Vector2.zero; // 左/下偏移
                 rectTransform.offsetMax = Vector2.zero; // 右/上偏移
-                _layerDic.Add(item.Id,new LayerData((UILayerType)item.Id, emptyNode));
+                _layerDic.Add(item.Id, new LayerData((UILayerType)item.Id, emptyNode));
             }
         }
-        
+
         private LayerData GetLayerData(int layerId)
         {
             return _layerDic.GetValueOrDefault(layerId);
@@ -85,12 +82,13 @@ namespace xicheng.ui
 
         private void AddToLayerData(UIBase panel)
         {
-            int layerId = GetLayerId(panel.UIKey);
+            int layerId = GetLayerId(panel._UIKey_);
             LayerData layer = GetLayerData(layerId);
-            if (layer ==null)
+            if (layer == null)
             {
-                Log.Error($"获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"获取层级数据失败！ uikey = {panel._UIKey_}");
             }
+
             layer.AddUI(panel);
         }
 
@@ -99,7 +97,6 @@ namespace xicheng.ui
             return DT.Table.TbUIPanel.Get((int)uiKey).Layer;
         }
 
- 
 
         private void HandleExclusiveLayers(UIBase newPanel)
         {
@@ -131,19 +128,21 @@ namespace xicheng.ui
 
         public void OnRemoveUI(UIBase panel)
         {
-            int layerId = GetLayerId(panel.UIKey);
+            int layerId = GetLayerId(panel._UIKey_);
             LayerData layer = GetLayerData(layerId);
-            if (layer ==null)
+            if (layer == null)
             {
-                Log.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel._UIKey_}");
                 return;
             }
+
             layer.RemoveUI(panel);
         }
-        
-        
+
+
         //动态提层：运行时动态修改UI的层级
-        public void ChangeUILayer(UIBase ui, int newLayerId) {
+        public void ChangeUILayer(UIBase ui, int newLayerId)
+        {
             // 从原层级移除
             var oldLayer = GetLayerData(ui.LayerId);
             oldLayer?.RemoveUI(ui);
@@ -152,7 +151,7 @@ namespace xicheng.ui
             // 加入新层级
             var newLayer = GetLayerData(newLayerId);
             newLayer.AddUI(ui);
-    
+
             // 处理互斥关系
             UIManager.Inst.HandleExclusive(ui);
         }
@@ -172,13 +171,14 @@ namespace xicheng.ui
 
         public void BringToTop(UIBase panel)
         {
-            int layerId = GetLayerId(panel.UIKey);
+            int layerId = GetLayerId(panel._UIKey_);
             LayerData layer = GetLayerData(layerId);
-            if (layer ==null)
+            if (layer == null)
             {
-                Log.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel.UIKey}");
+                ULog.Error($"[OnRemoveUI]获取层级数据失败！ uikey = {panel._UIKey_}");
                 return;
             }
+
             layer.BringToTop(panel);
         }
     }

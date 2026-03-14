@@ -1,12 +1,21 @@
+/*************************************************************************
+ * Copyright  #AUTHOR#. All rights reserved.
+ *------------------------------------------------------------------------
+ * File     : RefPool.cs
+ * Author   : xicheng
+ * Date     : 2025.9.24
+ * Tips     : TIPS
+ * Description : 引用池
+ *************************************************************************/
+
 using System;
 using System.Collections.Generic;
-using xicheng.ReferencePool;
+using Xicheng.ReferencePool;
 
 
 public class RefPool
 {
-    private static readonly Dictionary<Type, ReferenceCollection> ReferenceCollections =
-        new Dictionary<Type, ReferenceCollection>();
+    private static readonly Dictionary<Type, ReferenceCollection> ReferenceCollections = new();
 
     private static bool m_EnableStrictCheck = false;
 

@@ -1,11 +1,11 @@
 using System;
-using xicheng.module.ui;
+using Xicheng.module.ui;
 
-namespace xicheng.ui
+namespace Xicheng.UI
 {
     public class UITest:UIBase
     {
-        public override UIKey UIKey { get; }
+        public override UIKey _UIKey_ { get; }
 
  
         public override void OnShow(object args)

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace xicheng.common
+namespace Xicheng.Common
 {
     public class ImageNode : Node
     {
@@ -17,7 +17,7 @@ namespace xicheng.common
 
         public override string getLocalFind()
         {
-            string image = $@"        {VarDefine} = Finder.Image(transform,""{GameUtility.GetPath(root, transform)}"");";
+            string image = $@"        {VarDefine} = Finder.Image(transform,""{TransformUtil.GetPath(root, transform)}"");";
             return image;
         }
     }
